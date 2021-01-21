@@ -12,7 +12,7 @@ install_github("dmacguigan/PhenoDelimit")
 library(PhenoDelimit)
 ```
 
-Example script for how to run the package. Example files in "example" directory, so clone the repository first.
+Example script. Data are in "example" directory, so clone the repository first.
 ```
 # example script to run PhenoDelimit
 
