@@ -56,7 +56,7 @@ clumpp_results <- read_clumpp_results(wd=wd, perc.var=perc.var, model.numbers=mo
 ### step 4: plot H' values to compare delimitation models
 ```
 wd = "H:/NearLab/PhenoDelimit/example/"
-clumpp.data = clumpp_results
+clumpp.data = clumpp_results # from previous step
 colors = brewer.pal(n = 3, name = "Set1")
 plot.type = "png"
 plot.name = "H_plot_example"
