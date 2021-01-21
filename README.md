@@ -40,7 +40,7 @@ See [this paper in Bioinformatics](https://academic.oup.com/bioinformatics/artic
 
 In this analysis, we provide CLUMPP with two matrices. 
 First, a matrix where each individual is assigned with probability 1.0 to a group based on the delimitation model.
-Second, a matrix of discriminant analysis individual assignment probabilities using groups defined by K-means clustering. 
+Second, a matrix of individual assignment probabilities fron discriminant analysis using groups defined by K-means clustering. 
 By comparing the two matrices with CLUMPP, we can determine which delimitation model is the best match to K-means clusters, indicative of real group differences in the data. 
 
 You can use run_CLUMPP.sh in "PhenoDelimit/example/CLUMPP" to run CLUMPP on all files in a directory.
