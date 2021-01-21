@@ -32,7 +32,10 @@ center = TRUE
 clumpp_prep(wd=wd, data=data, n.groups=n.groups, model.numbers=model.numbers, models=models, perc.var=perc.var, scale=scale, center=center)
 ```
 ## step 2: run CLUMPP, must be done externally
-Can use run_CLUMPP.sh in "PhenoDelimit/example/CLUMPP" to run CLUMPP on all files in a directory
+Use CLUMPP to compare discriminant analysis assignment probabilities to each delimitation model. CLUMPP calculates `<H'>`, a matrix pairwise similarity metric bounded between 0 and 1. A value of 1 indicates a perfect match between two matrices. 
+See [this paper in Bioinformatics](https://academic.oup.com/bioinformatics/article/23/14/1801/188285) for more info. Note that `<H'>` is called `<G'>` in this paper.
+
+You can use run_CLUMPP.sh in "PhenoDelimit/example/CLUMPP" to run CLUMPP on all files in a directory.
 
 ## step 3: summarize CLUMPP
 ```
