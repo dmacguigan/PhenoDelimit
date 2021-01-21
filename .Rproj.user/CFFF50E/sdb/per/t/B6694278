@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "# example script to run PhenoDelimit\n\n# step 1: K-means clustering, discriminant analysis, and prep files for CLUMPP\nwd = \"H:/NearLab/PhenoClust/example/CLUMPP\"\ndata = read.table(\"H:/NearLab/PhenoClust/example/sim_data.txt\", header=TRUE)\nn.groups = c(4,2,3,5,5,4)\nmodel.numbers = c(1:6)\nmodels = read.table(\"H:/NearLab/PhenoClust/example/sim_models.txt\", header=TRUE)\nperc.var = c(70,80,90)\nscale = TRUE\ncenter = TRUE\n\nclumpp_prep(wd=wd, data=data, n.groups=n.groups, model.numbers=model.numbers, models=models, perc.var=perc.var, scale=scale, center=center)\n\n# step 2: run CLUMPP, must be done externally\n\n# step 3: summarize CLUMPP\nwd = \"H:/NearLab/PhenoClust/example/CLUMPP\"\nmodel.numbers = c(1:6)\nperc.var = c(70,80,90)\n\nclumpp_results <- read_clumpp_results(wd=wd, perc.var=perc.var, model.numbers=model.numbers)\n\n# step 4: plot H' values to compare delimitation models\nwd = \"H:/NearLab/PhenoClust/example/\"\nclumpp.data = clumpp_results\ncolors = brewer.pal(n = 3, name = \"Set1\")\nplot.type = \"pdf\"\nplot.width = 8\nplot.height = 4\n\nplot_clumpp_results(wd=wd, clumpp.data=clumpp.data, colors=colors, plot.type=plot.type, plot.width=plot.width, plot.height=plot.height)\n\n# step 5: barplot\nmodels = read.table(\"H:/NearLab/PhenoClust/example/sim_models.txt\", header=TRUE)\n\nwd = \"H:/NearLab/PhenoClust/example/\"\nclumpp.wd = \"H:/NearLab/PhenoClust/example/CLUMPP\"\nsample.names = (1:nrow(models))\nsample.plot.groups = models$m4\nsample.plot.groups.order = c(1,2,3,4,5)\nsample.order = (nrow(models):1)\nbest.perc.var = 90\nbest.model.number = 4\nplot.type = \"pdf\"\nplot.width = 8\nplot.height = 6\nplot.name = \"test\"\ncolors = brewer.pal(n = 5, name = \"Set1\")\nborder.color = \"gray\"\n\nassignProbs_barplot(wd = wd, clumpp.wd = clumpp.wd, sample.names = sample.names,\n                    sample.plot.groups = sample.plot.groups, sample.plot.groups.order = sample.plot.groups.order,\n                    #sample.order = sample.order,\n                    best.perc.var = best.perc.var, best.model.number = best.model.number,\n                    plot.type = plot.type, plot.width = plot.width, plot.height = plot.height,\n                    plot.name = plot.name, colors = colors, border.color = border.color)\n\n\n",
+    "created" : 1611246461200.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "572908229",
+    "id" : "B6694278",
+    "lastKnownWriteTime" : 1611246618,
+    "last_content_update" : 1611246618,
+    "path" : "H:/NearLab/PhenoDelimit/testScript.R",
+    "project_path" : "testScript.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

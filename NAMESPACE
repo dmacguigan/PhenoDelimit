@@ -1,0 +1,9 @@
+exportPattern("^[[:alpha:]]+")
+import(adegenet)
+import(ggplot2)
+import(reshape2)
+import(svglite)
+import(plyr)
+import(RColorBrewer)
+import(ggpubr)
+
