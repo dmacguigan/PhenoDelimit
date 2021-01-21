@@ -1,14 +1,14 @@
-\name{assignProbs_barplot}
-\alias{assignProbs_barplot}
+\name{assign_probs_barplot}
+\alias{assign_probs_barplot}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-assignProbs_barplot
+assign_probs_barplot
 }
 \description{
 Make "structure-like" bar plots using discriminant analysis assignment probabilities for chosen model and proportion of retained variance. Returns plot and saves plot as file (svg or pdf).
 }
 \usage{
-assignProbs_barplot(wd, clumpp.wd, sample.names,
+assign_probs_barplot(wd, clumpp.wd, sample.names,
                     sample.plot.groups, sample.plot.groups.order,
                     sample.order,
                     best.perc.var, best.model.number,

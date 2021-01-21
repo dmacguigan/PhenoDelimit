@@ -19,7 +19,7 @@ plot_clumpp_results <- function(wd, clumpp.data, colors, plot.name, plot.type, p
     print(p)
     dev.off()
   } else if(plot.type =="pdf"){
-    pdf(file = paste(plot.name, ".pdf", sep="", width = plot.width, height = plot.height)
+    pdf(file = paste(plot.name, ".pdf", sep=""), width = plot.width, height = plot.height)
     print(p)
     dev.off()
   }

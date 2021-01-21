@@ -16,7 +16,10 @@ Example script. Data are in "example" directory, so clone the repository first.
 ```
 # example script to run PhenoDelimit
 
+library(RColorBrewer)
+
 # step 1: K-means clustering, discriminant analysis, and prep files for CLUMPP
+# data were generated using simulate_data.R
 wd = "H:/NearLab/PhenoDelimit/example/CLUMPP"
 data = read.table("H:/NearLab/PhenoDelimit/example/sim_data.txt", header=TRUE)
 n.groups = c(4,2,3,5,5,4)
@@ -49,6 +52,15 @@ plot.height = 4
 
 plot_clumpp_results(wd=wd, clumpp.data=clumpp.data, colors=colors, plot.name = plot.name, plot.type=plot.type, plot.width=plot.width, plot.height=plot.height)
 
+```
+
+<object data="https://github.com/dmacguigan/PhenoDelimit/tree/main/example/H_plot_example.pdf" type="application/pdf" width="700px" height="700px">
+    <embed src="https://github.com/dmacguigan/PhenoDelimit/tree/main/example/H_plot_example.pdf">
+        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="https://github.com/dmacguigan/PhenoDelimit/tree/main/example/H_plot_example.pdf">Download PDF</a>.</p>
+    </embed>
+</object>
+
+```
 # step 5: barplot
 models = read.table("H:/NearLab/PhenoDelimit/example/sim_models.txt", header=TRUE)
 
@@ -61,16 +73,64 @@ sample.order = (nrow(models):1)
 best.perc.var = 90
 best.model.number = 1
 plot.type = "pdf"
-plot.width = 8
+plot.width = 20
 plot.height = 6
 plot.name = "barplot_example"
 colors = brewer.pal(n = 5, name = "Set1")
 border.color = "gray"
 
-assignProbs_barplot(wd = wd, clumpp.wd = clumpp.wd, sample.names = sample.names,
+assign_probs_barplot(wd = wd, clumpp.wd = clumpp.wd, sample.names = sample.names,
                     sample.plot.groups = sample.plot.groups, sample.plot.groups.order = sample.plot.groups.order,
                     #sample.order = sample.order,
                     best.perc.var = best.perc.var, best.model.number = best.model.number,
                     plot.type = plot.type, plot.width = plot.width, plot.height = plot.height,
                     plot.name = plot.name, colors = colors, border.color = border.color)
+
+# step 6: scatter plot or density plot
+models = read.table("H:/NearLab/PhenoDelimit/example/sim_models.txt", header=TRUE)
+
+wd = "H:/NearLab/PhenoDelimit/example/"
+clumpp.wd = "H:/NearLab/PhenoDelimit/example/CLUMPP"
+sample.plot.groups = models$m1
+sample.plot.groups.order = c(1,2,3,4)
+sample.order = (nrow(models):1)
+best.perc.var = 90
+best.model.number = 1
+plot.type = "pdf"
+plot.width = 6
+plot.height = 6
+plot.name = "scatter_plot_example"
+colors = brewer.pal(n = 5, name = "Set1")
+border.color = "gray"
+shapes=c(1:4)
+x.axis=1
+y.axis=2
+
+plot_discriminant_axes(wd = wd, clumpp.wd = clumpp.wd,
+                       sample.plot.groups = sample.plot.groups, sample.plot.groups.order = sample.plot.groups.order,
+                       best.perc.var = best.perc.var, best.model.number = best.model.number,
+                       plot.type = plot.type, plot.width = plot.width, plot.height = plot.height,
+                       plot.name = plot.name, colors = colors, shapes = shapes,
+                       x.axis = x.axis, y.axis = y.axis)
+
+# step 7: plot discriminant axis loadings and write to table
+wd = "H:/NearLab/PhenoDelimit/example/"
+clumpp.wd = "H:/NearLab/PhenoDelimit/example/CLUMPP"
+best.perc.var = 90
+best.model.number = 1
+plot.type = "pdf"
+plot.width = 6
+plot.height = 6
+axis=1
+
+discriminant_loading(wd = wd, clumpp.wd = clumpp.wd,
+                     best.perc.var = best.perc.var, best.model.number = best.model.number,
+                     plot.type = plot.type, plot.width = plot.width, plot.height = plot.height, axis = axis)
+
 ```
+
+
+
+
+
+

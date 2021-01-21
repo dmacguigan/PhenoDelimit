@@ -4,7 +4,7 @@
 library(ggplot2)
 
 # working directory
-wd = "H:/NearLab/PhenoClust/example"
+wd = "H:/NearLab/PhenoDelimit/example"
 
 # how many clusters to generate?
 true_clust = 4

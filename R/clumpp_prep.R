@@ -15,7 +15,21 @@ clumpp_prep_kmeans_vs_pop <- function(data, modelNumber, k, model, perc.var, sca
   kmeans.cluster <- find.clusters(data, max.n.clust = 30, n.start = 1000, n.iter=1e6, n.pca=10000, n.clust=k, center=center, scale=scale) #retain all PCs
   dapc.kmeans <- dapc(data, kmeans.cluster$grp, var.conrib=TRUE, var.loadings=TRUE, perc.pca=perc.var, n.da=10000, center=center, scale=scale)
 
-  # write DAPC assignment probabilties to file
+  # write K-means group assignment to file
+  write.table(file = paste("m", modelNumber, "_perVar-", perc.var, "_Kmeans.grp.txt", sep=""), x = dapc.kmeans$grp,
+              row.names = FALSE, col.names = FALSE)
+
+  # write DAPC variable contributions to file
+  write.table(file = paste("m", modelNumber, "_perVar-", perc.var, "_var.contr.txt", sep=""), x = dapc.kmeans$var.contr)
+
+  # write DAPC variable loadings to file
+  write.table(file = paste("m", modelNumber, "_perVar-", perc.var, "_var.load.txt", sep=""), x = dapc.kmeans$var.load)
+
+  # write DAPC individual coordinates to file
+  write.table(file = paste("m", modelNumber, "_perVar-", perc.var, "_ind.coord.txt", sep=""), x = dapc.kmeans$ind.coord,
+              row.names=FALSE)
+
+  # write DAPC assignment probabilities to file
   write.table(file = paste("m", modelNumber, "_perVar-", perc.var, "_posteriors.txt", sep=""), x = dapc.kmeans$posterior,
               row.names = FALSE, col.names = FALSE)
 

@@ -1,5 +1,5 @@
 # make barplot of best result posterior probabilities
-assignProbs_barplot <- function(wd, clumpp.wd, sample.names,
+assign_probs_barplot <- function(wd, clumpp.wd, sample.names,
                                 sample.plot.groups = NULL, sample.plot.groups.order = NULL,
                                 sample.order = NULL,
                                 best.perc.var, best.model.number,
@@ -29,6 +29,7 @@ assignProbs_barplot <- function(wd, clumpp.wd, sample.names,
   setwd(wd)
   if(plot.type == "svg"){
     svglite(file=paste(plot.name, ".svg", sep=""), width=plot.width, height=plot.height)
+      par(mgp=c(1.5,1,0), mar = c(4.1, 3.1, 1, 1))
       barplot(plotData, col=colors, border=border.color,
               space=0, axes=F, axisname=FALSE, las=2, cex.names=0.75,
               ylab  = "Assignment Probability", xlab = "Group")
@@ -36,11 +37,14 @@ assignProbs_barplot <- function(wd, clumpp.wd, sample.names,
         abline(v=pop.lines[i], lwd=2, lty=2, col="black") # set at divisions between populations
       }
       axis(2, las=2, cex=0.75, pos=0)
+      axis(1, at=c(seq(from = 0.5, to = ncol(plotData + 0.5), by = 1)), labels=sample.names,
+           tick=FALSE, las=2, cex.axis=0.3, adj=0, pos=0, line=0, mgp = c(3, 0.1, 0))
       axis(1, at=pop.labels, labels=names(table(pop.order.ordered)),
-           tick=FALSE, las=0, cex.axis=0.5, adj=0, pos=0, padj=-1.5)
+           tick=FALSE, las=0, cex.axis=0.8, adj=0, pos=0)
     dev.off()
   } else if(plot.type == "pdf"){
     pdf(file=paste(plot.name, ".pdf", sep=""), width=plot.width, height=plot.height)
+      par(mgp=c(1.5,1,0), mar = c(4.1, 3.1, 1, 1))
       barplot(plotData, col=colors, border=border.color,
               space=0, axes=F, axisname=FALSE, las=2, cex.names=0.75,
               ylab  = "Assignment Probability", xlab = "Group")
@@ -48,11 +52,14 @@ assignProbs_barplot <- function(wd, clumpp.wd, sample.names,
         abline(v=pop.lines[i], lwd=2, lty=2, col="black") # set at divisions between populations
       }
       axis(2, las=2, cex=0.75, pos=0)
+      axis(1, at=c(seq(from = 0.5, to = ncol(plotData + 0.5), by = 1)), labels=sample.names,
+           tick=FALSE, las=2, cex.axis=0.3, adj=0, pos=0, line=0, mgp = c(3, 0.1, 0))
       axis(1, at=pop.labels, labels=names(table(pop.order.ordered)),
-           tick=FALSE, las=0, cex.axis=0.5, adj=0, pos=0, padj=-1.5)
+           tick=FALSE, las=0, cex.axis=0.8, adj=0, pos=0)
     dev.off()
   }
 
+  par(mgp=c(1.5,1,0), mar = c(4.1, 3.1, 1, 1))
   barplot(plotData, col=colors, border=border.color,
           space=0, axes=F, axisname=FALSE, las=2, cex.names=0.75,
           ylab  = "Assignment Probability", xlab = "Group")
@@ -60,8 +67,11 @@ assignProbs_barplot <- function(wd, clumpp.wd, sample.names,
     abline(v=pop.lines[i], lwd=2, lty=2, col="black") # set at divisions between populations
   }
   axis(2, las=2, cex=0.75, pos=0)
+  axis(1, at=c(seq(from = 0.5, to = ncol(plotData + 0.5), by = 1)), labels=sample.names,
+       tick=FALSE, las=2, cex.axis=0.3, adj=0, pos=0, line=0, mgp = c(3, 0.1, 0))
   axis(1, at=pop.labels, labels=names(table(pop.order.ordered)),
-       tick=FALSE, las=0, cex.axis=0.5, adj=0, pos=0, padj=-1.5)
+       tick=FALSE, las=0, cex.axis=0.8, adj=0, pos=0)
+  title()
 }
 
 
@@ -102,12 +112,12 @@ readData <- function(dapc.data, sample.names, pop.order)
       struc_k_final[c,] <- struc_k[t,]
       tracker = c(tracker, t)
       c = c + 1
-      print(tracker)
+      #print(tracker)
     }
   }
   for(i in 1:nclust){
     if(!(i %in% tracker)){
-      print(i)
+      #print(i)
       struc_k_final[c,] <- struc_k[i,]
       c = c + 1
     }
@@ -152,12 +162,12 @@ readData_sampleOrder <- function(dapc.data, sample.names, pop.order, sample.orde
       struc_k_final[c,] <- struc_k[t,]
       tracker = c(tracker, t)
       c = c + 1
-      print(tracker)
+      #print(tracker)
     }
   }
   for(i in 1:nclust){
     if(!(i %in% tracker)){
-      print(i)
+      #print(i)
       struc_k_final[c,] <- struc_k[i,]
       c = c + 1
     }
