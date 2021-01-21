@@ -53,12 +53,8 @@ plot.height = 4
 plot_clumpp_results(wd=wd, clumpp.data=clumpp.data, colors=colors, plot.name = plot.name, plot.type=plot.type, plot.width=plot.width, plot.height=plot.height)
 
 ```
-
-<object data="https://github.com/dmacguigan/PhenoDelimit/tree/main/example/H_plot_example.pdf" type="application/pdf" width="700px" height="700px">
-    <embed src="https://github.com/dmacguigan/PhenoDelimit/tree/main/example/H_plot_example.pdf">
-        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="https://github.com/dmacguigan/PhenoDelimit/tree/main/example/H_plot_example.pdf">Download PDF</a>.</p>
-    </embed>
-</object>
+![H_plot_example](/example/H_plot_example.png)
+Format: ![Alt Text](url)
 
 ```
 # step 5: barplot
@@ -85,6 +81,12 @@ assign_probs_barplot(wd = wd, clumpp.wd = clumpp.wd, sample.names = sample.names
                     best.perc.var = best.perc.var, best.model.number = best.model.number,
                     plot.type = plot.type, plot.width = plot.width, plot.height = plot.height,
                     plot.name = plot.name, colors = colors, border.color = border.color)
+
+```
+![barplot_example](/example/barplot_example.png)
+Format: ![Alt Text](url)
+
+```
 
 # step 6: scatter plot or density plot
 models = read.table("H:/NearLab/PhenoDelimit/example/sim_models.txt", header=TRUE)
@@ -113,6 +115,11 @@ plot_discriminant_axes(wd = wd, clumpp.wd = clumpp.wd,
                        plot.name = plot.name, colors = colors, shapes = shapes,
                        x.axis = x.axis, y.axis = y.axis)
 
+```
+![scatter_plot_example](/example/scatter_plot_example.png)
+Format: ![Alt Text](url)
+
+```
 # step 7: plot discriminant axis loadings and write to table
 wd = "H:/NearLab/PhenoDelimit/example/"
 clumpp.wd = "H:/NearLab/PhenoDelimit/example/CLUMPP"
@@ -128,8 +135,8 @@ discriminant_loading(wd = wd, clumpp.wd = clumpp.wd,
                      plot.type = plot.type, plot.width = plot.width, plot.height = plot.height, axis = axis)
 
 ```
-
-
+![DA_1_loading](/example/DA_1_loading.png)
+Format: ![Alt Text](url)
 
 
 
