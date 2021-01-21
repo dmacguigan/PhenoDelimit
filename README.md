@@ -11,13 +11,13 @@ install_github("dmacguigan/PhenoDelimit")
 library(PhenoDelimit)
 ```
 
-##Example script. 
+## Example analysis
 Data are in "example" directory, so clone the repository first. Data were generated using simulate_data.R in the example folder
 Dataset consists 20 continuous variables for 300 idividuals divided into four groups.
 Data were simulated by drawing from normal disrtibutions. 
 For each variable, means were allowed to vary between groups, but standard deviations were kept constant.
 
-## step 1: K-means clustering, discriminant analysis, and prep files for CLUMPP
+### step 1: K-means clustering, discriminant analysis, and prep files for CLUMPP
 
 ```
 library(RColorBrewer)
@@ -33,7 +33,7 @@ center = TRUE
 
 clumpp_prep(wd=wd, data=data, n.groups=n.groups, model.numbers=model.numbers, models=models, perc.var=perc.var, scale=scale, center=center)
 ```
-## step 2: run CLUMPP, must be done externally
+### step 2: run CLUMPP, must be done externally
 Use CLUMPP to compare discriminant analysis assignment probabilities to each delimitation model. CLUMPP calculates `H'`, a matrix pairwise similarity metric bounded between 0 and 1. 
 A value of 1 indicates a perfect match between two matrices.
 See [this paper in Bioinformatics](https://academic.oup.com/bioinformatics/article/23/14/1801/188285) for more info about the CLUMPP algorithm. Note that `H'` is called `G'` in this paper.
@@ -45,7 +45,7 @@ By comparing the two matrices with CLUMPP, we can determine which delimitation m
 
 You can use run_CLUMPP.sh in "PhenoDelimit/example/CLUMPP" to run CLUMPP on all files in a directory.
 
-## step 3: summarize CLUMPP
+### step 3: summarize CLUMPP
 ```
 wd = "H:/NearLab/PhenoDelimit/example/CLUMPP"
 model.numbers = c(1:6)
@@ -53,7 +53,7 @@ perc.var = c(70,80,90)
 
 clumpp_results <- read_clumpp_results(wd=wd, perc.var=perc.var, model.numbers=model.numbers)
 ```
-## step 4: plot H' values to compare delimitation models
+### step 4: plot H' values to compare delimitation models
 ```
 wd = "H:/NearLab/PhenoDelimit/example/"
 clumpp.data = clumpp_results
@@ -71,7 +71,7 @@ For this simulated datset, model 1 is the "true" model which generated the data.
 Models 2-5 are tweaked versions of model 1 with groups merged or split.
 Model 6 randomly shuffled the "true" group assignments from model 1. 
 
-## step 5: bar plots of discriminant analysis assignment probabilities
+### step 5: bar plots of discriminant analysis assignment probabilities
 ```
 models = read.table("H:/NearLab/PhenoDelimit/example/sim_models.txt", header=TRUE)
 
@@ -99,7 +99,7 @@ assign_probs_barplot(wd = wd, clumpp.wd = clumpp.wd, sample.names = sample.names
 ```
 ![barplot_example](/example/barplot_example.png)
 
-## step 6: scatter plot or density plot of discriminant axes
+### step 6: scatter plot or density plot of discriminant axes
 ```
 models = read.table("H:/NearLab/PhenoDelimit/example/sim_models.txt", header=TRUE)
 
@@ -131,7 +131,7 @@ plot_discriminant_axes(wd = wd, clumpp.wd = clumpp.wd,
 ![scatter_plot_example](/example/scatter_plot_example.png)
 
 
-## step 7: plot discriminant axis loadings and write table of variable contributions and loadings
+### step 7: plot discriminant axis loadings and write table of variable contributions and loadings
 ```
 wd = "H:/NearLab/PhenoDelimit/example/"
 clumpp.wd = "H:/NearLab/PhenoDelimit/example/CLUMPP"
