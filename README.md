@@ -54,7 +54,6 @@ plot_clumpp_results(wd=wd, clumpp.data=clumpp.data, colors=colors, plot.name = p
 
 ```
 ![H_plot_example](/example/H_plot_example.png)
-Format: ![Alt Text](url)
 
 ```
 # step 5: bar plots of discriminant analysis assignment probabilities
@@ -84,7 +83,6 @@ assign_probs_barplot(wd = wd, clumpp.wd = clumpp.wd, sample.names = sample.names
 
 ```
 ![barplot_example](/example/barplot_example.png)
-Format: ![Alt Text](url)
 
 ```
 # step 6: scatter plot or density plot of discriminant axes
@@ -116,7 +114,6 @@ plot_discriminant_axes(wd = wd, clumpp.wd = clumpp.wd,
 
 ```
 ![scatter_plot_example](/example/scatter_plot_example.png)
-Format: ![Alt Text](url)
 
 ```
 # step 7: plot discriminant axis loadings and write to table
@@ -134,7 +131,6 @@ discriminant_loading(wd = wd, clumpp.wd = clumpp.wd,
                      plot.type = plot.type, plot.width = plot.width, plot.height = plot.height, axis = axis)
 ```
 ![DA_1_loading](/example/DA_1_loading.png)
-Format: ![Alt Text](url)
 
 
 
