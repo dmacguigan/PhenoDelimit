@@ -1,14 +1,14 @@
-\name{read_CLUMPP_results}
-\alias{read_CLUMPP_results}
+\name{read_clumpp_results}
+\alias{read_clumpp_results}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-read_CLUMPP_results
+read_clumpp_results
 }
 \description{
 Read in results from CLUMPP miscfiles, return data frame of H' values for each delimitation model
 }
 \usage{
-read_CLUMPP_results(wd, perc.var, model.number)
+read_clumpp_results(wd, perc.var, model.number)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

@@ -13,13 +13,13 @@ library(PhenoDelimit)
 ```
 
 Example script. Data are in "example" directory, so clone the repository first.
-```
-# example script to run PhenoDelimit
 
+## step 1: K-means clustering, discriminant analysis, and prep files for CLUMPP
+
+```
+# data were generated using simulate_data.R in the example folder
 library(RColorBrewer)
 
-# step 1: K-means clustering, discriminant analysis, and prep files for CLUMPP
-# data were generated using simulate_data.R
 wd = "H:/NearLab/PhenoDelimit/example/CLUMPP"
 data = read.table("H:/NearLab/PhenoDelimit/example/sim_data.txt", header=TRUE)
 n.groups = c(4,2,3,5,5,4)
@@ -30,18 +30,20 @@ scale = TRUE
 center = TRUE
 
 clumpp_prep(wd=wd, data=data, n.groups=n.groups, model.numbers=model.numbers, models=models, perc.var=perc.var, scale=scale, center=center)
+```
+## step 2: run CLUMPP, must be done externally
+Can use run_CLUMPP.sh in "PhenoDelimit/example/CLUMPP" to run CLUMPP on all files in a directory
 
-# step 2: run CLUMPP, must be done externally
-# can use run_CLUMPP.sh in "PhenoDelimit/example/CLUMPP" to run CLUMPP on all files in a directory
-
-# step 3: summarize CLUMPP
+## step 3: summarize CLUMPP
+```
 wd = "H:/NearLab/PhenoDelimit/example/CLUMPP"
 model.numbers = c(1:6)
 perc.var = c(70,80,90)
 
 clumpp_results <- read_clumpp_results(wd=wd, perc.var=perc.var, model.numbers=model.numbers)
-
-# step 4: plot H' values to compare delimitation models
+```
+## step 4: plot H' values to compare delimitation models
+```
 wd = "H:/NearLab/PhenoDelimit/example/"
 clumpp.data = clumpp_results
 colors = brewer.pal(n = 3, name = "Set1")
@@ -51,12 +53,11 @@ plot.width = 8
 plot.height = 4
 
 plot_clumpp_results(wd=wd, clumpp.data=clumpp.data, colors=colors, plot.name = plot.name, plot.type=plot.type, plot.width=plot.width, plot.height=plot.height)
-
 ```
 ![H_plot_example](/example/H_plot_example.png)
 
+## step 5: bar plots of discriminant analysis assignment probabilities
 ```
-# step 5: bar plots of discriminant analysis assignment probabilities
 models = read.table("H:/NearLab/PhenoDelimit/example/sim_models.txt", header=TRUE)
 
 wd = "H:/NearLab/PhenoDelimit/example/"
@@ -80,12 +81,11 @@ assign_probs_barplot(wd = wd, clumpp.wd = clumpp.wd, sample.names = sample.names
                     best.perc.var = best.perc.var, best.model.number = best.model.number,
                     plot.type = plot.type, plot.width = plot.width, plot.height = plot.height,
                     plot.name = plot.name, colors = colors, border.color = border.color)
-
 ```
 ![barplot_example](/example/barplot_example.png)
 
+## step 6: scatter plot or density plot of discriminant axes
 ```
-# step 6: scatter plot or density plot of discriminant axes
 models = read.table("H:/NearLab/PhenoDelimit/example/sim_models.txt", header=TRUE)
 
 wd = "H:/NearLab/PhenoDelimit/example/"
@@ -115,8 +115,9 @@ plot_discriminant_axes(wd = wd, clumpp.wd = clumpp.wd,
 ```
 ![scatter_plot_example](/example/scatter_plot_example.png)
 
+
+## step 7: plot discriminant axis loadings and write table of variable contributions and loadings
 ```
-# step 7: plot discriminant axis loadings and write to table
 wd = "H:/NearLab/PhenoDelimit/example/"
 clumpp.wd = "H:/NearLab/PhenoDelimit/example/CLUMPP"
 best.perc.var = 90
