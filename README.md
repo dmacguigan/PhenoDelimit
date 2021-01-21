@@ -3,6 +3,16 @@ R package to create "structure-like" barplots and compare species delimitation m
 
 This package requires an external program, CLUMPP, which cana be dowloaded here: https://rosenberglab.stanford.edu/clumpp.html
 
+
+To download and install this package
+```
+install.packages("devtools")
+library(devtools)
+install_github("dmacguigan/PhenoDelimit")
+library(PhenoDelimit)
+```
+
+Example script for how to run the package. Example files in "example" directory, so clone the repository first.
 ```
 # example script to run PhenoDelimit
 
