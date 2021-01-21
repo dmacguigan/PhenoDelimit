@@ -45,7 +45,7 @@ clumpp_results <- read_clumpp_results(wd=wd, perc.var=perc.var, model.numbers=mo
 wd = "H:/NearLab/PhenoDelimit/example/"
 clumpp.data = clumpp_results
 colors = brewer.pal(n = 3, name = "Set1")
-plot.type = "pdf"
+plot.type = "png"
 plot.name = "H_plot_example"
 plot.width = 8
 plot.height = 4
@@ -57,7 +57,7 @@ plot_clumpp_results(wd=wd, clumpp.data=clumpp.data, colors=colors, plot.name = p
 Format: ![Alt Text](url)
 
 ```
-# step 5: barplot
+# step 5: bar plots of discriminant analysis assignment probabilities
 models = read.table("H:/NearLab/PhenoDelimit/example/sim_models.txt", header=TRUE)
 
 wd = "H:/NearLab/PhenoDelimit/example/"
@@ -68,7 +68,7 @@ sample.plot.groups.order = c(1,2,3,4)
 sample.order = (nrow(models):1)
 best.perc.var = 90
 best.model.number = 1
-plot.type = "pdf"
+plot.type = "png"
 plot.width = 20
 plot.height = 6
 plot.name = "barplot_example"
@@ -87,8 +87,7 @@ assign_probs_barplot(wd = wd, clumpp.wd = clumpp.wd, sample.names = sample.names
 Format: ![Alt Text](url)
 
 ```
-
-# step 6: scatter plot or density plot
+# step 6: scatter plot or density plot of discriminant axes
 models = read.table("H:/NearLab/PhenoDelimit/example/sim_models.txt", header=TRUE)
 
 wd = "H:/NearLab/PhenoDelimit/example/"
@@ -98,7 +97,7 @@ sample.plot.groups.order = c(1,2,3,4)
 sample.order = (nrow(models):1)
 best.perc.var = 90
 best.model.number = 1
-plot.type = "pdf"
+plot.type = "png"
 plot.width = 6
 plot.height = 6
 plot.name = "scatter_plot_example"
@@ -125,7 +124,7 @@ wd = "H:/NearLab/PhenoDelimit/example/"
 clumpp.wd = "H:/NearLab/PhenoDelimit/example/CLUMPP"
 best.perc.var = 90
 best.model.number = 1
-plot.type = "pdf"
+plot.type = "png"
 plot.width = 6
 plot.height = 6
 axis=1
@@ -133,7 +132,6 @@ axis=1
 discriminant_loading(wd = wd, clumpp.wd = clumpp.wd,
                      best.perc.var = best.perc.var, best.model.number = best.model.number,
                      plot.type = plot.type, plot.width = plot.width, plot.height = plot.height, axis = axis)
-
 ```
 ![DA_1_loading](/example/DA_1_loading.png)
 Format: ![Alt Text](url)
