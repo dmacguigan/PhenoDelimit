@@ -1,8 +1,7 @@
 # PhenoDelimit
-R package to create "structure-like" barplots and compare species delimitation models with multivariate phenotype data
+R package to create "structure-like" barplots and compare species delimitation models with multivariate phenotype data.
 
-This package requires an external program, CLUMPP, which cana be dowloaded here: https://rosenberglab.stanford.edu/clumpp.html
-
+This package requires an external program, CLUMPP, which can be [dowloaded here](https://rosenberglab.stanford.edu/clumpp.html)
 
 To download and install this package
 ```
@@ -32,8 +31,14 @@ center = TRUE
 clumpp_prep(wd=wd, data=data, n.groups=n.groups, model.numbers=model.numbers, models=models, perc.var=perc.var, scale=scale, center=center)
 ```
 ## step 2: run CLUMPP, must be done externally
-Use CLUMPP to compare discriminant analysis assignment probabilities to each delimitation model. CLUMPP calculates `<H'>`, a matrix pairwise similarity metric bounded between 0 and 1. A value of 1 indicates a perfect match between two matrices. 
-See [this paper in Bioinformatics](https://academic.oup.com/bioinformatics/article/23/14/1801/188285) for more info. Note that `<H'>` is called `<G'>` in this paper.
+Use CLUMPP to compare discriminant analysis assignment probabilities to each delimitation model. CLUMPP calculates `H'`, a matrix pairwise similarity metric bounded between 0 and 1. 
+A value of 1 indicates a perfect match between two matrices.
+See [this paper in Bioinformatics](https://academic.oup.com/bioinformatics/article/23/14/1801/188285) for more info about the CLUMPP algorithm. Note that `H'` is called `G'` in this paper.
+
+In this analysis, we provide CLUMPP with two matrices. 
+First, a matrix where each individual is assigned with probability 1.0 to a group based on the delimitation model.
+Second, a matrix of discriminant analysis individual assignment probabilities using groups defined by K-means clustering. 
+By comparing the two matrices with CLUMPP, we can determine which delimitation model is the best match to K-means clusters, indicative of real group differences in the data. 
 
 You can use run_CLUMPP.sh in "PhenoDelimit/example/CLUMPP" to run CLUMPP on all files in a directory.
 
