@@ -22,6 +22,10 @@ discriminant_loading <- function(wd, clumpp.wd,
     pdf(file = paste("DA_", axis, "_loading.pdf", sep=""), width = plot.width, height = plot.height)
     loadingplot(var.contr, axis=axis)
     dev.off()
+  } else {
+    png(file = paste("DA_", axis, "_loading.png", sep=""), units="in", res=300, width = plot.width, height = plot.height)
+    loadingplot(var.contr, axis=axis)
+    dev.off()
   }
 
   d <- var.contr[,axis]
@@ -31,8 +35,6 @@ discriminant_loading <- function(wd, clumpp.wd,
   row.names(t) <- row.names(var.contr)
   t <- t[order(t$d, decreasing = TRUE),]
   colnames(t) <- c("contribution", "loading")
-  print(head(t))
-  print(str(t))
   write.table(x = t, file = paste("DA_", axis, "_loading.txt", sep=""), quote=FALSE, row.names = TRUE)
 }
 

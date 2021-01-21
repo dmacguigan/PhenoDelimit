@@ -3,7 +3,7 @@
     "path": "H:/NearLab/PhenoDelimit/example/example_script.R",
     "project_path": "example/example_script.R",
     "type": "r_source",
-    "hash": "0",
+    "hash": "2914119652",
     "contents": "",
     "dirty": false,
     "created": 1611262482918.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "103,0",
-        "scrollLine": "20"
+        "cursorPosition": "94,21",
+        "scrollLine": "63"
     },
     "folds": "",
-    "lastKnownWriteTime": 1611262218,
+    "lastKnownWriteTime": 1611263196,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1611262218,
+    "last_content_update": 1611263196420,
     "read_only": false,
     "read_only_alternatives": []
 }

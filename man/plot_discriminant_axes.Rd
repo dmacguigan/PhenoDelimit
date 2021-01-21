@@ -38,7 +38,7 @@ plot_discriminant_axes(wd, clumpp.wd,
   which model number to plot? numeric
   }
   \item{plot.type}{
-  save plot as "pdf" or "svg"
+  save plot as "pdf", "svg", or "png"
   }
   \item{plot.width}{
   width of plot in inches

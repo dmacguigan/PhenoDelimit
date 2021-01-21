@@ -45,6 +45,10 @@ plot_discriminant_axes <- function(wd, clumpp.wd,
       pdf(file = paste(plot.name, ".pdf", sep=""), width = plot.width, height = plot.height)
       print(plot)
       dev.off()
+    } else {
+      png(file = paste(plot.name, ".png", sep=""), units="in", res=300,width = plot.width, height = plot.height)
+      print(plot)
+      dev.off()
     }
 
     return(plot)
@@ -68,6 +72,10 @@ plot_discriminant_axes <- function(wd, clumpp.wd,
       dev.off()
     } else if(plot.type =="pdf"){
       pdf(file = paste(plot.name, ".pdf", sep=""), width = plot.width, height = plot.height)
+      print(plot)
+      dev.off()
+    } else {
+      png(file = paste(plot.name, ".png", sep=""), units="in", res=300,width = plot.width, height = plot.height)
       print(plot)
       dev.off()
     }

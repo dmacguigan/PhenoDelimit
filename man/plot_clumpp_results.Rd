@@ -25,7 +25,7 @@ plot_clumpp_results(wd, clumpp.data, colors, plot.name, plot.type, plot.width, p
   name for plot, character
   }
   \item{plot.type}{
-  save plot as "pdf" or "svg"
+  save plot as "pdf", "svg", or "png"
   }
   \item{plot.width}{
   width of plot in inches

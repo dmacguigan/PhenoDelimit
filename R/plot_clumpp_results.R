@@ -22,6 +22,10 @@ plot_clumpp_results <- function(wd, clumpp.data, colors, plot.name, plot.type, p
     pdf(file = paste(plot.name, ".pdf", sep=""), width = plot.width, height = plot.height)
     print(p)
     dev.off()
+  } else {
+    png(file = paste(plot.name, ".png", sep=""), units="in", res=300, width = plot.width, height = plot.height)
+    print(p)
+    dev.off()
   }
 
   return(p)

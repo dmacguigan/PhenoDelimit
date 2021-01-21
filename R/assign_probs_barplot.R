@@ -57,6 +57,21 @@ assign_probs_barplot <- function(wd, clumpp.wd, sample.names,
       axis(1, at=pop.labels, labels=names(table(pop.order.ordered)),
            tick=FALSE, las=0, cex.axis=0.8, adj=0, pos=0)
     dev.off()
+  } else {
+    png(file=paste(plot.name, ".png", sep=""), units="in", res=300, width=plot.width, height=plot.height)
+    par(mgp=c(1.5,1,0), mar = c(4.1, 3.1, 1, 1))
+    barplot(plotData, col=colors, border=border.color,
+            space=0, axes=F, axisname=FALSE, las=2, cex.names=0.75,
+            ylab  = "Assignment Probability", xlab = "Group")
+    for(i in 1:(length(pop.lines)-1)){
+      abline(v=pop.lines[i], lwd=2, lty=2, col="black") # set at divisions between populations
+    }
+    axis(2, las=2, cex=0.75, pos=0)
+    axis(1, at=c(seq(from = 0.5, to = ncol(plotData + 0.5), by = 1)), labels=sample.names,
+         tick=FALSE, las=2, cex.axis=0.3, adj=0, pos=0, line=0, mgp = c(3, 0.1, 0))
+    axis(1, at=pop.labels, labels=names(table(pop.order.ordered)),
+         tick=FALSE, las=0, cex.axis=0.8, adj=0, pos=0)
+    dev.off()
   }
 
   par(mgp=c(1.5,1,0), mar = c(4.1, 3.1, 1, 1))
