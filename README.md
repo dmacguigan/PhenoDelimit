@@ -11,12 +11,15 @@ install_github("dmacguigan/PhenoDelimit")
 library(PhenoDelimit)
 ```
 
-Example script. Data are in "example" directory, so clone the repository first.
+##Example script. 
+Data are in "example" directory, so clone the repository first. Data were generated using simulate_data.R in the example folder
+Dataset consists 20 continuous variables for 300 idividuals divided into four groups.
+Data were simulated by drawing from normal disrtibutions. 
+For each variable, means were allowed to vary between groups, but standard deviations were kept constant.
 
 ## step 1: K-means clustering, discriminant analysis, and prep files for CLUMPP
 
 ```
-# data were generated using simulate_data.R in the example folder
 library(RColorBrewer)
 
 wd = "H:/NearLab/PhenoDelimit/example/CLUMPP"
@@ -63,6 +66,10 @@ plot.height = 4
 plot_clumpp_results(wd=wd, clumpp.data=clumpp.data, colors=colors, plot.name = plot.name, plot.type=plot.type, plot.width=plot.width, plot.height=plot.height)
 ```
 ![H_plot_example](/example/H_plot_example.png)
+
+For this simulated datset, model 1 is the "true" model which generated the data.
+Models 2-5 are tweaked versions of model 1 with groups merged or split.
+Model 6 randomly shuffled the "true" group assignments from model 1. 
 
 ## step 5: bar plots of discriminant analysis assignment probabilities
 ```
