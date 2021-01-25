@@ -178,7 +178,6 @@ discriminant_loading(wd = wd, clumpp.wd = clumpp.wd,
                      best.perc.var = best.perc.var, best.model.number = best.model.number,
                      plot.type = plot.type, plot.width = plot.width, plot.height = plot.height, axis = axis)
 ```
-![DA_1_loading](/example/DA_1_loading.png)
 <img src="/example/DA_1_loading.png" width="600">
 
 ```
