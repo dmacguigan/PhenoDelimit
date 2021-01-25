@@ -146,7 +146,6 @@ plot_discriminant_axes(wd = wd, clumpp.wd = clumpp.wd,
                        colors = colors, shapes = shapes,
                        x.axis = x.axis, y.axis = y.axis)
 ```
-Disriminant axis 1 vs 3
 ![DA1-DA3_scatter.png](/example/DA1-DA3_scatter.png)
 
 
