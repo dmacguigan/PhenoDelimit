@@ -22,7 +22,9 @@ For each variable, means were allowed to vary between groups, but standard devia
 Variables 1-10 had a large range of group means (between 5 and 30) and small standard deviations (between 0.5 and 1). These variables are expected to be more informative about group membership.
 
 Variables 11-20 had a small range of group means (between 18 and 22) and large standard deviations (between 3 and 10). Thus, these variables are expected to be less informative about group membership.
+
 <br/>
+
 ### step 1: K-means clustering, discriminant analysis of principal components, and run CLUMPP
 Use CLUMPP to compare discriminant analysis assignment probabilities to each delimitation model. CLUMPP calculates `H'`, a matrix similarity metric bounded between 0 and 1.
 A value of 1 indicates a perfect match between two matrices.
