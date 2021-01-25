@@ -49,7 +49,9 @@ center = TRUE
 
 dapc_clumpp(wd=wd, data=data, n.groups=n.groups, model.numbers=model.numbers, models=models, perc.var=perc.var, scale=scale, center=center)
 ```
+
 <br/>
+
 ### step 2: summarize CLUMPP
 ```
 wd = "H:/NearLab/PhenoDelimit/example/CLUMPP"
@@ -58,7 +60,9 @@ perc.var = c(70,80,90)
 
 clumpp_results <- read_clumpp_results(wd=wd, perc.var=perc.var, model.numbers=model.numbers)
 ```
+
 <br/>
+
 ### step 3: plot H' values to compare delimitation models
 ```
 wd = "H:/NearLab/PhenoDelimit/example/"
@@ -76,7 +80,9 @@ plot_clumpp_results(wd=wd, clumpp.data=clumpp.data, colors=colors, plot.name = p
 For this simulated datset, model 1 is the "true" model which generated the data.
 Models 2-5 are tweaked versions of model 1 with groups merged or split.
 Model 6 randomly shuffled the "true" group assignments from model 1.
+
 <br/>
+
 ### step 4: bar plots of discriminant analysis assignment probabilities
 ```
 models = read.table("H:/NearLab/PhenoDelimit/example/sim_models.txt", header=TRUE)
@@ -104,7 +110,9 @@ assign_probs_barplot(wd = wd, clumpp.wd = clumpp.wd, sample.names = sample.names
                     plot.name = plot.name, colors = colors, border.color = border.color)
 ```
 ![barplot_example](/example/barplot_example.png)
+
 <br/>
+
 ### step 5: scatter plot or density plot of discriminant axes
 ```
 models = read.table("H:/NearLab/PhenoDelimit/example/sim_models.txt", header=TRUE)
@@ -150,7 +158,9 @@ plot_discriminant_axes(wd = wd, clumpp.wd = clumpp.wd,
                        x.axis = x.axis, y.axis = y.axis)
 ```
 ![DA1-DA3_scatter.png](/example/DA1-DA3_scatter.png)
+
 <br/>
+
 ### step 6: plot discriminant axis loadings and write table of variable contributions and loadings
 ```
 wd = "H:/NearLab/PhenoDelimit/example/"
@@ -193,7 +203,9 @@ discriminant_loading(wd = wd, clumpp.wd = clumpp.wd,
 
 ```
 <img src="/example/DA_3_loading.png" width="600">
+
 <br/>
+
 We can see that variables 1-10 tend to load heavily on at least one discriminant axis, while variables 11-20 do not load heavily on any axes. 
 This is expected given that variables 1-10 are simulated to have large differences between group means and small standard deviations,
 while variables 11-20 have small differences between group means and large standard deviations.
