@@ -1,5 +1,8 @@
 # script to simulate data
-# simulates K groups with roughly equal sample sizes
+# K groups with roughly equal sample sizes
+# generate 20 variables
+# var 1-10 are allowed to have large group differences, small sds
+# var 11-20 have small group differences, large sds
 
 library(ggplot2)
 
@@ -12,22 +15,35 @@ true_clust = 4
 samples = 300
 # how many variables to generate?
 nVar = 20
-# normal distribution sd range
-var_sd_min = 1
-var_sd_max = 10
-# variable normal distribution mean min and max
-var_mean_min = 5
-var_mean_max = 30
+# small variable sd values
+var_sd_min_small = 0.5
+var_sd_max_small = 1
+# large variable sd values
+var_sd_min_large = 3
+var_sd_max_large = 10
+# large range of variable mean values
+var_mean_min_large = 5
+var_mean_max_large = 30
+# small range of variable mean values
+var_mean_min_small = 18
+var_mean_max_small = 22
 
 # generate variable normal distribution means
-temp <- list()
+temp_small <- list()
+temp_large <- list()
 for(i in 1:true_clust){
-  temp[[i]] <- runif(nVar, var_mean_min, var_mean_max) # choose random value from uniform distribution between var_mean_min and var_mean_max
+  temp_large[[i]] <- runif(10, var_mean_min_large, var_mean_max_large) # choose random value from uniform distribution between var_mean_min and var_mean_max
 }
-var_means <- as.data.frame(do.call(rbind, temp))
+for(i in 1:true_clust){
+  temp_small[[i]] <- runif(10, var_mean_min_small, var_mean_max_small) # choose random value from uniform distribution between var_mean_min and var_mean_max
+}
+var_means_small <- as.data.frame(do.call(rbind, temp_small))
+var_means_large <- as.data.frame(do.call(rbind, temp_large))
+
+var_means <- cbind(var_means_large, var_means_small)
 
 # generate variable normal distribution standard deviations, use same sd for each variable
-var_sds <- runif(nVar, var_sd_min, var_sd_max) # choose random value from uniform distribution between var_sd_min and var_sd_max
+var_sds <- c(runif(10, var_sd_min_small, var_sd_max_small), runif(10, var_sd_min_large, var_sd_max_large))  # choose random value from uniform distribution between var_sd_min and var_sd_max
 
 # generate draws from normal distribution for each sample
 sim_data <- data.frame()
@@ -42,7 +58,7 @@ for(i in 1:samples){
 colnames(sim_data) <- c("cluster", paste("var", c(1:nVar), sep=""))
 
 # quick plot of one variable
-plot(sim_data$cluster, sim_data$var2)
+plot(sim_data$cluster, sim_data$var7)
 
 # basic PCA of simulated data, show PC1 and PC2
 sim_pca <- prcomp(sim_data[,2:(nVar+1)], center=TRUE, scale=TRUE)

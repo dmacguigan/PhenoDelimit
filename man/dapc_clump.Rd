@@ -1,14 +1,14 @@
-\name{clumpp_prep}
-\alias{clumpp_prep}
+\name{dapc_clump}
+\alias{dapc_clump}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-clumpp_prep
+dapc_clump
 }
 \description{
 Performs K-means clustering, runs discriminant analysis, and generates "indfiles" and "paramfiles" for CLUMPP based on user supplied info.
 }
 \usage{
-clumpp_prep(wd, data, n.groups, model.numbers, models, perc.var, scale, center)
+dapc_clump(wd, data, n.groups, model.numbers, models, perc.var, scale, center)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

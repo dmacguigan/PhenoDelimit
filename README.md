@@ -12,12 +12,26 @@ library(PhenoDelimit)
 ```
 
 ## Example analysis
+Requires that CLUMPP executable is in the global path.
+
 Data are in "example" directory, so clone the repository first. Data were generated using simulate_data.R in the example folder
 Dataset consists 20 continuous variables for 300 idividuals divided into four groups.
-Data were simulated by drawing from normal disrtibutions. 
+Data were simulated by drawing from normal disrtibutions.
 For each variable, means were allowed to vary between groups, but standard deviations were kept constant.
 
-### step 1: K-means clustering, discriminant analysis, and prep files for CLUMPP
+Variables 1-10 had a large range of group means (between 5 and 30) and small standard deviations (between 0.5 and 1). These variables are expected to be more informative about group membership.
+
+Variables 11-20 had a small range of group means (between 18 and 22) and large standard deviations (between 3 and 10). Thus, these variables are expected to be less informative about group membership.
+
+### step 1: K-means clustering, discriminant analysis of principal components, and run for CLUMPP
+Use CLUMPP to compare discriminant analysis assignment probabilities to each delimitation model. CLUMPP calculates `H'`, a matrix similarity metric bounded between 0 and 1.
+A value of 1 indicates a perfect match between two matrices.
+See [this paper in Bioinformatics](https://academic.oup.com/bioinformatics/article/23/14/1801/188285) for more info about the CLUMPP algorithm.
+
+In this analysis, we provide CLUMPP with two matrices.
+First, a matrix where each individual is assigned with probability 1.0 to a group based on the delimitation model.
+Second, a matrix of individual assignment probabilities fron discriminant analysis using groups defined by K-means clustering.
+By comparing the two matrices with CLUMPP, we can determine which delimitation model is the best match to K-means clusters, indicative of real group differences in the data.
 
 ```
 library(RColorBrewer)
@@ -31,19 +45,8 @@ perc.var = c(70,80,90)
 scale = TRUE
 center = TRUE
 
-clumpp_prep(wd=wd, data=data, n.groups=n.groups, model.numbers=model.numbers, models=models, perc.var=perc.var, scale=scale, center=center)
+dapc_clumpp(wd=wd, data=data, n.groups=n.groups, model.numbers=model.numbers, models=models, perc.var=perc.var, scale=scale, center=center)
 ```
-### step 2: run CLUMPP, must be done externally
-Use CLUMPP to compare discriminant analysis assignment probabilities to each delimitation model. CLUMPP calculates `H'`, a matrix pairwise similarity metric bounded between 0 and 1. 
-A value of 1 indicates a perfect match between two matrices.
-See [this paper in Bioinformatics](https://academic.oup.com/bioinformatics/article/23/14/1801/188285) for more info about the CLUMPP algorithm. Note that `H'` is called `G'` in this paper.
-
-In this analysis, we provide CLUMPP with two matrices. 
-First, a matrix where each individual is assigned with probability 1.0 to a group based on the delimitation model.
-Second, a matrix of individual assignment probabilities fron discriminant analysis using groups defined by K-means clustering. 
-By comparing the two matrices with CLUMPP, we can determine which delimitation model is the best match to K-means clusters, indicative of real group differences in the data. 
-
-You can use run_CLUMPP.sh in "PhenoDelimit/example/CLUMPP" to run CLUMPP on all files in a directory.
 
 ### step 3: summarize CLUMPP
 ```
@@ -69,7 +72,7 @@ plot_clumpp_results(wd=wd, clumpp.data=clumpp.data, colors=colors, plot.name = p
 
 For this simulated datset, model 1 is the "true" model which generated the data.
 Models 2-5 are tweaked versions of model 1 with groups merged or split.
-Model 6 randomly shuffled the "true" group assignments from model 1. 
+Model 6 randomly shuffled the "true" group assignments from model 1.
 
 ### step 5: bar plots of discriminant analysis assignment probabilities
 ```
@@ -113,10 +116,10 @@ best.model.number = 1
 plot.type = "png"
 plot.width = 6
 plot.height = 6
-plot.name = "scatter_plot_example"
 colors = brewer.pal(n = 5, name = "Set1")
 border.color = "gray"
 shapes=c(1:4)
+
 x.axis=1
 y.axis=2
 
@@ -124,11 +127,25 @@ plot_discriminant_axes(wd = wd, clumpp.wd = clumpp.wd,
                        sample.plot.groups = sample.plot.groups, sample.plot.groups.order = sample.plot.groups.order,
                        best.perc.var = best.perc.var, best.model.number = best.model.number,
                        plot.type = plot.type, plot.width = plot.width, plot.height = plot.height,
-                       plot.name = plot.name, colors = colors, shapes = shapes,
+                       colors = colors, shapes = shapes,
                        x.axis = x.axis, y.axis = y.axis)
+```
+Disriminant axis 1 vs 2
+![DA1-DA2_scatter.png](/example/DA1-DA2_scatter.png)
 
 ```
-![scatter_plot_example](/example/scatter_plot_example.png)
+x.axis=1
+y.axis=3
+
+plot_discriminant_axes(wd = wd, clumpp.wd = clumpp.wd,
+                       sample.plot.groups = sample.plot.groups, sample.plot.groups.order = sample.plot.groups.order,
+                       best.perc.var = best.perc.var, best.model.number = best.model.number,
+                       plot.type = plot.type, plot.width = plot.width, plot.height = plot.height,
+                       colors = colors, shapes = shapes,
+                       x.axis = x.axis, y.axis = y.axis)
+```
+Disriminant axis 1 vs 3
+![DA1-DA3_scatter.png](/example/DA1-DA3_scatter.png)
 
 
 ### step 7: plot discriminant axis loadings and write table of variable contributions and loadings
@@ -140,14 +157,37 @@ best.model.number = 1
 plot.type = "png"
 plot.width = 6
 plot.height = 6
+
 axis=1
 
 discriminant_loading(wd = wd, clumpp.wd = clumpp.wd,
                      best.perc.var = best.perc.var, best.model.number = best.model.number,
                      plot.type = plot.type, plot.width = plot.width, plot.height = plot.height, axis = axis)
 ```
+Variable loading on discriminant axis 1. 
 ![DA_1_loading](/example/DA_1_loading.png)
+```
+axis=2
 
+discriminant_loading(wd = wd, clumpp.wd = clumpp.wd,
+                     best.perc.var = best.perc.var, best.model.number = best.model.number,
+                     plot.type = plot.type, plot.width = plot.width, plot.height = plot.height, axis = axis)
 
+```
+Variable loading on discriminant axis 2. 
+![DA_2_loading](/example/DA_2_loading.png)
 
+```
+axis=3
 
+discriminant_loading(wd = wd, clumpp.wd = clumpp.wd,
+                     best.perc.var = best.perc.var, best.model.number = best.model.number,
+                     plot.type = plot.type, plot.width = plot.width, plot.height = plot.height, axis = axis)
+
+```
+Variable loading on discriminant axis 2. 
+![DA_3_loading](/example/DA_3_loading.png)
+
+We can see that variables 1-10 tend to load heavily on at least one discriminant axis, while variables 11-20 do not load heavily on any axes. 
+This is expected given that variables 1-10 are simulated to have large differences between group means and small standard deviations,
+while variables 11-20 have small differences between group means and large standard deviations.

@@ -11,7 +11,7 @@ Make density plot (2 clusters) or scatter plot (>2 clusters) of discriminant axe
 plot_discriminant_axes(wd, clumpp.wd,
                        sample.plot.groups = NULL, sample.plot.groups.order = NULL,
                        best.perc.var, best.model.number,
-                       plot.type, plot.width, plot.height, plot.name, colors, shapes,
+                       plot.type, plot.width, plot.height, colors, shapes,
                        x.axis=NULL, y.axis=NULL))
 }
 %- maybe also 'usage' for other objects documented here.
@@ -45,9 +45,6 @@ plot_discriminant_axes(wd, clumpp.wd,
   }
   \item{plot.height}{
   height of plot in inches
-  }
-  \item{plot.name}{
-  name for plot, character
   }
   \item{colors}{
   vector of colors for groups
