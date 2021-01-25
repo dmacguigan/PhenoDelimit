@@ -172,7 +172,7 @@ discriminant_loading(wd = wd, clumpp.wd = clumpp.wd,
                      best.perc.var = best.perc.var, best.model.number = best.model.number,
                      plot.type = plot.type, plot.width = plot.width, plot.height = plot.height, axis = axis)
 ```
-![DA_1_loading](/example/DA_1_loading.png =200x200)
+![DA_1_loading](/example/DA_1_loading.png)
 ```
 # Variable loading on discriminant axis 2
 axis=2
@@ -182,7 +182,7 @@ discriminant_loading(wd = wd, clumpp.wd = clumpp.wd,
                      plot.type = plot.type, plot.width = plot.width, plot.height = plot.height, axis = axis)
 
 ```
-![DA_2_loading](/example/DA_2_loading.png =200x200)
+![DA_2_loading](/example/DA_2_loading.png)
 
 ```
 # Variable loading on discriminant axis 2
@@ -193,7 +193,8 @@ discriminant_loading(wd = wd, clumpp.wd = clumpp.wd,
                      plot.type = plot.type, plot.width = plot.width, plot.height = plot.height, axis = axis)
 
 ```
-![DA_3_loading](/example/DA_3_loading.png =200x200)
+![DA_3_loading](/example/DA_3_loading.png)
+<img src="/example/DA_3_loading.png" width="48">
 
 We can see that variables 1-10 tend to load heavily on at least one discriminant axis, while variables 11-20 do not load heavily on any axes. 
 This is expected given that variables 1-10 are simulated to have large differences between group means and small standard deviations,
