@@ -120,6 +120,8 @@ colors = brewer.pal(n = 5, name = "Set1")
 border.color = "gray"
 shapes=c(1:4)
 
+
+# Disriminant axis 1 vs 2
 x.axis=1
 y.axis=2
 
@@ -130,10 +132,10 @@ plot_discriminant_axes(wd = wd, clumpp.wd = clumpp.wd,
                        colors = colors, shapes = shapes,
                        x.axis = x.axis, y.axis = y.axis)
 ```
-Disriminant axis 1 vs 2
 ![DA1-DA2_scatter.png](/example/DA1-DA2_scatter.png)
 
 ```
+# Disriminant axis 1 vs 3
 x.axis=1
 y.axis=3
 
@@ -158,15 +160,16 @@ plot.type = "png"
 plot.width = 6
 plot.height = 6
 
+# Variable loading on discriminant axis 1
 axis=1
 
 discriminant_loading(wd = wd, clumpp.wd = clumpp.wd,
                      best.perc.var = best.perc.var, best.model.number = best.model.number,
                      plot.type = plot.type, plot.width = plot.width, plot.height = plot.height, axis = axis)
 ```
-Variable loading on discriminant axis 1. 
 ![DA_1_loading](/example/DA_1_loading.png)
 ```
+# Variable loading on discriminant axis 2
 axis=2
 
 discriminant_loading(wd = wd, clumpp.wd = clumpp.wd,
@@ -174,10 +177,10 @@ discriminant_loading(wd = wd, clumpp.wd = clumpp.wd,
                      plot.type = plot.type, plot.width = plot.width, plot.height = plot.height, axis = axis)
 
 ```
-Variable loading on discriminant axis 2. 
 ![DA_2_loading](/example/DA_2_loading.png)
 
 ```
+# Variable loading on discriminant axis 2
 axis=3
 
 discriminant_loading(wd = wd, clumpp.wd = clumpp.wd,
@@ -185,7 +188,6 @@ discriminant_loading(wd = wd, clumpp.wd = clumpp.wd,
                      plot.type = plot.type, plot.width = plot.width, plot.height = plot.height, axis = axis)
 
 ```
-Variable loading on discriminant axis 2. 
 ![DA_3_loading](/example/DA_3_loading.png)
 
 We can see that variables 1-10 tend to load heavily on at least one discriminant axis, while variables 11-20 do not load heavily on any axes. 
