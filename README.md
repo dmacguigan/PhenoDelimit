@@ -23,6 +23,7 @@ Variables 1-10 had a large range of group means (between 5 and 30) and small sta
 
 Variables 11-20 had a small range of group means (between 18 and 22) and large standard deviations (between 3 and 10). Thus, these variables are expected to be less informative about group membership.
 
+
 ### step 1: K-means clustering, discriminant analysis of principal components, and run for CLUMPP
 Use CLUMPP to compare discriminant analysis assignment probabilities to each delimitation model. CLUMPP calculates `H'`, a matrix similarity metric bounded between 0 and 1.
 A value of 1 indicates a perfect match between two matrices.
@@ -48,7 +49,8 @@ center = TRUE
 dapc_clumpp(wd=wd, data=data, n.groups=n.groups, model.numbers=model.numbers, models=models, perc.var=perc.var, scale=scale, center=center)
 ```
 
-### step 3: summarize CLUMPP
+
+### step 2: summarize CLUMPP
 ```
 wd = "H:/NearLab/PhenoDelimit/example/CLUMPP"
 model.numbers = c(1:6)
@@ -56,7 +58,9 @@ perc.var = c(70,80,90)
 
 clumpp_results <- read_clumpp_results(wd=wd, perc.var=perc.var, model.numbers=model.numbers)
 ```
-### step 4: plot H' values to compare delimitation models
+
+
+### step 3: plot H' values to compare delimitation models
 ```
 wd = "H:/NearLab/PhenoDelimit/example/"
 clumpp.data = clumpp_results # from previous step
@@ -74,7 +78,8 @@ For this simulated datset, model 1 is the "true" model which generated the data.
 Models 2-5 are tweaked versions of model 1 with groups merged or split.
 Model 6 randomly shuffled the "true" group assignments from model 1.
 
-### step 5: bar plots of discriminant analysis assignment probabilities
+
+### step 4: bar plots of discriminant analysis assignment probabilities
 ```
 models = read.table("H:/NearLab/PhenoDelimit/example/sim_models.txt", header=TRUE)
 
@@ -102,7 +107,8 @@ assign_probs_barplot(wd = wd, clumpp.wd = clumpp.wd, sample.names = sample.names
 ```
 ![barplot_example](/example/barplot_example.png)
 
-### step 6: scatter plot or density plot of discriminant axes
+
+### step 5: scatter plot or density plot of discriminant axes
 ```
 models = read.table("H:/NearLab/PhenoDelimit/example/sim_models.txt", header=TRUE)
 
@@ -149,7 +155,7 @@ plot_discriminant_axes(wd = wd, clumpp.wd = clumpp.wd,
 ![DA1-DA3_scatter.png](/example/DA1-DA3_scatter.png)
 
 
-### step 7: plot discriminant axis loadings and write table of variable contributions and loadings
+### step 6: plot discriminant axis loadings and write table of variable contributions and loadings
 ```
 wd = "H:/NearLab/PhenoDelimit/example/"
 clumpp.wd = "H:/NearLab/PhenoDelimit/example/CLUMPP"
