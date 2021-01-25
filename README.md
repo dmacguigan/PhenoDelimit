@@ -67,7 +67,7 @@ clumpp_results <- read_clumpp_results(wd=wd, perc.var=perc.var, model.numbers=mo
 ```
 wd = "H:/NearLab/PhenoDelimit/example/"
 clumpp.data = clumpp_results # from previous step
-colors = brewer.pal(n = 3, name = "Set1")
+colors = c("gray70", "gray30", "black")
 plot.type = "png"
 plot.name = "H_plot_example"
 plot.width = 8
