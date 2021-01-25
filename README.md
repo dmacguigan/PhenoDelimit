@@ -194,7 +194,7 @@ discriminant_loading(wd = wd, clumpp.wd = clumpp.wd,
 
 ```
 ![DA_3_loading](/example/DA_3_loading.png)
-<img src="/example/DA_3_loading.png" width="48">
+<img src="/example/DA_3_loading.png" width="600">
 
 We can see that variables 1-10 tend to load heavily on at least one discriminant axis, while variables 11-20 do not load heavily on any axes. 
 This is expected given that variables 1-10 are simulated to have large differences between group means and small standard deviations,
