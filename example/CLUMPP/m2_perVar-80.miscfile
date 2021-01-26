@@ -35,7 +35,7 @@ In total, 2 configurations of runs and clusters will be tested.
 
 Results
 ------------------------------
-The highest value of H' is: 0.30238503800194
+The highest value of H' is: 0.54907502471771
 
 The list of permutations of the clusters that produces that
 H' value is (runs are listed sequentially on separate rows)
@@ -46,5 +46,5 @@ H' value is (runs are listed sequentially on separate rows)
 The pairwise G' values for each pair of runs where the clusters
 of each run are permuted according to the list of permutations above
 
-1.0000 0.3024 
-0.3024 1.0000 
+1.0000 0.5491 
+0.5491 1.0000 
