@@ -1,7 +1,8 @@
 # PhenoDelimit
 R package to create "STRUCTURE-esque" barplots and compare species delimitation models with multivariate phenotype data.
 
-This package requires an external program, CLUMPP, which can be [dowloaded here](https://rosenberglab.stanford.edu/clumpp.html)
+This package requires an external program, CLUMPP, which can be [dowloaded here](https://rosenberglab.stanford.edu/clumpp.html). Make sure that CLUMPP executable is in your PATH environmental variable before proceeding. 
+For help setting the PATH variable, see these links for [Windows 10](https://www.architectryan.com/2018/03/17/add-to-the-path-on-windows-10/) or [Linux/macOS](https://opensource.com/article/17/6/set-path-linux)
 
 To download and install this package
 ```
@@ -12,16 +13,14 @@ library(PhenoDelimit)
 ```
 
 ## Example analysis
-Requires that CLUMPP executable is in the global path.
-
 Data are in "example" directory, so clone the repository first. Data were generated using simulate_data.R in the example folder
 Dataset consists 20 continuous variables for 300 idividuals divided into four groups.
 Data were simulated by drawing from normal disrtibutions.
 For each variable, means were allowed to vary between groups, but standard deviations were kept constant.
 
-Variables 1-10 had a large range of group means (between 5 and 30) and small standard deviations (between 0.5 and 1). These variables are expected to be more informative about group membership.
+Variables 1-10 have a large range of group means (between 5 and 30) and small standard deviations (between 0.5 and 1). These variables are expected to be more informative about group membership.
 
-Variables 11-20 had a small range of group means (between 18 and 22) and large standard deviations (between 3 and 10). Thus, these variables are expected to be less informative about group membership.
+Variables 11-20 have a small range of group means (between 18 and 22) and large standard deviations (between 3 and 10). Thus, these variables are expected to be less informative about group membership.
 
 ![sim_data_boxplots](/example/sim_data_boxplots.png)
 
