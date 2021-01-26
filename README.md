@@ -18,7 +18,7 @@ Dataset consists 20 continuous variables for 300 idividuals divided into four gr
 Data were simulated by drawing from normal disrtibutions.
 For each variable, means were allowed to vary between groups, but standard deviations were kept constant.
 
-Variables 1-10 have a large range of group means (between 5 and 30) and small standard deviations (between 0.5 and 1). These variables are expected to be more informative about group membership.
+Variables 1-10 have a large range of group means (between 5 and 30) and small standard deviations (between 1 and 3). These variables are expected to be more informative about group membership.
 
 Variables 11-20 have a small range of group means (between 18 and 22) and large standard deviations (between 3 and 10). Thus, these variables are expected to be less informative about group membership.
 

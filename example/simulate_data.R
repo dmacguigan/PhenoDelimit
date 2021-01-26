@@ -18,8 +18,8 @@ samples = 300
 # how many variables to generate?
 nVar = 20
 # small variable sd values
-var_sd_min_small = 0.5
-var_sd_max_small = 1
+var_sd_min_small = 1
+var_sd_max_small = 3
 # large variable sd values
 var_sd_min_large = 3
 var_sd_max_large = 10
