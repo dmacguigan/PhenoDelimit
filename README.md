@@ -23,6 +23,9 @@ Variables 1-10 had a large range of group means (between 5 and 30) and small sta
 
 Variables 11-20 had a small range of group means (between 18 and 22) and large standard deviations (between 3 and 10). Thus, these variables are expected to be less informative about group membership.
 
+![sim_data_boxplots](/example/sim_data_boxplots.png)
+
+
 <br/>
 
 ### step 1: K-means clustering, discriminant analysis of principal components, and run CLUMPP

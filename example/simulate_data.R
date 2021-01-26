@@ -5,6 +5,8 @@
 # var 11-20 have small group differences, large sds
 
 library(ggplot2)
+library(reshape2)
+library(RColorBrewer)
 
 # working directory
 wd = "H:/NearLab/PhenoDelimit/example"
@@ -57,8 +59,6 @@ for(i in 1:samples){
 }
 colnames(sim_data) <- c("cluster", paste("var", c(1:nVar), sep=""))
 
-# quick plot of one variable
-plot(sim_data$cluster, sim_data$var7)
 
 # basic PCA of simulated data, show PC1 and PC2
 sim_pca <- prcomp(sim_data[,2:(nVar+1)], center=TRUE, scale=TRUE)
@@ -93,4 +93,23 @@ m6 = sample(sim_data$cluster)
 models <- as.data.frame(cbind(m1=sim_data$cluster, m2=m2, m3=m3, m4=m4, m5=m5, m6=m6))
 setwd(wd)
 write.table(models, file = "sim_models.txt", quote=FALSE, row.names = FALSE)
+
+# read data if already created
+setwd(wd)
+sim_data <- read.table(file = "sim_data.txt", header=TRUE)
+sim_data$grp <- as.factor(read.table(file = "sim_models.txt", header=TRUE)[,1])
+
+sim_data_melt <- melt(sim_data, id.vars = "grp")
+
+# boxplot of all variables
+p <- ggplot(sim_data_melt, aes(x=grp, y=value, group=grp)) +
+  geom_boxplot(aes(fill=grp)) +
+  scale_fill_manual(values = brewer.pal(n = 5, name = "Set1"), name="Group") +
+  facet_wrap(~ variable, nrow=2, ncol=10) +
+  theme_light()
+
+png(filename = "sim_data_boxplots.png", width=10, height=6, units = "in", res = 300)
+p
+dev.off()
+
 
