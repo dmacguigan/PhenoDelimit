@@ -13,8 +13,8 @@ library(PhenoDelimit)
 ```
 
 ## Example analysis
-Data are in "example" directory, so clone the repository first. Data were generated using simulate_data.R in the example folder
-Dataset consists 20 continuous variables for 300 idividuals divided into four groups.
+Data are in "example" directory, so clone the repository first. Data were generated using simulate_data.R in the example folder.
+Dataset consists of 20 continuous variables for 300 idividuals divided into four groups.
 Data were simulated by drawing from normal disrtibutions.
 For each variable, means were allowed to vary between groups, but standard deviations were kept constant.
 
