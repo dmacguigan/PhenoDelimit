@@ -16,17 +16,19 @@ discriminant_loading <- function(wd, clumpp.wd,
 
   if(plot.type =="svg"){
     svglite(file = paste("DA_", axis, "_loading.svg", sep=""), width = plot.width, height = plot.height)
-    loadingplot(var.contr, axis=axis)
+    loadingplot(var.contr, axis=axis, threshold=0)
     dev.off()
   } else if(plot.type =="pdf"){
     pdf(file = paste("DA_", axis, "_loading.pdf", sep=""), width = plot.width, height = plot.height)
-    loadingplot(var.contr, axis=axis)
+    loadingplot(var.contr, axis=axis, threshold=0)
     dev.off()
   } else {
     png(file = paste("DA_", axis, "_loading.png", sep=""), units="in", res=300, width = plot.width, height = plot.height)
-    loadingplot(var.contr, axis=axis)
+    loadingplot(var.contr, axis=axis, threshold=0)
     dev.off()
   }
+   
+  loadingplot(var.contr, axis=axis, threshold=0)
 
   d <- var.contr[,axis]
   d2 <- var.load[,axis]
