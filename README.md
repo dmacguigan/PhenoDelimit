@@ -195,7 +195,7 @@ discriminant_loading(wd = wd, clumpp.wd = clumpp.wd,
 
 
 ```
-# Variable loading on discriminant axis 2
+# Variable loading on discriminant axis 3
 axis=3
 
 discriminant_loading(wd = wd, clumpp.wd = clumpp.wd,
