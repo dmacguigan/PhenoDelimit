@@ -17,7 +17,7 @@ plot_discriminant_axes <- function(wd, clumpp.wd,
 
   if(ncol(ind.coord) > 1){
     p <- data.frame(ind.coord)
-    p$group <- factor(sample.plot.groups)
+    p$group <- factor(sample.plot.groups, levels=sample.plot.groups.order)
 
     find_hull <- function(df) df[chull(df[,x.axis], df[,y.axis]), ]
     hulls <- ddply(p, "group", find_hull)
@@ -57,7 +57,7 @@ plot_discriminant_axes <- function(wd, clumpp.wd,
   } else {
     p <- data.frame(ind.coord)
     p$cluster <- factor(kmeans.grp)
-    p$group <- factor(sample.plot.groups)
+    p$group <- factor(sample.plot.groups, levels=sample.plot.groups.order)
 
     plot <- ggplot(p, aes(x=LD1, color=group, fill=group)) +
       geom_density(alpha=0.5) +
