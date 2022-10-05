@@ -2,42 +2,83 @@
 discriminant_loading <- function(wd, clumpp.wd,
                                  best.perc.var, best.model.number,
                                  plot.type, plot.width, plot.height,
-                                 axis){
+                                 axis, apriori=FALSE){
 
-  # read DAPC variable contributions from file
-  var.contr <- read.table(file = paste(clumpp.wd, "/m", best.model.number, "_perVar-", best.perc.var, "_var.contr.txt", sep=""),
-                          header = TRUE)
+  if(apriori == FALSE){
+	  
+	  # read DAPC variable contributions from file
+	  var.contr <- read.table(file = paste(clumpp.wd, "/m", best.model.number, "_perVar-", best.perc.var, "_var.contr.txt", sep=""),
+							  header = TRUE)
 
-  # read DAPC variable loadings from file
-  var.load <- read.table(file = paste(clumpp.wd, "/m", best.model.number, "_perVar-", best.perc.var, "_var.load.txt", sep=""),
-                         header=TRUE)
+	  # read DAPC variable loadings from file
+	  var.load <- read.table(file = paste(clumpp.wd, "/m", best.model.number, "_perVar-", best.perc.var, "_var.load.txt", sep=""),
+							 header=TRUE)
 
-  setwd(wd)
+	  setwd(wd)
 
-  if(plot.type =="svg"){
-    svglite(file = paste("DA_", axis, "_loading.svg", sep=""), width = plot.width, height = plot.height)
-    loadingplot(var.contr, axis=axis, threshold=0)
-    dev.off()
-  } else if(plot.type =="pdf"){
-    pdf(file = paste("DA_", axis, "_loading.pdf", sep=""), width = plot.width, height = plot.height)
-    loadingplot(var.contr, axis=axis, threshold=0)
-    dev.off()
-  } else {
-    png(file = paste("DA_", axis, "_loading.png", sep=""), units="in", res=300, width = plot.width, height = plot.height)
-    loadingplot(var.contr, axis=axis, threshold=0)
-    dev.off()
+	  if(plot.type =="svg"){
+		svglite(file = paste("DA_", axis, "_loading.svg", sep=""), width = plot.width, height = plot.height)
+		loadingplot(var.contr, axis=axis, threshold=0)
+		dev.off()
+	  } else if(plot.type =="pdf"){
+		pdf(file = paste("DA_", axis, "_loading.pdf", sep=""), width = plot.width, height = plot.height)
+		loadingplot(var.contr, axis=axis, threshold=0)
+		dev.off()
+	  } else {
+		png(file = paste("DA_", axis, "_loading.png", sep=""), units="in", res=300, width = plot.width, height = plot.height)
+		loadingplot(var.contr, axis=axis, threshold=0)
+		dev.off()
+	  }
+	   
+	  loadingplot(var.contr, axis=axis, threshold=0)
+
+	  d <- var.contr[,axis]
+	  d2 <- var.load[,axis]
+	  t <- cbind(d,d2)
+	  t <- as.data.frame(t)
+	  row.names(t) <- row.names(var.contr)
+	  t <- t[order(t$d, decreasing = TRUE),]
+	  colnames(t) <- c("contribution", "loading")
+	  write.table(x = t, file = paste("DA_", axis, "_loading.txt", sep=""), quote=FALSE, row.names = TRUE)
   }
-   
-  loadingplot(var.contr, axis=axis, threshold=0)
+  
+  else{
+  	  # read DAPC variable contributions from file
+	  var.contr <- read.table(file = paste(clumpp.wd, "/m", best.model.number, "_perVar-", best.perc.var, "_var.contr.apriori.txt", sep=""),
+							  header = TRUE)
 
-  d <- var.contr[,axis]
-  d2 <- var.load[,axis]
-  t <- cbind(d,d2)
-  t <- as.data.frame(t)
-  row.names(t) <- row.names(var.contr)
-  t <- t[order(t$d, decreasing = TRUE),]
-  colnames(t) <- c("contribution", "loading")
-  write.table(x = t, file = paste("DA_", axis, "_loading.txt", sep=""), quote=FALSE, row.names = TRUE)
+	  # read DAPC variable loadings from file
+	  var.load <- read.table(file = paste(clumpp.wd, "/m", best.model.number, "_perVar-", best.perc.var, "_var.load.apriori.txt", sep=""),
+							 header=TRUE)
+
+	  setwd(wd)
+
+	  if(plot.type =="svg"){
+		svglite(file = paste("DA_", axis, "_loading.apriori.svg", sep=""), width = plot.width, height = plot.height)
+		loadingplot(var.contr, axis=axis, threshold=0)
+		dev.off()
+	  } else if(plot.type =="pdf"){
+		pdf(file = paste("DA_", axis, "_loading.apriori.pdf", sep=""), width = plot.width, height = plot.height)
+		loadingplot(var.contr, axis=axis, threshold=0)
+		dev.off()
+	  } else {
+		png(file = paste("DA_", axis, "_loading.apriori.png", sep=""), units="in", res=300, width = plot.width, height = plot.height)
+		loadingplot(var.contr, axis=axis, threshold=0)
+		dev.off()
+	  }
+	   
+	  loadingplot(var.contr, axis=axis, threshold=0)
+
+	  d <- var.contr[,axis]
+	  d2 <- var.load[,axis]
+	  t <- cbind(d,d2)
+	  t <- as.data.frame(t)
+	  row.names(t) <- row.names(var.contr)
+	  t <- t[order(t$d, decreasing = TRUE),]
+	  colnames(t) <- c("contribution", "loading")
+	  write.table(x = t, file = paste("DA_", axis, "_loading.apriori.txt", sep=""), quote=FALSE, row.names = TRUE)
+  
+  }
 }
 
 
