@@ -69,15 +69,15 @@ plot_discriminant_axes <- function(wd, clumpp.wd,
 		  xlab("Discriminant axis 1")
 
 		if(plot.type =="svg"){
-		  svglite(file = paste0("m", best.model.number, "DA1_density.svg"), width = plot.width, height = plot.height)
+		  svglite(file = paste0("m", best.model.number, "_DA1_density.svg"), width = plot.width, height = plot.height)
 		  print(plot)
 		  dev.off()
 		} else if(plot.type =="pdf"){
-		  pdf(file = paste0("m", best.model.number, "DA1_density.pdf"), width = plot.width, height = plot.height)
+		  pdf(file = paste0("m", best.model.number, "_DA1_density.pdf"), width = plot.width, height = plot.height)
 		  print(plot)
 		  dev.off()
 		} else {
-		  png(file = paste0("m", best.model.number, "DA1_density.png"), units="in", res=300,width = plot.width, height = plot.height)
+		  png(file = paste0("m", best.model.number, "_DA1_density.png"), units="in", res=300,width = plot.width, height = plot.height)
 		  print(plot)
 		  dev.off()
 		}
@@ -141,15 +141,15 @@ plot_discriminant_axes <- function(wd, clumpp.wd,
 		  xlab("Discriminant axis 1")
 
 		if(plot.type =="svg"){
-		  svglite(file = paste0("m", best.model.number, "DA1_density.apriori.svg"), width = plot.width, height = plot.height)
+		  svglite(file = paste0("m", best.model.number, "_DA1_density.apriori.svg"), width = plot.width, height = plot.height)
 		  print(plot)
 		  dev.off()
 		} else if(plot.type =="pdf"){
-		  pdf(file = paste0("m", best.model.number, "DA1_density.apriori.pdf"), width = plot.width, height = plot.height)
+		  pdf(file = paste0("m", best.model.number, "_DA1_density.apriori.pdf"), width = plot.width, height = plot.height)
 		  print(plot)
 		  dev.off()
 		} else {
-		  png(file = paste0("m", best.model.number, "DA1_density.apriori.png"), units="in", res=300,width = plot.width, height = plot.height)
+		  png(file = paste0("m", best.model.number, "_DA1_density.apriori.png"), units="in", res=300,width = plot.width, height = plot.height)
 		  print(plot)
 		  dev.off()
 		}
