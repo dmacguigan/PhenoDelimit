@@ -3,7 +3,7 @@ assign_probs_barplot <- function(wd, clumpp.wd, sample.names,
                                 sample.plot.groups = NULL, sample.plot.groups.order = NULL,
                                 sample.order = NULL,
                                 best.perc.var, best.model.number,
-                                plot.type, plot.width, plot.height, plot.name, colors, border.color,
+                                plot.type, plot.width, plot.height, colors, border.color,
 								apriori=FALSE){
   
   if(apriori == FALSE){
@@ -31,7 +31,7 @@ assign_probs_barplot <- function(wd, clumpp.wd, sample.names,
 	  # make barplots
 	  setwd(wd)
 	  if(plot.type == "svg"){
-		svglite(file=paste(plot.name, ".svg", sep=""), width=plot.width, height=plot.height)
+		svglite(file=paste("m", best.model.number, "_barplot.svg", sep=""), width=plot.width, height=plot.height)
 		  par(mgp=c(1.5,1,0), mar = c(4.1, 3.1, 1, 1))
 		  barplot(plotData, col=colors, border=border.color,
 				  space=0, axes=F, axisname=FALSE, las=2, cex.names=0.75,
@@ -46,7 +46,7 @@ assign_probs_barplot <- function(wd, clumpp.wd, sample.names,
 			   tick=FALSE, las=0, cex.axis=0.8, adj=0, pos=0)
 		dev.off()
 	  } else if(plot.type == "pdf"){
-		pdf(file=paste(plot.name, ".pdf", sep=""), width=plot.width, height=plot.height)
+		pdf(file=paste("m", best.model.number, "_barplot.pdf", sep=""), width=plot.width, height=plot.height)
 		  par(mgp=c(1.5,1,0), mar = c(4.1, 3.1, 1, 1))
 		  barplot(plotData, col=colors, border=border.color,
 				  space=0, axes=F, axisname=FALSE, las=2, cex.names=0.75,
@@ -61,7 +61,7 @@ assign_probs_barplot <- function(wd, clumpp.wd, sample.names,
 			   tick=FALSE, las=0, cex.axis=0.8, adj=0, pos=0)
 		dev.off()
 	  } else {
-		png(file=paste(plot.name, ".png", sep=""), units="in", res=300, width=plot.width, height=plot.height)
+		png(file=paste("m", best.model.number, "_barplot.png", sep=""), units="in", res=300, width=plot.width, height=plot.height)
 		par(mgp=c(1.5,1,0), mar = c(4.1, 3.1, 1, 1))
 		barplot(plotData, col=colors, border=border.color,
 				space=0, axes=F, axisname=FALSE, las=2, cex.names=0.75,
@@ -116,7 +116,7 @@ assign_probs_barplot <- function(wd, clumpp.wd, sample.names,
 	  # make barplots
 	  setwd(wd)
 	  if(plot.type == "svg"){
-		svglite(file=paste(plot.name, ".apriori.svg", sep=""), width=plot.width, height=plot.height)
+		svglite(file=paste("m", best.model.number, "_barplot.apriori.svg", sep=""), width=plot.width, height=plot.height)
 		  par(mgp=c(1.5,1,0), mar = c(4.1, 3.1, 1, 1))
 		  barplot(plotData, col=colors, border=border.color,
 				  space=0, axes=F, axisname=FALSE, las=2, cex.names=0.75,
@@ -131,7 +131,7 @@ assign_probs_barplot <- function(wd, clumpp.wd, sample.names,
 			   tick=FALSE, las=0, cex.axis=0.8, adj=0, pos=0)
 		dev.off()
 	  } else if(plot.type == "pdf"){
-		pdf(file=paste(plot.name, ".apriori.pdf", sep=""), width=plot.width, height=plot.height)
+		pdf(file=paste("m", best.model.number, "_barplot.apriori.pdf", sep=""), width=plot.width, height=plot.height)
 		  par(mgp=c(1.5,1,0), mar = c(4.1, 3.1, 1, 1))
 		  barplot(plotData, col=colors, border=border.color,
 				  space=0, axes=F, axisname=FALSE, las=2, cex.names=0.75,
@@ -146,7 +146,7 @@ assign_probs_barplot <- function(wd, clumpp.wd, sample.names,
 			   tick=FALSE, las=0, cex.axis=0.8, adj=0, pos=0)
 		dev.off()
 	  } else {
-		png(file=paste(plot.name, ".apriori.png", sep=""), units="in", res=300, width=plot.width, height=plot.height)
+		png(file=paste("m", best.model.number, "_barplot.apriori.png", sep=""), units="in", res=300, width=plot.width, height=plot.height)
 		par(mgp=c(1.5,1,0), mar = c(4.1, 3.1, 1, 1))
 		barplot(plotData, col=colors, border=border.color,
 				space=0, axes=F, axisname=FALSE, las=2, cex.names=0.75,

@@ -17,15 +17,15 @@ discriminant_loading <- function(wd, clumpp.wd,
 	  setwd(wd)
 
 	  if(plot.type =="svg"){
-		svglite(file = paste("DA_", axis, "_loading.svg", sep=""), width = plot.width, height = plot.height)
+		svglite(file = paste("m", best.model.number, "_DA_", axis, "_loading.svg", sep=""), width = plot.width, height = plot.height)
 		loadingplot(var.contr, axis=axis, threshold=0)
 		dev.off()
 	  } else if(plot.type =="pdf"){
-		pdf(file = paste("DA_", axis, "_loading.pdf", sep=""), width = plot.width, height = plot.height)
+		pdf(file = paste("m", best.model.number, "_DA_", axis, "_loading.pdf", sep=""), width = plot.width, height = plot.height)
 		loadingplot(var.contr, axis=axis, threshold=0)
 		dev.off()
 	  } else {
-		png(file = paste("DA_", axis, "_loading.png", sep=""), units="in", res=300, width = plot.width, height = plot.height)
+		png(file = paste("m", best.model.number, "_DA_", axis, "_loading.png", sep=""), units="in", res=300, width = plot.width, height = plot.height)
 		loadingplot(var.contr, axis=axis, threshold=0)
 		dev.off()
 	  }
@@ -39,7 +39,7 @@ discriminant_loading <- function(wd, clumpp.wd,
 	  row.names(t) <- row.names(var.contr)
 	  t <- t[order(t$d, decreasing = TRUE),]
 	  colnames(t) <- c("contribution", "loading")
-	  write.table(x = t, file = paste("DA_", axis, "_loading.txt", sep=""), quote=FALSE, row.names = TRUE)
+	  write.table(x = t, file = paste("m", best.model.number, "_DA_", axis, "_loading.txt", sep=""), quote=FALSE, row.names = TRUE)
   }
   
   else{
@@ -54,15 +54,15 @@ discriminant_loading <- function(wd, clumpp.wd,
 	  setwd(wd)
 
 	  if(plot.type =="svg"){
-		svglite(file = paste("DA_", axis, "_loading.apriori.svg", sep=""), width = plot.width, height = plot.height)
+		svglite(file = paste("m", best.model.number, "_DA_", axis, "_loading.apriori.svg", sep=""), width = plot.width, height = plot.height)
 		loadingplot(var.contr, axis=axis, threshold=0)
 		dev.off()
 	  } else if(plot.type =="pdf"){
-		pdf(file = paste("DA_", axis, "_loading.apriori.pdf", sep=""), width = plot.width, height = plot.height)
+		pdf(file = paste("m", best.model.number, "_DA_", axis, "_loading.apriori.pdf", sep=""), width = plot.width, height = plot.height)
 		loadingplot(var.contr, axis=axis, threshold=0)
 		dev.off()
 	  } else {
-		png(file = paste("DA_", axis, "_loading.apriori.png", sep=""), units="in", res=300, width = plot.width, height = plot.height)
+		png(file = paste("m", best.model.number, "_DA_", axis, "_loading.apriori.png", sep=""), units="in", res=300, width = plot.width, height = plot.height)
 		loadingplot(var.contr, axis=axis, threshold=0)
 		dev.off()
 	  }
@@ -76,7 +76,7 @@ discriminant_loading <- function(wd, clumpp.wd,
 	  row.names(t) <- row.names(var.contr)
 	  t <- t[order(t$d, decreasing = TRUE),]
 	  colnames(t) <- c("contribution", "loading")
-	  write.table(x = t, file = paste("DA_", axis, "_loading.apriori.txt", sep=""), quote=FALSE, row.names = TRUE)
+	  write.table(x = t, file = paste("m", best.model.number, "_DA_", axis, "_loading.apriori.txt", sep=""), quote=FALSE, row.names = TRUE)
   
   }
 }
