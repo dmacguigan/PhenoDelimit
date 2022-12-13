@@ -7,7 +7,7 @@ dapc_clumpp_permuted <- function(wd, data, n.groups, model.numbers, models, perc
     for(j in 1:length(perc.var)){
       for(p in 1:permutations){
         p_data <- data[sample(nrow(data)),] # permute the data by shuffling rows
-        run_dapc_clumpp(data=p_data, modelNumber=model.numbers[i], k=n.groups[i], model=as.factor(models[,i]), perc.var=perc.var[j], center=center, scale=scale, permutation=p)
+        run_dapc_clumpp_permutation(data=p_data, modelNumber=model.numbers[i], k=n.groups[i], model=as.factor(models[,i]), perc.var=perc.var[j], center=center, scale=scale, permutation=p)
       }
     }
   }
@@ -16,7 +16,7 @@ dapc_clumpp_permuted <- function(wd, data, n.groups, model.numbers, models, perc
 }
 
 
-run_dapc_clumpp <- function(data, modelNumber, k, model, perc.var, scale, center, permutation){
+run_dapc_clumpp_permutation <- function(data, modelNumber, k, model, perc.var, scale, center, permutation){
   # make sure model variable is OK format
   model <- as.numeric(as.factor(model))
   # K-means DAPC
