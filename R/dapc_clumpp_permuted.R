@@ -11,7 +11,7 @@ dapc_clumpp_permuted <- function(wd, data, n.groups, model.numbers, models, perc
       }
     }
   }
-  clumpp_permutated_results <- read_clumpp_results_perumtation(wd, perc.var, model.numbers, permutation=p)
+  clumpp_permutated_results <- read_clumpp_results_perumtation(wd=wd, perc.var=perc.var, model.numbers=model.numbers, permutations=permutations)
   return(clumpp_permutated_results)
 }
 
@@ -84,7 +84,7 @@ run_dapc_clumpp <- function(data, modelNumber, k, model, perc.var, scale, center
 }
 
 # read in CLUMPP results from miscfiles
-read_clumpp_results_perumtation <- function(wd, perc.var, model.numbers, permutation){
+read_clumpp_results_perumtation <- function(wd, perc.var, model.numbers, permutations){
   setwd(wd)
   c1=numeric()
   c2=numeric()
@@ -93,7 +93,7 @@ read_clumpp_results_perumtation <- function(wd, perc.var, model.numbers, permuta
   for(i in 1:length(perc.var)){
     for(j in 1:length(model.numbers)){
       for(p in 1:permutations){
-        fileName <- Sys.glob(paste("m", model.numbers[j], "_perVar-", perc.var[i], ".p", permutation, ".miscfile", sep=""))
+        fileName <- Sys.glob(paste("m", model.numbers[j], "_perVar-", perc.var[i], ".p", p, ".miscfile", sep=""))
         temp <- grep("The highest value of H' is:", readLines(fileName), value=TRUE)
         H <- as.numeric(strsplit(temp, " ")[[1]][7]) # get only H' number
         c1 <- c(c1, model.numbers[j])
