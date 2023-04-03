@@ -33,13 +33,9 @@ H_permutation_plot <- function(wd, clumpp_results, clumpp_perm_df, models, best.
     
     # calculate p value
     p_val <- (sum(perm_H$H > obs_H$H) + 1)/nrow(perm_H) # p-value is the proportion of samples (including our observed data) that have a test statistic larger than that of our observed data 
-    message(p_val)
     
     # calculate diff between obs H' and mean permuted H'
     H_diff <- obs_H$H - mean(perm_H$H)
-    message(obs_H$H)
-    message(mean(perm_H$H))
-    message(H_diff)
     
     # update the summary data frame
     summary[counter,2] = H_diff
