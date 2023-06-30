@@ -11,7 +11,8 @@ Make loading plot of variables on selected discriminant axis. Saves plot as file
 assignProbs_barplot(wd, clumpp.wd,
                     best.perc.var, best.model.number,
                     plot.type, plot.width, plot.height,
-                    axis))
+                    axis,
+					apriori=FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -38,6 +39,9 @@ assignProbs_barplot(wd, clumpp.wd,
   }
   \item{axis}{
   which discriminant axis to examine? numeric
+  }
+  \item{apriori}{
+  do you wish to plot results from apriori individual assignment to species/populations/clusters, or results from assignment using using k-means clustering? TRUE or FALSE
   }
 }
 

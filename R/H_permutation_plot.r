@@ -1,13 +1,13 @@
 # plot permuted H' vs observed H'
-H_permutation_plot <- function(wd, clumpp_results, clumpp_perm_df, models, best.perc.var, plot.type, plot.prefix, plot.width, plot.height, sig.threshold){
+H_permutation_plot <- function(wd, clumpp.data, clumpp.data.permuted, model.numbers, best.perc.var, plot.type, plot.prefix, plot.width, plot.height, sig.threshold){
   setwd(wd)
-  summary <- data.frame(model=models,
-                        H_diff=models,
-                        p_val=models)
+  summary <- data.frame(model=model.numbers,
+                        H_diff=model.numbers,
+                        p_val=model.numbers)
   counter=1
-  for(i in models){
-    perm_H <- subset(clumpp_perm_df, model==i & perc.pca==best.perc.var)
-    obs_H <- subset(clumpp_results, model==i & perc.pca==best.perc.var)
+  for(i in model.numbers){
+    perm_H <- subset(clumpp.data.permuted, model==i & perc.pca==best.perc.var)
+    obs_H <- subset(clumpp.data, model==i & perc.pca==best.perc.var)
     p <- ggplot(data=perm_H, aes(x=H)) +
       geom_histogram(color="black", fill="gray") +
       xlab("H'") +

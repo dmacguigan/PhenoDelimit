@@ -2,7 +2,8 @@
 # with permutation of the original data frame for significance testing
 
 dapc_clumpp_permuted <- function(wd, data, n.groups, model.numbers, models, perc.var, permutations, scale=TRUE, center=TRUE){
-  setwd(wd)
+  dir.create(file.path(wd, "CLUMPP_permuted"), showWarnings = FALSE)
+  setwd(paste0(wd, "/CLUMPP_permuted"))
   for(i in 1:length(n.groups)){
     for(j in 1:length(perc.var)){
       for(p in 1:permutations){

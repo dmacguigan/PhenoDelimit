@@ -1,0 +1,50 @@
+
+Using the parameter settings in the file: 
+''m4_perVar-90.p39.paramfile''
+
+Parameter settings
+----------------------- Main parameters -------------------------
+DATATYPE = 0
+INDFILE = m4_perVar-90.p39.indfile
+POPFILE = 
+OUTFILE = m4_perVar-90.p39.outfile
+MISCFILE = m4_perVar-90.p39.miscfile
+K = 5
+C = 300
+R = 2
+M = 1
+W = 0
+S = 2
+- Additional options for the Greedy and LargeKGreedy algorithms -
+GREEDY_OPTION = 
+REPEATS = 
+PERMUTATIONFILE = 
+----------------------- Optional outputs ------------------------
+PRINT_PERMUTED_DATA = 0
+PERMUTED_DATAFILE = 
+PRINT_EVERY_PERM = 0
+EVERY_PERMFILE = 
+PRINT_RANDOM_INPUTORDER = 
+RANDOM_INPUTORDERFILE = 
+----------------------- Advanced options ------------------------
+OVERRIDE_WARNINGS = 0
+ORDER_BY_RUN = 1
+
+
+In total, 120 configurations of runs and clusters will be tested.
+
+Results
+------------------------------
+The highest value of H' is: 0.14504408848666
+
+The list of permutations of the clusters that produces that
+H' value is (runs are listed sequentially on separate rows)
+
+1 2 3 4 5 
+3 1 4 5 2 
+
+The pairwise G' values for each pair of runs where the clusters
+of each run are permuted according to the list of permutations above
+
+1.0000 0.1450 
+0.1450 1.0000 

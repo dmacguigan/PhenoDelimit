@@ -1,6 +1,6 @@
 # read in CLUMPP results from miscfiles
 read_clumpp_results <- function(wd, perc.var, model.numbers){
-  setwd(wd)
+  setwd(paste0(wd, "/CLUMPP"))
   c1=numeric()
   c2=numeric()
   c3=numeric()

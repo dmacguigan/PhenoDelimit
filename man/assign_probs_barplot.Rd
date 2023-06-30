@@ -5,14 +5,15 @@
 assign_probs_barplot
 }
 \description{
-Make "structure-like" bar plots using discriminant analysis assignment probabilities for chosen model and proportion of retained variance. Returns plot and saves plot as file (svg or pdf).
+Make "structure-like" bar plots using discriminant analysis assignment probabilities for chosen model and proportion of retained variance. Returns plot and saves plot as file (svg or pdf). Plots will be named based on model selected.
 }
 \usage{
 assign_probs_barplot(wd, clumpp.wd, sample.names,
                     sample.plot.groups, sample.plot.groups.order,
                     sample.order,
                     best.perc.var, best.model.number,
-                    plot.type, plot.width, plot.height, plot.name, colors, border.color))
+                    plot.type, plot.width, plot.height, colors, border.color,
+                    apriori))
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -46,14 +47,14 @@ assign_probs_barplot(wd, clumpp.wd, sample.names,
   \item{plot.height}{
   height of plot in inches
   }
-  \item{plot.name}{
-  name for plot, character
-  }
   \item{colors}{
   vector of colors for bar plot bars
   }
   \item{border.color}{
   color for borders on bar, character
+  }
+  \item{apriori}{
+  do you wish to plot results from apriori individual assignment to species/populations/clusters, or results from assignment using using k-means clustering? TRUE or FALSE
   }
 }
 

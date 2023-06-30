@@ -4,8 +4,8 @@ assign_probs_barplot <- function(wd, clumpp.wd, sample.names,
                                 sample.order = NULL,
                                 best.perc.var, best.model.number,
                                 plot.type, plot.width, plot.height, colors, border.color,
-								apriori=FALSE){
-  
+                                apriori=FALSE){
+
   if(apriori == FALSE){
 	  # read in posteriors from clumpp_prep function
 	  dapc.data <- read.table(file = paste(clumpp.wd, "/m", best.model.number, "_perVar-", best.perc.var, "_posteriors.txt", sep=""))
@@ -174,7 +174,7 @@ assign_probs_barplot <- function(wd, clumpp.wd, sample.names,
 		   tick=FALSE, las=2, cex.axis=0.3, adj=0, pos=0, line=0, mgp = c(3, 0.1, 0))
 	  axis(1, at=pop.labels, labels=names(table(pop.order.ordered)),
 		   tick=FALSE, las=0, cex.axis=0.8, adj=0, pos=0)
-	  title()  
+	  title()
   }
 }
 

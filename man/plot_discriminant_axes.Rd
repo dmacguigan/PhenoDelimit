@@ -12,7 +12,8 @@ plot_discriminant_axes(wd, clumpp.wd,
                        sample.plot.groups = NULL, sample.plot.groups.order = NULL,
                        best.perc.var, best.model.number,
                        plot.type, plot.width, plot.height, colors, shapes,
-                       x.axis=NULL, y.axis=NULL))
+                       x.axis=NULL, y.axis=NULL,
+					   apriori=FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -57,6 +58,9 @@ plot_discriminant_axes(wd, clumpp.wd,
   }
   \item{y.axis}{
   which discriminant axis to show on y axis? If only two clusters, this argument is not used. numeric
+  }
+  \item{apriori}{
+  do you wish to plot results from apriori individual assignment to species/populations/clusters, or results from assignment using using k-means clustering? TRUE or FALSE
   }
 }
 

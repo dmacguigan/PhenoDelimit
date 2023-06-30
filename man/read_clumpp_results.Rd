@@ -13,7 +13,7 @@ read_clumpp_results(wd, perc.var, model.number)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{wd}{
-  working directory to store CLUMPP files
+  working directory to store CLUMPP files, should contain a CLUMPP directory created by the dapc_clumpp function
   }
   \item{model.number}{
   vector containing delimitaiton model numbers

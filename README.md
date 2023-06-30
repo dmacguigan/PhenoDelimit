@@ -24,6 +24,15 @@ Variables 11-20 have a small range of group means (between 18 and 22) and large 
 
 ![sim_data_boxplots](/example/sim_data_boxplots.png)
 
+<br/>
+
+We will test 6 different delimitation models:
+* M1 - model used to simulate the data (4 groups total)
+* M2 - merge groups 1 + 2 and 3 + 4 (2 groups total)
+* M3 - merge groups 1 + 2 (3 groups total)
+* M4 - randomly split group 4 into 2 groups (5 groups total)
+* M5 - randomly take samples from groups 3 and 4 and create a new group (5 groups total)
+* M6 - keep 4 equal sized groups but randomize individual assignment (4 groups total)
 
 <br/>
 
@@ -40,7 +49,87 @@ By comparing the two matrices with CLUMPP, we can determine which delimitation m
 ```
 library(RColorBrewer)
 
-wd = "H:/PhenoDelimit/example/CLUMPP"
+wd = "H:/PhenoDelimit/example" # results will be written to new subdirectory "CLUMPP"
+data = read.table("H:/PhenoDelimit/example/sim_data.txt", header=TRUE)
+n.groups = c(4,2,3,5,5,4)
+model.numbers = c(1:6)
+models = read.table("H:/PhenoDelimit/example/sim_models.txt", header=TRUE)
+perc.var = c(70,80,90)
+scale = TRUE
+center = TRUE
+dapc_clumpp(wd=wd,
+            data=data,
+            n.groups=n.groups,
+            model.numbers=model.numbers,
+            models=models,
+            perc.var=perc.var,
+            scale=scale,
+            center=center,
+            apriori=FALSE)
+			
+# let's run this step again but using a priori population assignments
+# we'll come back to these results later
+dapc_clumpp(wd=wd,
+            data=data,
+            n.groups=n.groups,
+            model.numbers=model.numbers,
+            models=models,
+            perc.var=perc.var,
+            scale=scale,
+            center=center,
+            apriori=TRUE)
+```
+
+<br/>
+
+### step 2: summarize CLUMPP
+```
+wd = "H:/PhenoDelimit/example"
+model.numbers = c(1:6)
+perc.var = c(70,80,90)
+
+clumpp_results <- read_clumpp_results(wd=wd,
+                                      perc.var=perc.var,
+                                      model.numbers=model.numbers)
+```
+
+<br/>
+
+### step 3: plot H' values to compare delimitation models
+```
+wd = "H:/PhenoDelimit/example/"
+clumpp.data = clumpp_results
+colors = c("gray70", "gray30", "black")
+plot.type = "png"
+plot.name = "H_plot_example"
+plot.width = 8
+plot.height = 4
+
+plot_clumpp_results(wd=wd,
+                    clumpp.data=clumpp.data,
+                    colors=colors,
+                    plot.name = plot.name,
+                    plot.type=plot.type,
+                    plot.width=plot.width,
+                    plot.height=plot.height)
+```
+![H_plot_example](/example/H_plot_example.png)
+
+Remember, model 1 is the "true" model which generated the data.
+So it's comforting to see that model 1 has a near perfect H'.
+Models 2-5 are tweaked versions of model 1 with groups merged or split.
+Model 6 randomly shuffled the "true" group assignments from model 1.
+So no surprise that model 6 has the lowest H'.
+
+<br/>
+
+### step 4: permutation test of significance for H' values - IN DEVELOPMENT
+Here we will permute the morphological data and rerun the DAPC and CLUMPP analyses.
+We can use this to test the statistical significance of our models.
+This many take a while depending on how many models you have and how many permutations you wish to perform.
+
+```
+wd = "H:/PhenoDelimit/example" # results will be written to new subdirectory "CLUMPP_permuted"
 data = read.table("H:/PhenoDelimit/example/sim_data.txt", header=TRUE)
 n.groups = c(4,2,3,5,5,4)
 model.numbers = c(1:6)
@@ -49,43 +138,50 @@ perc.var = c(70,80,90)
 scale = TRUE
 center = TRUE
 
-dapc_clumpp(wd=wd, data=data, n.groups=n.groups, model.numbers=model.numbers, models=models, perc.var=perc.var, scale=scale, center=center)
+dapc_clumpp_permuted(wd=wd,
+                     data=data,
+                     n.groups=n.groups,
+                     model.numbers=model.numbers,
+                     models=models,
+                     perc.var=perc.var,
+                     permutations=100,
+                     scale=scale,
+                     center=center)
+
+clumpp_perm_df <- read_clumpp_results_permuted(wd=wd,
+                                               perc.var=perc.var,
+                                               model.numbers=model.numbers,
+                                               permutations=100)
+
+H_permutation_plot(wd=wd,
+                   clumpp.data=clumpp_results,
+                   clumpp.data.permuted=clumpp_perm_df,
+                   model.numbers=model.numbers,
+                   best.perc.var=70,
+                   plot.type="png",
+                   plot.prefix="example",
+                   plot.width=6,
+                   plot.height=4,
+                   sig.threshold=0.05)
 ```
+![example_obs-minus-perm-mean.png](/example/example_obs-minus-perm-mean.png)
+![example_perm-vs-obs_m1.png](/example/example_perm-vs-obs_m1.png)
+![example_perm-vs-obs_m6.png](/example/example_perm-vs-obs_m6.png)
 
 <br/>
 
-### step 2: summarize CLUMPP
-```
-wd = "H:/PhenoDelimit/example/CLUMPP"
-model.numbers = c(1:6)
-perc.var = c(70,80,90)
+In these figure, we can see that the observed H' for model 1 is signficantly higher than the distribution of permuted H' values.
+On the other hand, the observed H' for model 6 is not signficantly different than the permuted H' distribution.
+This makes sense, since model 1 was used to generated this simulated data, while model 6 was itself a permutation of the underlying data.
 
-clumpp_results <- read_clumpp_results(wd=wd, perc.var=perc.var, model.numbers=model.numbers)
-```
-
-<br/>
-
-### step 3: plot H' values to compare delimitation models
-```
-wd = "H:/PhenoDelimit/example/"
-clumpp.data = clumpp_results # from previous step
-colors = c("gray70", "gray30", "black")
-plot.type = "png"
-plot.name = "H_plot_example"
-plot.width = 8
-plot.height = 4
-
-plot_clumpp_results(wd=wd, clumpp.data=clumpp.data, colors=colors, plot.name = plot.name, plot.type=plot.type, plot.width=plot.width, plot.height=plot.height)
-```
-![H_plot_example](/example/H_plot_example.png)
-
-For this simulated datset, model 1 is the "true" model which generated the data.
-Models 2-5 are tweaked versions of model 1 with groups merged or split.
-Model 6 randomly shuffled the "true" group assignments from model 1.
+Models 2-5 all have significantly higher H' values than their permuted distributions, but not as large of a differnce as model 1. 
+This also makes sense, since models 2-5 are rearrangements of the groups in model 1 used to simulate the data.
+But models 2-5 do not reshuffle the entire dataset like model 6.
 
 <br/>
 
-### step 4: bar plots of discriminant analysis assignment probabilities
+
+### step 5: bar plots of discriminant analysis assignment probabilities
 ```
 models = read.table("H:/PhenoDelimit/example/sim_models.txt", header=TRUE)
 
@@ -111,11 +207,11 @@ assign_probs_barplot(wd = wd, clumpp.wd = clumpp.wd, sample.names = sample.names
                     plot.type = plot.type, plot.width = plot.width, plot.height = plot.height,
                     plot.name = plot.name, colors = colors, border.color = border.color)
 ```
-![barplot_example](/example/barplot_example.png)
+![m1_barplot](/example/m1_barplot.png)
 
 <br/>
 
-### step 5: scatter plot or density plot of discriminant axes
+### step 6: scatter plot or density plot of discriminant axes
 ```
 models = read.table("H:/PhenoDelimit/example/sim_models.txt", header=TRUE)
 
@@ -145,7 +241,7 @@ plot_discriminant_axes(wd = wd, clumpp.wd = clumpp.wd,
                        colors = colors, shapes = shapes,
                        x.axis = x.axis, y.axis = y.axis)
 ```
-![DA1-DA2_scatter.png](/example/DA1-DA2_scatter.png)
+![m1_DA1-DA2_scatter.png](/example/m1_DA1-DA2_scatter.png)
 
 ```
 # Disriminant axis 1 vs 3
@@ -159,11 +255,11 @@ plot_discriminant_axes(wd = wd, clumpp.wd = clumpp.wd,
                        colors = colors, shapes = shapes,
                        x.axis = x.axis, y.axis = y.axis)
 ```
-![DA1-DA3_scatter.png](/example/DA1-DA3_scatter.png)
+![m1_DA1-DA3_scatter.png](/example/m1_DA1-DA3_scatter.png)
 
 <br/>
 
-### step 6: plot discriminant axis loadings and write table of variable contributions and loadings
+### step 7: plot discriminant axis loadings and write table of variable contributions and loadings
 ```
 wd = "H:/PhenoDelimit/example/"
 clumpp.wd = "H:/PhenoDelimit/example/CLUMPP"
@@ -180,7 +276,7 @@ discriminant_loading(wd = wd, clumpp.wd = clumpp.wd,
                      best.perc.var = best.perc.var, best.model.number = best.model.number,
                      plot.type = plot.type, plot.width = plot.width, plot.height = plot.height, axis = axis)
 ```
-<img src="/example/DA_1_loading.png" width="600">
+<img src="/example/m1_DA_1_loading.png" width="600">
 
 ```
 # Variable loading on discriminant axis 2
@@ -191,7 +287,7 @@ discriminant_loading(wd = wd, clumpp.wd = clumpp.wd,
                      plot.type = plot.type, plot.width = plot.width, plot.height = plot.height, axis = axis)
 
 ```
-<img src="/example/DA_2_loading.png" width="600">
+<img src="/example/m1_DA_2_loading.png" width="600">
 
 
 ```
@@ -203,7 +299,7 @@ discriminant_loading(wd = wd, clumpp.wd = clumpp.wd,
                      plot.type = plot.type, plot.width = plot.width, plot.height = plot.height, axis = axis)
 
 ```
-<img src="/example/DA_3_loading.png" width="600">
+<img src="/example/m1_DA_3_loading.png" width="600">
 
 <br/>
 

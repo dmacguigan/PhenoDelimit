@@ -1,6 +1,6 @@
 # read in CLUMPP results for permuted runs from miscfiles
 read_clumpp_results_permuted <- function(wd, perc.var, model.numbers, permutations){
-  setwd(wd)
+  setwd(paste0(wd, "/CLUMPP_permuted"))
   c1=numeric()
   c2=numeric()
   c3=numeric()
