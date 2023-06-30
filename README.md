@@ -280,15 +280,15 @@ Since model 1 was used to simulate the data, the bar plot matches the 4 clusters
 ![m4_barplot](/example/m4_barplot.png)
 
 Example barplot of model 5 using k-means cluster assignment of individuals to 5 groups. 
-Model 5 randomly split one of the groups into 2. 
-We can see this reflected in the barplot (groups 4 and 5).
+Model 5 randomly split group 4 into two seperate groups. 
+We can see this reflected in the barplot, where individuals in groups 4 and 5 are split in assignment between two groups.
 
 <br/>
 
 ![m6_barplot](/example/m6_barplot.png)
 
 Example barplot of model 6 using k-means cluster assignment of individuals to 5 groups. 
-Model 6 randomly shuffled the group assignment of all individuals, resulting in no strong group assignment for any individual in the bar plot. 
+Model 6 randomly shuffled the group assignment of all individuals, resulting in no clear relationship between the 4 groups and the individual assignment probabilities.
 
 <br/>
 
