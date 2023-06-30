@@ -440,3 +440,5 @@ discriminant_loading(wd = wd, clumpp.wd = clumpp.wd,
 We can see that variables 1-10 tend to load heavily on at least one discriminant axis, while variables 11-20 do not load heavily on any axes. 
 This is expected given that variables 1-10 are simulated to have large differences between group means and small standard deviations,
 while variables 11-20 have small differences between group means and large standard deviations.
+
+In a real dataset, this could help us identify which traits are most diagnostic for which species.
