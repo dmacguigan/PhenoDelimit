@@ -126,7 +126,7 @@ So no surprise that model 6 has the lowest H'.
 ### step 4: permutation test of significance for H' values - IN DEVELOPMENT
 Here we will permute the morphological data and rerun the DAPC and CLUMPP analyses.
 We can use this to test the statistical significance of our models.
-This many take a while depending on how many models you have and how many permutations you wish to perform.
+This may take a while depending on how many models you have and how many permutations you wish to perform.
 
 ```
 wd = "H:/PhenoDelimit/example" # results will be written to new subdirectory "CLUMPP_permuted"

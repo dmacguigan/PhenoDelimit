@@ -69,7 +69,7 @@ plot_clumpp_results(wd=wd,
                     plot.height=plot.height)
 
 # step 4: permutation test of significance for H' values
-# this many take a while depending on how many models you have
+# this may take a while depending on how many models you have
 # and how many permutations you wish to perform
 wd = "H:/PhenoDelimit/example" # results will be written to new subdirectory "CLUMPP_permuted"
 data = read.table("H:/PhenoDelimit/example/sim_data.txt", header=TRUE)
