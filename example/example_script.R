@@ -1,12 +1,17 @@
 # example script to run PhenoDelimit
 
+# installation
+# install.packages("devtools") # if you need the devtools package
+library(devtools)
+install_github("dmacguigan/PhenoDelimit")
+
 library(PhenoDelimit)
 library(RColorBrewer)
 
 # step 1: K-means clustering, discriminant analysis, and prep files for CLUMPP
 # requires that CLUMPP executable is in the global path
 # data were generated using simulate_data.R
-wd = "H:/PhenoDelimit/example/CLUMPP"
+wd = "H:/PhenoDelimit/example"
 data = read.table("H:/PhenoDelimit/example/sim_data.txt", header=TRUE)
 n.groups = c(4,2,3,5,5,4)
 model.numbers = c(1:6)
