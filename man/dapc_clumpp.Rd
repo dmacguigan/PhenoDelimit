@@ -1,14 +1,14 @@
-\name{dapc_clump}
-\alias{dapc_clump}
+\name{dapc_clumpp}
+\alias{dapc_clumpp}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-dapc_clump
+dapc_clumpp
 }
 \description{
 Performs K-means clustering, runs discriminant analysis, and generates "indfiles" and "paramfiles" for CLUMPP based on user supplied info.
 }
 \usage{
-dapc_clump(wd, data, n.groups, model.numbers, models, perc.var, scale, center)
+dapc_clumpp(wd, data, n.groups, model.numbers, models, perc.var, scale, center)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -37,7 +37,7 @@ dapc_clump(wd, data, n.groups, model.numbers, models, perc.var, scale, center)
   center PCA? Highly recommended unless you transform data prior to analysis. TRUE or FALSE
   }
   \item{apriori}{
-  do you wish to use apriori cluster assignment or assign individuals using k-means clustering? TRUE or FALSE
+  do you wish to use apriori individual assignment to species/populations/clusters, or assign individuals using k-means clustering? TRUE or FALSE
   }
 }
 \details{
