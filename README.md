@@ -164,7 +164,6 @@ H_permutation_plot(wd=wd,
                    plot.height=4,
                    sig.threshold=0.05)
 ```
-![example_obs-minus-perm-mean.png](/example/example_obs-minus-perm-mean.png)
 ![example_perm-vs-obs_m1.png](/example/example_perm-vs-obs_m1.png)
 ![example_perm-vs-obs_m6.png](/example/example_perm-vs-obs_m6.png)
 
@@ -173,6 +172,8 @@ H_permutation_plot(wd=wd,
 In these figure, we can see that the observed H' (red dashed line) for model 1 is signficantly larger than the distribution of permuted H' values (gray bars).
 On the other hand, the observed H' (red dashed line) for model 6 is not signficantly different than the permuted H' distribution (gray bars).
 This makes sense, since model 1 was used to generated this simulated data, while model 6 was itself a permutation of the underlying data.
+
+![example_obs-minus-perm-mean.png](/example/example_obs-minus-perm-mean.png)
 
 Models 2-5 all have significantly larger H' values than their permuted distributions, but not as large of a differnce as we see for model 1. 
 This also makes sense, since models 2-5 are rearrangements of the groups in model 1 used to simulate the data.
