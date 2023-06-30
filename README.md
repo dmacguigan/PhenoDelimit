@@ -173,6 +173,8 @@ In these figure, we can see that the observed H' (red dashed line) for model 1 i
 On the other hand, the observed H' (red dashed line) for model 6 is not signficantly different than the permuted H' distribution (gray bars).
 This makes sense, since model 1 was used to generated this simulated data, while model 6 was itself a permutation of the underlying data.
 
+<br/>
+
 ![example_obs-minus-perm-mean.png](/example/example_obs-minus-perm-mean.png)
 
 Models 2-5 all have significantly larger H' values than their permuted distributions, but not as large of a differnce as we see for model 1. 
