@@ -185,7 +185,6 @@ But models 2-5 do not reshuffle the entire dataset like model 6.
 ### step 5: bar plots of discriminant analysis assignment probabilities
 ```
 models = read.table("H:/PhenoDelimit/example/sim_models.txt", header=TRUE)
-
 wd = "H:/PhenoDelimit/example/"
 clumpp.wd = "H:/PhenoDelimit/example/CLUMPP"
 sample.names = (1:nrow(models))
@@ -196,19 +195,100 @@ best.perc.var = 90
 best.model.number = 1
 plot.type = "png"
 plot.width = 20
-plot.height = 6
-plot.name = "barplot_example"
+plot.height = 4
 colors = brewer.pal(n = 5, name = "Set1")
 border.color = "gray"
 
-assign_probs_barplot(wd = wd, clumpp.wd = clumpp.wd, sample.names = sample.names,
-                    sample.plot.groups = sample.plot.groups, sample.plot.groups.order = sample.plot.groups.order,
-                    #sample.order = sample.order,
-                    best.perc.var = best.perc.var, best.model.number = best.model.number,
-                    plot.type = plot.type, plot.width = plot.width, plot.height = plot.height,
-                    plot.name = plot.name, colors = colors, border.color = border.color)
+assign_probs_barplot(wd = wd,
+                     clumpp.wd = clumpp.wd,
+                     sample.names = sample.names,
+                     sample.plot.groups = sample.plot.groups,
+                     sample.plot.groups.order = sample.plot.groups.order,
+                     #sample.order = sample.order,
+                     best.perc.var = best.perc.var,
+                     best.model.number = best.model.number,
+                     plot.type = plot.type,
+                     plot.width = plot.width,
+                     plot.height = plot.height,
+                     colors = colors,
+                     border.color = border.color,
+                     apriori=FALSE)
+
+# we can also creat a barplot based on results using a priori assignment of individuals to clusters
+assign_probs_barplot(wd = wd,
+                     clumpp.wd = clumpp.wd,
+                     sample.names = sample.names,
+                     sample.plot.groups = sample.plot.groups,
+                     sample.plot.groups.order = sample.plot.groups.order,
+                     #sample.order = sample.order,
+                     best.perc.var = best.perc.var,
+                     best.model.number = best.model.number,
+                     plot.type = plot.type,
+                     plot.width = plot.width,
+                     plot.height = plot.height,
+                     colors = colors,
+                     border.color = border.color,
+                     apriori=TRUE)
+
+# lets make barplots for all of the other models using a loop
+for(m in 2:6){
+  best.model.number = m
+  sample.names = (1:nrow(models))
+  sample.plot.groups = models[,best.model.number]
+  sample.plot.groups.order = names(table(sample.plot.groups))
+  sample.order = (nrow(models):1)
+  best.perc.var = 90
+
+  assign_probs_barplot(wd = wd,
+                       clumpp.wd = clumpp.wd,
+                       sample.names = sample.names,
+                       sample.plot.groups = sample.plot.groups,
+                       sample.plot.groups.order = sample.plot.groups.order,
+                       sample.order = sample.order,
+                       best.perc.var = best.perc.var,
+                       best.model.number = best.model.number,
+                       plot.type = plot.type,
+                       plot.width = plot.width,
+                       plot.height = plot.height,
+                       colors = colors,
+                       border.color = border.color,
+                       apriori=FALSE)
+
+  assign_probs_barplot(wd = wd,
+                       clumpp.wd = clumpp.wd,
+                       sample.names = sample.names,
+                       sample.plot.groups = sample.plot.groups,
+                       sample.plot.groups.order = sample.plot.groups.order,
+                       sample.order = sample.order,
+                       best.perc.var = best.perc.var,
+                       best.model.number = m,
+                       plot.type = plot.type,
+                       plot.width = plot.width,
+                       plot.height = plot.height,
+                       colors = colors,
+                       border.color = border.color,
+                       apriori=TRUE)
+}
 ```
 ![m1_barplot](/example/m1_barplot.png)
+
+Example barplot of model 1 using k-means cluster assignment of individuals to 4 groups. 
+Since model 1 was used to simulate the data, the bar plot matches the 4 clusters very well.
+
+<br/>
+
+![m4_barplot](/example/m4_barplot.png)
+
+Example barplot of model 5 using k-means cluster assignment of individuals to 5 groups. 
+Model 5 randomly split one of the groups into 2. 
+We can see this reflected in the barplot (groups 4 and 5).
+
+<br/>
+
+![m6_barplot](/example/m6_barplot.png)
+
+Example barplot of model 6 using k-means cluster assignment of individuals to 5 groups. 
+Model 6 randomly shuffled the group assignment of all individuals, resulting in no strong group assignment for any individual in the bar plot. 
 
 <br/>
 
@@ -230,33 +310,87 @@ colors = brewer.pal(n = 5, name = "Set1")
 border.color = "gray"
 shapes=c(1:4)
 
-
-# Disriminant axis 1 vs 2
 x.axis=1
 y.axis=2
-
-plot_discriminant_axes(wd = wd, clumpp.wd = clumpp.wd,
-                       sample.plot.groups = sample.plot.groups, sample.plot.groups.order = sample.plot.groups.order,
-                       best.perc.var = best.perc.var, best.model.number = best.model.number,
-                       plot.type = plot.type, plot.width = plot.width, plot.height = plot.height,
-                       colors = colors, shapes = shapes,
-                       x.axis = x.axis, y.axis = y.axis)
+plot_discriminant_axes(wd = wd,
+                       clumpp.wd = clumpp.wd,
+                       sample.plot.groups = sample.plot.groups,
+                       sample.plot.groups.order = sample.plot.groups.order,
+                       best.perc.var = best.perc.var,
+                       best.model.number = best.model.number,
+                       plot.type = plot.type,
+                       plot.width = plot.width,
+                       plot.height = plot.height,
+                       colors = colors,
+                       shapes = shapes,
+                       x.axis = x.axis,
+                       y.axis = y.axis,
+                       apriori=FALSE)
 ```
 ![m1_DA1-DA2_scatter.png](/example/m1_DA1-DA2_scatter.png)
 
 ```
-# Disriminant axis 1 vs 3
-x.axis=1
 y.axis=3
-
-plot_discriminant_axes(wd = wd, clumpp.wd = clumpp.wd,
-                       sample.plot.groups = sample.plot.groups, sample.plot.groups.order = sample.plot.groups.order,
-                       best.perc.var = best.perc.var, best.model.number = best.model.number,
-                       plot.type = plot.type, plot.width = plot.width, plot.height = plot.height,
-                       colors = colors, shapes = shapes,
-                       x.axis = x.axis, y.axis = y.axis)
+plot_discriminant_axes(wd = wd,
+                       clumpp.wd = clumpp.wd,
+                       sample.plot.groups = sample.plot.groups,
+                       sample.plot.groups.order = sample.plot.groups.order,
+                       best.perc.var = best.perc.var,
+                       best.model.number = best.model.number,
+                       plot.type = plot.type,
+                       plot.width = plot.width,
+                       plot.height = plot.height,
+                       colors = colors,
+                       shapes = shapes,
+                       x.axis = x.axis,
+                       y.axis = y.axis,
+                       apriori=FALSE)
 ```
 ![m1_DA1-DA3_scatter.png](/example/m1_DA1-DA3_scatter.png)
+
+
+```
+# now make the same plots, but using the a priori group assignments
+x.axis=1
+y.axis=2
+plot_discriminant_axes(wd = wd,
+                       clumpp.wd = clumpp.wd,
+                       sample.plot.groups = sample.plot.groups,
+                       sample.plot.groups.order = sample.plot.groups.order,
+                       best.perc.var = best.perc.var,
+                       best.model.number = best.model.number,
+                       plot.type = plot.type,
+                       plot.width = plot.width,
+                       plot.height = plot.height,
+                       colors = colors,
+                       shapes = shapes,
+                       x.axis = x.axis,
+                       y.axis = y.axis,
+                       apriori=TRUE)
+```
+![m1_DA1-DA2_scatter.apriori.png](/example/m1_DA1-DA2_scatter.apriori.png)
+
+```
+y.axis=3
+plot_discriminant_axes(wd = wd,
+                       clumpp.wd = clumpp.wd,
+                       sample.plot.groups = sample.plot.groups,
+                       sample.plot.groups.order = sample.plot.groups.order,
+                       best.perc.var = best.perc.var,
+                       best.model.number = best.model.number,
+                       plot.type = plot.type,
+                       plot.width = plot.width,
+                       plot.height = plot.height,
+                       colors = colors,
+                       shapes = shapes,
+                       x.axis = x.axis,
+                       y.axis = y.axis,
+                       apriori=TRUE)
+```
+![m1_DA1-DA3_scatter.apriori.png](/example/m1_DA1-DA3_scatter.apriori.png)
+
+In this case, since model 1 was used to simulate the data, we don't see a difference in the k-means versus a priori clustering results.
+
 
 <br/>
 
@@ -302,7 +436,6 @@ discriminant_loading(wd = wd, clumpp.wd = clumpp.wd,
 ```
 <img src="/example/m1_DA_3_loading.png" width="600">
 
-<br/>
 
 We can see that variables 1-10 tend to load heavily on at least one discriminant axis, while variables 11-20 do not load heavily on any axes. 
 This is expected given that variables 1-10 are simulated to have large differences between group means and small standard deviations,
