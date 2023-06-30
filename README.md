@@ -22,7 +22,7 @@ Variables 1-10 have a large range of group means (between 5 and 30) and small st
 
 Variables 11-20 have a small range of group means (between 18 and 22) and large standard deviations (between 3 and 10). Thus, these variables are expected to be less informative about group membership.
 
-![sim_data_boxplots](/example/sim_data_boxplots.png)
+![sim_data_boxplots](/example_data/sim_data_boxplots.png)
 
 <br/>
 
@@ -113,7 +113,7 @@ plot_clumpp_results(wd=wd,
                     plot.width=plot.width,
                     plot.height=plot.height)
 ```
-![H_plot_example](/example/H_plot_example.png)
+![H_plot_example](/example_data/H_plot_example.png)
 
 Remember, model 1 is the "true" model which generated the data.
 So it's comforting to see that model 1 has a near perfect H'.
@@ -164,9 +164,9 @@ H_permutation_plot(wd=wd,
                    plot.height=4,
                    sig.threshold=0.05)
 ```
-![example_obs-minus-perm-mean.png](/example/example_obs-minus-perm-mean.png)
-![example_perm-vs-obs_m1.png](/example/example_perm-vs-obs_m1.png)
-![example_perm-vs-obs_m6.png](/example/example_perm-vs-obs_m6.png)
+![example_obs-minus-perm-mean.png](/example_data/example_obs-minus-perm-mean.png)
+![example_perm-vs-obs_m1.png](/example_data/example_perm-vs-obs_m1.png)
+![example_perm-vs-obs_m6.png](/example_data/example_perm-vs-obs_m6.png)
 
 <br/>
 
@@ -207,7 +207,7 @@ assign_probs_barplot(wd = wd, clumpp.wd = clumpp.wd, sample.names = sample.names
                     plot.type = plot.type, plot.width = plot.width, plot.height = plot.height,
                     plot.name = plot.name, colors = colors, border.color = border.color)
 ```
-![m1_barplot](/example/m1_barplot.png)
+![m1_barplot](/example_data/m1_barplot.png)
 
 <br/>
 
@@ -241,7 +241,7 @@ plot_discriminant_axes(wd = wd, clumpp.wd = clumpp.wd,
                        colors = colors, shapes = shapes,
                        x.axis = x.axis, y.axis = y.axis)
 ```
-![m1_DA1-DA2_scatter.png](/example/m1_DA1-DA2_scatter.png)
+![m1_DA1-DA2_scatter.png](/example_data/m1_DA1-DA2_scatter.png)
 
 ```
 # Disriminant axis 1 vs 3
@@ -255,7 +255,7 @@ plot_discriminant_axes(wd = wd, clumpp.wd = clumpp.wd,
                        colors = colors, shapes = shapes,
                        x.axis = x.axis, y.axis = y.axis)
 ```
-![m1_DA1-DA3_scatter.png](/example/m1_DA1-DA3_scatter.png)
+![m1_DA1-DA3_scatter.png](/example_data/m1_DA1-DA3_scatter.png)
 
 <br/>
 
