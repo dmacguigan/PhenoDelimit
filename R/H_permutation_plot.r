@@ -53,7 +53,7 @@ H_permutation_plot <- function(wd, clumpp.data, clumpp.data.permuted, model.numb
               position = position_dodge(0.9),
               color="white",vjust = 1.1, hjust = 0.5,
               size=3) +
-    geom_text(aes(label = round(p_val, 3)),
+    geom_text(aes(label = paste0("p=",round(p_val, 3))),
               color="black",vjust = -0.5, hjust = 0.5,
               size=3) +
     theme_minimal()
