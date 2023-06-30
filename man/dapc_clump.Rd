@@ -36,6 +36,9 @@ dapc_clump(wd, data, n.groups, model.numbers, models, perc.var, scale, center)
   \item{center}{
   center PCA? Highly recommended unless you transform data prior to analysis. TRUE or FALSE
   }
+  \item{apriori}{
+  do you wish to use apriori cluster assignment or assign individuals using k-means clustering? TRUE or FALSE
+  }
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
