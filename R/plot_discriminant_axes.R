@@ -58,7 +58,7 @@ plot_discriminant_axes <- function(wd, clumpp.wd,
 		return(plot)
 	  } else {
 		p <- data.frame(ind.coord)
-		p$cluster <- factor(kmeans.grp)
+		p$cluster <- factor(kmeans.grp[,1])
 		p$group <- factor(sample.plot.groups, levels=sample.plot.groups.order)
 
 		plot <- ggplot(p, aes(x=LD1, color=group, fill=group)) +
