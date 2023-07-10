@@ -41,7 +41,7 @@ assign_probs_barplot <- function(wd, clumpp.wd, sample.names,
 			abline(v=pop.lines[i], lwd=2, lty=2, col="black") # set at divisions between populations
 		  }
 		  axis(2, las=2, cex=0.75, pos=0)
-		  axis(1, at=c(seq(from = 0.5, to = ncol(plotData + 0.5), by = 1)), labels=colnames(struc_k_final),
+		  axis(1, at=c(seq(from = 0.5, to = ncol(plotData + 0.5), by = 1)), labels=colnames(plotData),
 			   tick=FALSE, las=2, cex.axis=cex.axis, adj=0, pos=0, line=0, mgp = c(3, 0.1, 0))
 		  axis(1, at=pop.labels, labels=names(table(pop.order.ordered)),
 			   tick=FALSE, las=0, cex.axis=0.8, adj=0, pos=0)
@@ -56,7 +56,7 @@ assign_probs_barplot <- function(wd, clumpp.wd, sample.names,
 			abline(v=pop.lines[i], lwd=2, lty=2, col="black") # set at divisions between populations
 		  }
 		  axis(2, las=2, cex=0.75, pos=0)
-		  axis(1, at=c(seq(from = 0.5, to = ncol(plotData + 0.5), by = 1)), labels=colnames(struc_k_final),
+		  axis(1, at=c(seq(from = 0.5, to = ncol(plotData + 0.5), by = 1)), labels=colnames(plotData),
 			   tick=FALSE, las=2, cex.axis=cex.axis, adj=0, pos=0, line=0, mgp = c(3, 0.1, 0))
 		  axis(1, at=pop.labels, labels=names(table(pop.order.ordered)),
 			   tick=FALSE, las=0, cex.axis=0.8, adj=0, pos=0)
@@ -71,7 +71,7 @@ assign_probs_barplot <- function(wd, clumpp.wd, sample.names,
 		  abline(v=pop.lines[i], lwd=2, lty=2, col="black") # set at divisions between populations
 		}
 		axis(2, las=2, cex=0.75, pos=0)
-		axis(1, at=c(seq(from = 0.5, to = ncol(plotData + 0.5), by = 1)), labels=colnames(struc_k_final),
+		axis(1, at=c(seq(from = 0.5, to = ncol(plotData + 0.5), by = 1)), labels=colnames(plotData),
 			 tick=FALSE, las=2, cex.axis=cex.axis, adj=0, pos=0, line=0, mgp = c(3, 0.1, 0))
 		axis(1, at=pop.labels, labels=names(table(pop.order.ordered)),
 			 tick=FALSE, las=0, cex.axis=0.8, adj=0, pos=0)
@@ -86,7 +86,7 @@ assign_probs_barplot <- function(wd, clumpp.wd, sample.names,
 		abline(v=pop.lines[i], lwd=2, lty=2, col="black") # set at divisions between populations
 	  }
 	  axis(2, las=2, cex=0.75, pos=0)
-	  axis(1, at=c(seq(from = 0.5, to = ncol(plotData + 0.5), by = 1)), labels=colnames(struc_k_final),
+	  axis(1, at=c(seq(from = 0.5, to = ncol(plotData + 0.5), by = 1)), labels=colnames(plotData),
 		   tick=FALSE, las=2, cex.axis=cex.axis, adj=0, pos=0, line=0, mgp = c(3, 0.1, 0))
 	  axis(1, at=pop.labels, labels=names(table(pop.order.ordered)),
 		   tick=FALSE, las=0, cex.axis=0.8, adj=0, pos=0)
@@ -126,7 +126,7 @@ assign_probs_barplot <- function(wd, clumpp.wd, sample.names,
 			abline(v=pop.lines[i], lwd=2, lty=2, col="black") # set at divisions between populations
 		  }
 		  axis(2, las=2, cex=0.75, pos=0)
-		  axis(1, at=c(seq(from = 0.5, to = ncol(plotData + 0.5), by = 1)), labels=colnames(struc_k_final),
+		  axis(1, at=c(seq(from = 0.5, to = ncol(plotData + 0.5), by = 1)), labels=colnames(plotData),
 			   tick=FALSE, las=2, cex.axis=cex.axis, adj=0, pos=0, line=0, mgp = c(3, 0.1, 0))
 		  axis(1, at=pop.labels, labels=names(table(pop.order.ordered)),
 			   tick=FALSE, las=0, cex.axis=0.8, adj=0, pos=0)
@@ -141,7 +141,7 @@ assign_probs_barplot <- function(wd, clumpp.wd, sample.names,
 			abline(v=pop.lines[i], lwd=2, lty=2, col="black") # set at divisions between populations
 		  }
 		  axis(2, las=2, cex=0.75, pos=0)
-		  axis(1, at=c(seq(from = 0.5, to = ncol(plotData + 0.5), by = 1)), labels=colnames(struc_k_final),
+		  axis(1, at=c(seq(from = 0.5, to = ncol(plotData + 0.5), by = 1)), labels=colnames(plotData),
 			   tick=FALSE, las=2, cex.axis=cex.axis, adj=0, pos=0, line=0, mgp = c(3, 0.1, 0))
 		  axis(1, at=pop.labels, labels=names(table(pop.order.ordered)),
 			   tick=FALSE, las=0, cex.axis=0.8, adj=0, pos=0)
@@ -156,7 +156,7 @@ assign_probs_barplot <- function(wd, clumpp.wd, sample.names,
 		  abline(v=pop.lines[i], lwd=2, lty=2, col="black") # set at divisions between populations
 		}
 		axis(2, las=2, cex=0.75, pos=0)
-		axis(1, at=c(seq(from = 0.5, to = ncol(plotData + 0.5), by = 1)), labels=colnames(struc_k_final),
+		axis(1, at=c(seq(from = 0.5, to = ncol(plotData + 0.5), by = 1)), labels=colnames(plotData),
 			 tick=FALSE, las=2, cex.axis=cex.axis, adj=0, pos=0, line=0, mgp = c(3, 0.1, 0))
 		axis(1, at=pop.labels, labels=names(table(pop.order.ordered)),
 			 tick=FALSE, las=0, cex.axis=0.8, adj=0, pos=0)
@@ -171,7 +171,7 @@ assign_probs_barplot <- function(wd, clumpp.wd, sample.names,
 		abline(v=pop.lines[i], lwd=2, lty=2, col="black") # set at divisions between populations
 	  }
 	  axis(2, las=2, cex=0.75, pos=0)
-	  axis(1, at=c(seq(from = 0.5, to = ncol(plotData + 0.5), by = 1)), labels=colnames(struc_k_final),
+	  axis(1, at=c(seq(from = 0.5, to = ncol(plotData + 0.5), by = 1)), labels=colnames(plotData),
 		   tick=FALSE, las=2, cex.axis=cex.axis, adj=0, pos=0, line=0, mgp = c(3, 0.1, 0))
 	  axis(1, at=pop.labels, labels=names(table(pop.order.ordered)),
 		   tick=FALSE, las=0, cex.axis=0.8, adj=0, pos=0)
