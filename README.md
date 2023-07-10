@@ -22,7 +22,7 @@ Variables 1-10 have a large range of group means (between 5 and 30) and small st
 
 Variables 11-20 have a small range of group means (between 18 and 22) and large standard deviations (between 3 and 10). Thus, these variables are expected to be less informative about group membership.
 
-![sim_data_boxplots](/example/sim_data_boxplots.png)
+![sim_data_boxplots](/plots/sim_data_boxplots.png)
 
 <br/>
 
@@ -113,7 +113,7 @@ plot_clumpp_results(wd=wd,
                     plot.width=plot.width,
                     plot.height=plot.height)
 ```
-![H_plot_example](/example/H_plot_example.png)
+![H_plot_example](/plots/H_plot_example.png)
 
 Remember, model 1 is the "true" model which generated the data.
 So it's comforting to see that model 1 has a near perfect H'.
@@ -164,8 +164,8 @@ H_permutation_plot(wd=wd,
                    plot.height=4,
                    sig.threshold=0.05)
 ```
-![example_perm-vs-obs_m1.png](/example/example_perm-vs-obs_m1.png)
-![example_perm-vs-obs_m6.png](/example/example_perm-vs-obs_m6.png)
+![example_perm-vs-obs_m1.png](/plots/example_perm-vs-obs_m1.png)
+![example_perm-vs-obs_m6.png](/plots/example_perm-vs-obs_m6.png)
 
 In these figure, we can see that the observed H' (red dashed line) for model 1 is signficantly larger than the distribution of permuted H' values (gray bars).
 On the other hand, the observed H' (red dashed line) for model 6 is not signficantly different than the permuted H' distribution (gray bars).
@@ -173,7 +173,7 @@ This makes sense, since model 1 was used to generated this simulated data, while
 
 <br/>
 
-![example_obs-minus-perm-mean.png](/example/example_obs-minus-perm-mean.png)
+![example_obs-minus-perm-mean.png](/plots/example_obs-minus-perm-mean.png)
 
 Models 2-5 all have significantly larger H' values than their permuted distributions, but not as large of a differnce as we see for model 1. 
 This also makes sense, since models 2-5 are rearrangements of the groups in model 1 used to simulate the data.
@@ -270,14 +270,14 @@ for(m in 2:6){
                        apriori=TRUE)
 }
 ```
-![m1_barplot](/example/m1_barplot.png)
+![m1_barplot](/plots/m1_barplot.png)
 
 Example barplot of model 1 using k-means cluster assignment of individuals to 4 groups. 
 Since model 1 was used to simulate the data, the bar plot matches the 4 clusters very well.
 
 <br/>
 
-![m4_barplot](/example/m4_barplot.png)
+![m4_barplot](/plots/m4_barplot.png)
 
 Example barplot of model 5 using k-means cluster assignment of individuals to 5 groups. 
 Model 5 randomly split group 4 into two seperate groups. 
@@ -285,7 +285,7 @@ We can see this reflected in the barplot, where individuals in groups 4 and 5 ar
 
 <br/>
 
-![m6_barplot](/example/m6_barplot.png)
+![m6_barplot](/plots/m6_barplot.png)
 
 Example barplot of model 6 using k-means cluster assignment of individuals to 5 groups. 
 Model 6 randomly shuffled the group assignment of all individuals, resulting in no clear relationship between the 4 groups and the individual assignment probabilities.
@@ -327,7 +327,7 @@ plot_discriminant_axes(wd = wd,
                        y.axis = y.axis,
                        apriori=FALSE)
 ```
-![m1_DA1-DA2_scatter.png](/example/m1_DA1-DA2_scatter.png)
+![m1_DA1-DA2_scatter.png](/plots/m1_DA1-DA2_scatter.png)
 
 ```
 y.axis=3
@@ -346,7 +346,7 @@ plot_discriminant_axes(wd = wd,
                        y.axis = y.axis,
                        apriori=FALSE)
 ```
-![m1_DA1-DA3_scatter.png](/example/m1_DA1-DA3_scatter.png)
+![m1_DA1-DA3_scatter.png](/plots/m1_DA1-DA3_scatter.png)
 
 
 ```
@@ -368,7 +368,7 @@ plot_discriminant_axes(wd = wd,
                        y.axis = y.axis,
                        apriori=TRUE)
 ```
-![m1_DA1-DA2_scatter.apriori.png](/example/m1_DA1-DA2_scatter.apriori.png)
+![m1_DA1-DA2_scatter.apriori.png](/plots/m1_DA1-DA2_scatter.apriori.png)
 
 ```
 y.axis=3
@@ -387,7 +387,7 @@ plot_discriminant_axes(wd = wd,
                        y.axis = y.axis,
                        apriori=TRUE)
 ```
-![m1_DA1-DA3_scatter.apriori.png](/example/m1_DA1-DA3_scatter.apriori.png)
+![m1_DA1-DA3_scatter.apriori.png](/plots/m1_DA1-DA3_scatter.apriori.png)
 
 In this case, since model 1 was used to simulate the data, we don't see a difference in the k-means versus a priori clustering results.
 
