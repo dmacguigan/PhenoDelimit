@@ -12,7 +12,7 @@ assign_probs_barplot(wd, clumpp.wd, sample.names,
                     sample.plot.groups, sample.plot.groups.order,
                     sample.order,
                     best.perc.var, best.model.number,
-                    plot.type, plot.width, plot.height, colors, border.color,
+                    plot.type, plot.width, plot.height, colors, border.color, label.size,
                     apriori))
 }
 %- maybe also 'usage' for other objects documented here.
@@ -52,6 +52,9 @@ assign_probs_barplot(wd, clumpp.wd, sample.names,
   }
   \item{border.color}{
   color for borders on bar, character
+  }
+  \item{cex.axis}{
+  font size for x axis sample names, default = 0.3
   }
   \item{apriori}{
   do you wish to plot results from apriori individual assignment to species/populations/clusters, or results from assignment using using k-means clustering? TRUE or FALSE
