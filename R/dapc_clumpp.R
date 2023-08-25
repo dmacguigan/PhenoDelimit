@@ -103,7 +103,7 @@ run_dapc_clumpp <- function(data, modelNumber, k, model, perc.var, scale, center
 	  if(apriori == FALSE){
 		  # first, perform PCA
 		  maxRank <- min(dim(data))
-		  pcaX <- dudi.pca(x=data, center = center, scale = scale, scannf = FALSE, nf=maxRank)
+		  pcaX <- dudi.pca(data, center = center, scale = scale, scannf = FALSE, nf=maxRank)
 		  pcs <- pcaX$li
 		  # then perform random forest clustering
 		  rf.fit <- randomForest(x = pcs, y = NULL, ntree = 10000, proximity = TRUE, oob.prox = TRUE)
