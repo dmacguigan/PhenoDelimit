@@ -116,17 +116,17 @@ run_dapc_clumpp <- function(data, modelNumber, k, model, perc.var, scale, center
 					  row.names = FALSE, col.names = FALSE)
 
 		  # write DAPC variable contributions to file
-		  write.table(file = paste("m", modelNumber, "_perVar-", perc.var, "_var.contr.txt", sep=""), x = dapc.rf$var.contr)
+		  write.table(file = paste("m", modelNumber, "_perVar-", perc.var, "_RF.var.contr.txt", sep=""), x = dapc.rf$var.contr)
 
 		  # write DAPC variable loadings to file
-		  write.table(file = paste("m", modelNumber, "_perVar-", perc.var, "_var.load.txt", sep=""), x = dapc.rf$var.load)
+		  write.table(file = paste("m", modelNumber, "_perVar-", perc.var, "_RF.var.load.txt", sep=""), x = dapc.rf$var.load)
 
 		  # write DAPC individual coordinates to file
-		  write.table(file = paste("m", modelNumber, "_perVar-", perc.var, "_ind.coord.txt", sep=""), x = dapc.rf$ind.coord,
+		  write.table(file = paste("m", modelNumber, "_perVar-", perc.var, "_RF.ind.coord.txt", sep=""), x = dapc.rf$ind.coord,
 					  row.names=FALSE)
 
 		  # write DAPC assignment probabilities to file
-		  write.table(file = paste("m", modelNumber, "_perVar-", perc.var, "_posteriors.txt", sep=""), x = dapc.rf$posterior,
+		  write.table(file = paste("m", modelNumber, "_perVar-", perc.var, "_RF.posteriors.txt", sep=""), x = dapc.rf$posterior,
 					  row.names = FALSE, col.names = FALSE)
 
 		  # pop
@@ -152,16 +152,16 @@ run_dapc_clumpp <- function(data, modelNumber, k, model, perc.var, scale, center
 		  colnames(d2) <- colnames(d1)
 		  d <- rbind(d1, d2)
 		  # create CLUMPP indfile
-		  write.table(file = paste("m", modelNumber, "_perVar-", perc.var, ".indfile", sep=""), x=d,
+		  write.table(file = paste("m", modelNumber, "_perVar-", perc.var, ".RF.indfile", sep=""), x=d,
 					  quote=FALSE, col.names = FALSE, row.names=FALSE)
 
 		  # create CLUMPP paramfile
-		  f <- paste("m", modelNumber, "_perVar-", perc.var, ".paramfile", sep="")
+		  f <- paste("m", modelNumber, "_perVar-", perc.var, ".RF.paramfile", sep="")
 		  file <- file(f, "wb")
 		  cat("DATATYPE 0", file=file, sep="\n")
-		  cat(paste("INDFILE m", modelNumber, "_perVar-", perc.var, ".indfile", sep=""), file=file, append=TRUE, sep="\n")
-		  cat(paste("OUTFILE m", modelNumber, "_perVar-", perc.var, ".outfile", sep=""), file=file, append=TRUE, sep="\n")
-		  cat(paste("MISCFILE m", modelNumber, "_perVar-", perc.var, ".miscfile", sep=""), file=file, append=TRUE, sep="\n")
+		  cat(paste("INDFILE m", modelNumber, "_perVar-", perc.var, ".RF.indfile", sep=""), file=file, append=TRUE, sep="\n")
+		  cat(paste("OUTFILE m", modelNumber, "_perVar-", perc.var, ".RF.outfile", sep=""), file=file, append=TRUE, sep="\n")
+		  cat(paste("MISCFILE m", modelNumber, "_perVar-", perc.var, ".RF.miscfile", sep=""), file=file, append=TRUE, sep="\n")
 		  cat(paste("K ", ncol(pop.assign), sep=""), file=file, append=TRUE, sep="\n")
 		  cat(paste("C ", nrow(pop.assign), sep=""), file=file, append=TRUE, sep="\n")
 		  cat("R 2\nM 1\nW 0\nS 2\nPRINT_PERMUTED_DATA 0\nPRINT_EVERY_PERM 0\nPRINT_RANDOM_INPUTORDER 0\nOVERRIDE_WARNINGS 0\nORDER_BY_RUN 1", file=file, append=TRUE, sep="\n")
@@ -182,22 +182,23 @@ run_dapc_clumpp <- function(data, modelNumber, k, model, perc.var, scale, center
 		  rf.cluster = cutree(hclust.rf, k=k)
 		  dapc.rf <- dapc(data, rf.cluster, var.conrib=TRUE, var.loadings=TRUE, perc.pca=perc.var, n.da=10000, center=center, scale=scale)
 
+
 		  # write RF group assignment to file
-		  write.table(file = paste("m", modelNumber, "_perVar-", perc.var, "_RF.grp.guided.txt", sep=""), x = rf.cluster,
+		  write.table(file = paste("m", modelNumber, "_perVar-", perc.var, "_RF.supervised.grp.txt", sep=""), x = rf.cluster,
 					  row.names = FALSE, col.names = FALSE)
 
 		  # write DAPC variable contributions to file
-		  write.table(file = paste("m", modelNumber, "_perVar-", perc.var, "_var.contr.guided.txt", sep=""), x = dapc.rf$var.contr)
+		  write.table(file = paste("m", modelNumber, "_perVar-", perc.var, "_RF.supervised.var.contr.txt", sep=""), x = dapc.rf$var.contr)
 
 		  # write DAPC variable loadings to file
-		  write.table(file = paste("m", modelNumber, "_perVar-", perc.var, "_var.load.guided.txt", sep=""), x = dapc.rf$var.load)
+		  write.table(file = paste("m", modelNumber, "_perVar-", perc.var, "_RF.supervised.var.load.txt", sep=""), x = dapc.rf$var.load)
 
 		  # write DAPC individual coordinates to file
-		  write.table(file = paste("m", modelNumber, "_perVar-", perc.var, "_ind.coord.guided.txt", sep=""), x = dapc.rf$ind.coord,
+		  write.table(file = paste("m", modelNumber, "_perVar-", perc.var, "_RF.supervised.ind.coord.txt", sep=""), x = dapc.rf$ind.coord,
 					  row.names=FALSE)
 
 		  # write DAPC assignment probabilities to file
-		  write.table(file = paste("m", modelNumber, "_perVar-", perc.var, "_posteriors.guided.txt", sep=""), x = dapc.rf$posterior,
+		  write.table(file = paste("m", modelNumber, "_perVar-", perc.var, "_RF.supervised.posteriors.txt", sep=""), x = dapc.rf$posterior,
 					  row.names = FALSE, col.names = FALSE)
 
 		  # pop
@@ -223,16 +224,16 @@ run_dapc_clumpp <- function(data, modelNumber, k, model, perc.var, scale, center
 		  colnames(d2) <- colnames(d1)
 		  d <- rbind(d1, d2)
 		  # create CLUMPP indfile
-		  write.table(file = paste("m", modelNumber, "_perVar-", perc.var, ".guided.indfile", sep=""), x=d,
+		  write.table(file = paste("m", modelNumber, "_perVar-", perc.var, ".RF.supervised.indfile", sep=""), x=d,
 					  quote=FALSE, col.names = FALSE, row.names=FALSE)
 
 		  # create CLUMPP paramfile
-		  f <- paste("m", modelNumber, "_perVar-", perc.var, ".guided.paramfile", sep="")
+		  f <- paste("m", modelNumber, "_perVar-", perc.var, ".RF.supervised.paramfile", sep="")
 		  file <- file(f, "wb")
 		  cat("DATATYPE 0", file=file, sep="\n")
-		  cat(paste("INDFILE m", modelNumber, "_perVar-", perc.var, ".guided.indfile", sep=""), file=file, append=TRUE, sep="\n")
-		  cat(paste("OUTFILE m", modelNumber, "_perVar-", perc.var, ".guided.outfile", sep=""), file=file, append=TRUE, sep="\n")
-		  cat(paste("MISCFILE m", modelNumber, "_perVar-", perc.var, ".guided.miscfile", sep=""), file=file, append=TRUE, sep="\n")
+		  cat(paste("INDFILE m", modelNumber, "_perVar-", perc.var, ".RF.supervised.indfile", sep=""), file=file, append=TRUE, sep="\n")
+		  cat(paste("OUTFILE m", modelNumber, "_perVar-", perc.var, ".RF.supervised.outfile", sep=""), file=file, append=TRUE, sep="\n")
+		  cat(paste("MISCFILE m", modelNumber, "_perVar-", perc.var, ".RF.supervised.miscfile", sep=""), file=file, append=TRUE, sep="\n")
 		  cat(paste("K ", ncol(pop.assign), sep=""), file=file, append=TRUE, sep="\n")
 		  cat(paste("C ", nrow(pop.assign), sep=""), file=file, append=TRUE, sep="\n")
 		  cat("R 2\nM 1\nW 0\nS 2\nPRINT_PERMUTED_DATA 0\nPRINT_EVERY_PERM 0\nPRINT_RANDOM_INPUTORDER 0\nOVERRIDE_WARNINGS 0\nORDER_BY_RUN 1", file=file, append=TRUE, sep="\n")
