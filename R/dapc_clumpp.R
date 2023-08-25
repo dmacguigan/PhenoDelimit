@@ -1,11 +1,11 @@
 # function to create CLUMPP indfiles for model assignment vs K-means clusters DAPC probs
 # also allows the user to run DAPC with a priori species/group assignment
-dapc_clumpp <- function(wd, data, n.groups, model.numbers, models, perc.var, scale=TRUE, center=TRUE, apriori=FALSE){
+dapc_clumpp <- function(wd, data, n.groups, model.numbers, models, perc.var, scale=TRUE, center=TRUE, apriori=FALSE, clust.method="kmeans"){
   dir.create(file.path(wd, "CLUMPP"), showWarnings = FALSE)
   setwd(paste0(wd, "/CLUMPP"))
   for(i in 1:length(n.groups)){
     for(j in 1:length(perc.var)){
-      run_dapc_clumpp(data=data, modelNumber=model.numbers[i], k=n.groups[i], model=as.factor(models[,i]), perc.var=perc.var[j], center=center, scale=scale, apriori=apriori)
+      run_dapc_clumpp(data=data, modelNumber=model.numbers[i], k=n.groups[i], model=as.factor(models[,i]), perc.var=perc.var[j], center=center, scale=scale, apriori=apriori, clust.method=clust.method)
     }
   }
 }
