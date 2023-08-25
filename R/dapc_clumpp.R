@@ -109,7 +109,7 @@ run_dapc_clumpp <- function(data, modelNumber, k, model, perc.var, scale, center
 		  rf.fit <- randomForest(x = pcs, y = NULL, ntree = 10000, proximity = TRUE, oob.prox = TRUE)
 		  hclust.rf <- hclust(as.dist(1-rf.fit$proximity), method = "ward.D2")
 		  rf.cluster = cutree(hclust.rf, k=k)
-		  dapc.rf <- dapc(data, rf.cluster, var.conrib=TRUE, var.loadings=TRUE, percf.pca=perc.var, n.da=10000, center=center, scale=scale)
+		  dapc.rf <- dapc(data, rf.cluster, var.conrib=TRUE, var.loadings=TRUE, perc.pca=perc.var, n.da=10000, center=center, scale=scale)
 
 		  # write RF group assignment to file
 		  write.table(file = paste("m", modelNumber, "_perVar-", perc.var, "_RF.grp.txt", sep=""), x = rf.cluster,
