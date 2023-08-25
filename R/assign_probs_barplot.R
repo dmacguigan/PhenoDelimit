@@ -5,7 +5,7 @@ assign_probs_barplot <- function(wd, clumpp.wd, sample.names,
                                 best.perc.var, best.model.number,
                                 plot.type, plot.width, plot.height, colors, border.color,
                                 cex.axis=0.3,
-								clust.method="kmeans",
+                                clust.method="kmeans",
                                 apriori=FALSE){
 
   if(apriori == FALSE && clust.method == "kmeans"){
@@ -177,9 +177,10 @@ assign_probs_barplot <- function(wd, clumpp.wd, sample.names,
 	  axis(1, at=pop.labels, labels=names(table(pop.order.ordered)),
 		   tick=FALSE, las=0, cex.axis=0.8, adj=0, pos=0)
 	  title()
+	
   }else if(apriori == FALSE && clust.method == "randomforest"){
 	  # read in posteriors from clumpp_prep function
-	  dapc.data <- read.table(file = paste(clumpp.wd, "/m", best.model.number, "_perVar-", best.perc.var, "_posteriors.txt", sep=""))
+	  dapc.data <- read.table(file = paste(clumpp.wd, "/m", best.model.number, "_perVar-", best.perc.var, "_RF.posteriors.txt", sep=""))
 
 	  # order the data for plotting
 	  if(!(is.null(sample.order))){
@@ -202,7 +203,7 @@ assign_probs_barplot <- function(wd, clumpp.wd, sample.names,
 	  # make barplots
 	  setwd(wd)
 	  if(plot.type == "svg"){
-		svglite(file=paste("m", best.model.number, "_barplot.svg", sep=""), width=plot.width, height=plot.height)
+		svglite(file=paste("m", best.model.number, "_barplot.RF.svg", sep=""), width=plot.width, height=plot.height)
 		  par(mgp=c(1.5,1,0), mar = c(4.1, 3.1, 1, 1))
 		  barplot(plotData, col=colors, border=border.color,
 				  space=0, axes=F, axisname=FALSE, las=2, cex.names=0.75,
@@ -217,7 +218,7 @@ assign_probs_barplot <- function(wd, clumpp.wd, sample.names,
 			   tick=FALSE, las=0, cex.axis=0.8, adj=0, pos=0)
 		dev.off()
 	  } else if(plot.type == "pdf"){
-		pdf(file=paste("m", best.model.number, "_barplot.pdf", sep=""), width=plot.width, height=plot.height)
+		pdf(file=paste("m", best.model.number, "_barplot.RF.pdf", sep=""), width=plot.width, height=plot.height)
 		  par(mgp=c(1.5,1,0), mar = c(4.1, 3.1, 1, 1))
 		  barplot(plotData, col=colors, border=border.color,
 				  space=0, axes=F, axisname=FALSE, las=2, cex.names=0.75,
@@ -232,7 +233,7 @@ assign_probs_barplot <- function(wd, clumpp.wd, sample.names,
 			   tick=FALSE, las=0, cex.axis=0.8, adj=0, pos=0)
 		dev.off()
 	  } else {
-		png(file=paste("m", best.model.number, "_barplot.png", sep=""), units="in", res=300, width=plot.width, height=plot.height)
+		png(file=paste("m", best.model.number, "_barplot.RF.png", sep=""), units="in", res=300, width=plot.width, height=plot.height)
 		par(mgp=c(1.5,1,0), mar = c(4.1, 3.1, 1, 1))
 		barplot(plotData, col=colors, border=border.color,
 				space=0, axes=F, axisname=FALSE, las=2, cex.names=0.75,
@@ -261,7 +262,91 @@ assign_probs_barplot <- function(wd, clumpp.wd, sample.names,
 	  axis(1, at=pop.labels, labels=names(table(pop.order.ordered)),
 		   tick=FALSE, las=0, cex.axis=0.8, adj=0, pos=0)
 	  title()
-  }
+  }else if(apriori == TRUE && clust.method == "randomforest"){
+	  # read in posteriors from clumpp_prep function
+	  dapc.data <- read.table(file = paste(clumpp.wd, "/m", best.model.number, "_perVar-", best.perc.var, "_RF.supervised.posteriors.txt", sep=""))
+
+	  # order the data for plotting
+	  if(!(is.null(sample.order))){
+  		# create order vector based on sample.plot.groups.order
+  		pop.order <- factor(sample.plot.groups, levels=sample.plot.groups.order)
+  		plotData <- readData_sampleOrder(dapc.data = dapc.data, sample.names = sample.names, pop.order = pop.order, sample.order = sample.order)
+
+	  } else if(!(is.null(sample.plot.groups))){
+  		# create order vector based on sample.plot.groups.order
+  		pop.order <- factor(sample.plot.groups, levels=sample.plot.groups.order)
+  		plotData <- readData(dapc.data = dapc.data,  sample.names = sample.names, pop.order = pop.order)
+
+	  }
+
+	  # get positions of breaks between populations
+	  pop.order.ordered <- sort(pop.order)
+	  pop.lines <- cumsum(table(pop.order.ordered))
+	  pop.labels <- (pop.lines - table(pop.order.ordered)) + (table(pop.order.ordered)/2)
+
+	  # make barplots
+	  setwd(wd)
+	  if(plot.type == "svg"){
+		svglite(file=paste("m", best.model.number, "_barplot.RF.supervised.svg", sep=""), width=plot.width, height=plot.height)
+		  par(mgp=c(1.5,1,0), mar = c(4.1, 3.1, 1, 1))
+		  barplot(plotData, col=colors, border=border.color,
+				  space=0, axes=F, axisname=FALSE, las=2, cex.names=0.75,
+				  ylab  = "Assignment Probability", xlab = "Group")
+		  for(i in 1:(length(pop.lines)-1)){
+			abline(v=pop.lines[i], lwd=2, lty=2, col="black") # set at divisions between populations
+		  }
+		  axis(2, las=2, cex=0.75, pos=0)
+		  axis(1, at=c(seq(from = 0.5, to = ncol(plotData + 0.5), by = 1)), labels=colnames(plotData),
+			   tick=FALSE, las=2, cex.axis=cex.axis, adj=0, pos=0, line=0, mgp = c(3, 0.1, 0))
+		  axis(1, at=pop.labels, labels=names(table(pop.order.ordered)),
+			   tick=FALSE, las=0, cex.axis=0.8, adj=0, pos=0)
+		dev.off()
+	  } else if(plot.type == "pdf"){
+		pdf(file=paste("m", best.model.number, "_barplot.RF.supervised.pdf", sep=""), width=plot.width, height=plot.height)
+		  par(mgp=c(1.5,1,0), mar = c(4.1, 3.1, 1, 1))
+		  barplot(plotData, col=colors, border=border.color,
+				  space=0, axes=F, axisname=FALSE, las=2, cex.names=0.75,
+				  ylab  = "Assignment Probability", xlab = "Group")
+		  for(i in 1:(length(pop.lines)-1)){
+			abline(v=pop.lines[i], lwd=2, lty=2, col="black") # set at divisions between populations
+		  }
+		  axis(2, las=2, cex=0.75, pos=0)
+		  axis(1, at=c(seq(from = 0.5, to = ncol(plotData + 0.5), by = 1)), labels=colnames(plotData),
+			   tick=FALSE, las=2, cex.axis=cex.axis, adj=0, pos=0, line=0, mgp = c(3, 0.1, 0))
+		  axis(1, at=pop.labels, labels=names(table(pop.order.ordered)),
+			   tick=FALSE, las=0, cex.axis=0.8, adj=0, pos=0)
+		dev.off()
+	  } else {
+		png(file=paste("m", best.model.number, "_barplot.RF.supervised.png", sep=""), units="in", res=300, width=plot.width, height=plot.height)
+		par(mgp=c(1.5,1,0), mar = c(4.1, 3.1, 1, 1))
+		barplot(plotData, col=colors, border=border.color,
+				space=0, axes=F, axisname=FALSE, las=2, cex.names=0.75,
+				ylab  = "Assignment Probability", xlab = "Group")
+		for(i in 1:(length(pop.lines)-1)){
+		  abline(v=pop.lines[i], lwd=2, lty=2, col="black") # set at divisions between populations
+		}
+		axis(2, las=2, cex=0.75, pos=0)
+		axis(1, at=c(seq(from = 0.5, to = ncol(plotData + 0.5), by = 1)), labels=colnames(plotData),
+			 tick=FALSE, las=2, cex.axis=cex.axis, adj=0, pos=0, line=0, mgp = c(3, 0.1, 0))
+		axis(1, at=pop.labels, labels=names(table(pop.order.ordered)),
+			 tick=FALSE, las=0, cex.axis=0.8, adj=0, pos=0)
+		dev.off()
+	  }
+
+	  par(mgp=c(1.5,1,0), mar = c(4.1, 3.1, 1, 1))
+	  barplot(plotData, col=colors, border=border.color,
+			  space=0, axes=F, axisname=FALSE, las=2, cex.names=0.75,
+			  ylab  = "Assignment Probability", xlab = "Group")
+	  for(i in 1:(length(pop.lines)-1)){
+		abline(v=pop.lines[i], lwd=2, lty=2, col="black") # set at divisions between populations
+	  }
+	  axis(2, las=2, cex=0.75, pos=0)
+	  axis(1, at=c(seq(from = 0.5, to = ncol(plotData + 0.5), by = 1)), labels=colnames(plotData),
+		   tick=FALSE, las=2, cex.axis=cex.axis, adj=0, pos=0, line=0, mgp = c(3, 0.1, 0))
+	  axis(1, at=pop.labels, labels=names(table(pop.order.ordered)),
+		   tick=FALSE, las=0, cex.axis=0.8, adj=0, pos=0)
+	  title()
+	}
 }
 
 
