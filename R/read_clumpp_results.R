@@ -1,6 +1,6 @@
 # read in CLUMPP results from miscfiles
 read_clumpp_results <- function(wd, perc.var, model.numbers, apriori=FALSE, clust.method="kmeans"){
-  if(clust.method == "kmeans" && apriori = FALSE){
+  if(clust.method == "kmeans" && apriori == FALSE){
 	  setwd(paste0(wd, "/CLUMPP"))
 	  c1=numeric()
 	  c2=numeric()
@@ -24,7 +24,7 @@ read_clumpp_results <- function(wd, perc.var, model.numbers, apriori=FALSE, clus
 	  H_df$max <- ifelse((H_df$H %in% maxes$x), TRUE, FALSE)
 
 	  return(H_df)
-  }else if(clust.method == "randomforest" && apriori = FALSE){
+  }else if(clust.method == "randomforest" && apriori == FALSE){
 	  setwd(paste0(wd, "/CLUMPP"))
 	  c1=numeric()
 	  c2=numeric()
@@ -48,7 +48,7 @@ read_clumpp_results <- function(wd, perc.var, model.numbers, apriori=FALSE, clus
 	  H_df$max <- ifelse((H_df$H %in% maxes$x), TRUE, FALSE)
 
 	  return(H_df)
-  }else if(clust.method == "randomforest" && apriori = TRUE){
+  }else if(clust.method == "randomforest" && apriori == TRUE){
 	  setwd(paste0(wd, "/CLUMPP"))
 	  c1=numeric()
 	  c2=numeric()
