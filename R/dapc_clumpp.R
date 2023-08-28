@@ -1,5 +1,16 @@
 # function to create CLUMPP indfiles for model assignment vs K-means clusters DAPC probs
 # also allows the user to run DAPC with a priori species/group assignment
+
+# note that PCA with scale=TRUE is a correlation-based PCA
+# PCA with scale=FALSE is a covariance-based PCA
+# see https://aedin.github.io/PCAworkshop/articles/b_PCA.html
+# these two types of PCA are appropriate for different datasets
+# for example, covariance-based PCA is appropriate for morphometric data
+# see https://www.palass.org/publications/newsletter/palaeomath-101/palaeomath-part-21-principal-warps-relative-warps-and-procrustes-pca
+# while correlation-based PCA is appropriate for datasets with mixed variable types that are on different scales (e.g. meristic data)
+# see https://stats.stackexchange.com/questions/53/pca-on-correlation-or-covariance for more info
+# "You tend to use the covariance matrix when the variable scales are similar and the correlation matrix when variables are on different scales."
+
 dapc_clumpp <- function(wd, data, n.groups, model.numbers, models, perc.var, scale=TRUE, center=TRUE, apriori=FALSE, clust.method="kmeans"){
   dir.create(file.path(wd, "CLUMPP"), showWarnings = FALSE)
   setwd(paste0(wd, "/CLUMPP"))
