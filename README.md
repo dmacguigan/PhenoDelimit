@@ -42,9 +42,9 @@ A value of 1 indicates a perfect match between two matrices.
 See [this paper in Bioinformatics](https://academic.oup.com/bioinformatics/article/23/14/1801/188285) for more info about the CLUMPP algorithm.
 
 In this analysis, we provide CLUMPP with two matrices.
-First, a matrix where each individual is assigned with probability 1.0 to a group based on the delimitation model.
-Second, a matrix of individual assignment probabilities fron discriminant analysis using groups defined by K-means clustering.
-By comparing the two matrices with CLUMPP, we can determine which delimitation model is the best match to K-means clusters, indicative of real group differences in the data.
+First, a matrix where each individual is assigned (with probability 1.0) to a group based on the underlying delimitation model.
+Second, a matrix of individual assignment probabilities from discriminant analysis using K-means clusters, with no a priori information about group membership.
+By comparing the two matrices with CLUMPP, we can determine which delimitation model most closely matches the K-means clusters, which is indicative of real group differences in the data.
 
 ```
 library(RColorBrewer)
