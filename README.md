@@ -411,7 +411,7 @@ discriminant_loading(wd = wd, clumpp.wd = clumpp.wd,
                      best.perc.var = best.perc.var, best.model.number = best.model.number,
                      plot.type = plot.type, plot.width = plot.width, plot.height = plot.height, axis = axis)
 ```
-<img src="/example/m1_DA_1_loading.png" width="600">
+<img src="/plots/m1_DA_1_loading.png" width="600">
 
 ```
 # Variable loading on discriminant axis 2
@@ -422,7 +422,7 @@ discriminant_loading(wd = wd, clumpp.wd = clumpp.wd,
                      plot.type = plot.type, plot.width = plot.width, plot.height = plot.height, axis = axis)
 
 ```
-<img src="/example/m1_DA_2_loading.png" width="600">
+<img src="/plots/m1_DA_2_loading.png" width="600">
 
 
 ```
@@ -434,7 +434,7 @@ discriminant_loading(wd = wd, clumpp.wd = clumpp.wd,
                      plot.type = plot.type, plot.width = plot.width, plot.height = plot.height, axis = axis)
 
 ```
-<img src="/example/m1_DA_3_loading.png" width="600">
+<img src="/plots/m1_DA_3_loading.png" width="600">
 
 
 We can see that variables 1-10 tend to load heavily on at least one discriminant axis, while variables 11-20 do not load heavily on any axes. 
