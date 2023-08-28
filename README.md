@@ -1,5 +1,5 @@
 # PhenoDelimit
-R package to create STRUCTURE-esque barplots and compare species delimitation models with multivariate phenotype data.
+R package to create STRUCTURE-esque bar plots and compare species delimitation models with multivariate phenotype data.
 
 This package requires an external program, CLUMPP, which can be [dowloaded here](https://rosenberglab.stanford.edu/clumpp.html). Make sure the CLUMPP executable is in your PATH environmental variable before proceeding. 
 For help setting the PATH variable, see these links for [Windows 10](https://www.architectryan.com/2018/03/17/add-to-the-path-on-windows-10/) or [Linux/macOS](https://opensource.com/article/17/6/set-path-linux)
@@ -199,7 +199,7 @@ plot.height = 4
 colors = brewer.pal(n = 5, name = "Set1")
 border.color = "gray"
 
-assign_probs_barplot(wd = wd,
+assign_probs_bar plot(wd = wd,
                      clumpp.wd = clumpp.wd,
                      sample.names = sample.names,
                      sample.plot.groups = sample.plot.groups,
@@ -214,8 +214,8 @@ assign_probs_barplot(wd = wd,
                      border.color = border.color,
                      apriori=FALSE)
 
-# we can also creat a barplot based on results using a priori assignment of individuals to clusters
-assign_probs_barplot(wd = wd,
+# we can also creat a bar plot based on results using a priori assignment of individuals to clusters
+assign_probs_bar plot(wd = wd,
                      clumpp.wd = clumpp.wd,
                      sample.names = sample.names,
                      sample.plot.groups = sample.plot.groups,
@@ -230,7 +230,7 @@ assign_probs_barplot(wd = wd,
                      border.color = border.color,
                      apriori=TRUE)
 
-# lets make barplots for all of the other models using a loop
+# lets make bar plots for all of the other models using a loop
 for(m in 2:6){
   best.model.number = m
   sample.names = (1:nrow(models))
@@ -239,7 +239,7 @@ for(m in 2:6){
   sample.order = (nrow(models):1)
   best.perc.var = 90
 
-  assign_probs_barplot(wd = wd,
+  assign_probs_bar plot(wd = wd,
                        clumpp.wd = clumpp.wd,
                        sample.names = sample.names,
                        sample.plot.groups = sample.plot.groups,
@@ -254,7 +254,7 @@ for(m in 2:6){
                        border.color = border.color,
                        apriori=FALSE)
 
-  assign_probs_barplot(wd = wd,
+  assign_probs_bar plot(wd = wd,
                        clumpp.wd = clumpp.wd,
                        sample.names = sample.names,
                        sample.plot.groups = sample.plot.groups,
@@ -270,24 +270,24 @@ for(m in 2:6){
                        apriori=TRUE)
 }
 ```
-![m1_barplot](/plots/m1_barplot.png)
+![m1_bar plot](/plots/m1_bar plot.png)
 
-Example barplot of model 1 using k-means cluster assignment of individuals to 4 groups. 
+Example bar plot of model 1 using k-means cluster assignment of individuals to 4 groups. 
 Since model 1 was used to simulate the data, the bar plot matches the 4 clusters very well.
 
 <br/>
 
-![m4_barplot](/plots/m4_barplot.png)
+![m4_bar plot](/plots/m4_bar plot.png)
 
-Example barplot of model 5 using k-means cluster assignment of individuals to 5 groups. 
+Example bar plot of model 5 using k-means cluster assignment of individuals to 5 groups. 
 Model 5 randomly split group 4 into two seperate groups. 
-We can see this reflected in the barplot, where individuals in groups 4 and 5 are split in assignment between two groups.
+We can see this reflected in the bar plot, where individuals in groups 4 and 5 are split in assignment between two groups.
 
 <br/>
 
-![m6_barplot](/plots/m6_barplot.png)
+![m6_bar plot](/plots/m6_bar plot.png)
 
-Example barplot of model 6 using k-means cluster assignment of individuals to 5 groups. 
+Example bar plot of model 6 using k-means cluster assignment of individuals to 5 groups. 
 Model 6 randomly shuffled the group assignment of all individuals, resulting in no clear relationship between the 4 groups and the individual assignment probabilities.
 
 <br/>
