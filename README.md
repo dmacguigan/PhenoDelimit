@@ -287,7 +287,7 @@ We can see this reflected in the bar plot, where individuals in groups 4 and 5 a
 
 ![m6_barplot](/plots/m6_barplot.png)
 
-Example bar plot of model 6 using k-means cluster assignment of individuals to 5 groups. 
+Example bar plot of model 6 using k-means cluster assignment of individuals to 4 groups. 
 Model 6 randomly shuffled the group assignment of all individuals, resulting in no clear relationship between the 4 groups and the individual assignment probabilities.
 
 <br/>
