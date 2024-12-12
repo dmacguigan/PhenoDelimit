@@ -85,7 +85,7 @@ run_dapc_clumpp <- function(data, modelNumber, k, model, perc.var, scale, center
 		  cat(paste("C ", nrow(pop.assign), sep=""), file=file, append=TRUE, sep="\n")
 		  cat("R 2\nM 1\nW 0\nS 2\nPRINT_PERMUTED_DATA 0\nPRINT_EVERY_PERM 0\nPRINT_RANDOM_INPUTORDER 0\nOVERRIDE_WARNINGS 0\nORDER_BY_RUN 1", file=file, append=TRUE, sep="\n")
 
-		  shell(paste("CLUMPP", f, sep=" "))
+		  system(paste("CLUMPP", f, sep=" "))
 		  
 		  close(file)
 	  }
@@ -177,7 +177,7 @@ run_dapc_clumpp <- function(data, modelNumber, k, model, perc.var, scale, center
 		  cat(paste("C ", nrow(pop.assign), sep=""), file=file, append=TRUE, sep="\n")
 		  cat("R 2\nM 1\nW 0\nS 2\nPRINT_PERMUTED_DATA 0\nPRINT_EVERY_PERM 0\nPRINT_RANDOM_INPUTORDER 0\nOVERRIDE_WARNINGS 0\nORDER_BY_RUN 1", file=file, append=TRUE, sep="\n")
 
-		  shell(paste("CLUMPP", f, sep=" "))
+		  system(paste("CLUMPP", f, sep=" "))
 		  
 		  close(file)
 	  }
