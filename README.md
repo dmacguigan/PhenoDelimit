@@ -1,8 +1,7 @@
 # PhenoDelimit - WORK IN PROGRESS
 R package to create STRUCTURE-esque bar plots and compare species delimitation models with multivariate phenotype data.
 
-This package requires an external program, CLUMPP, which can be [dowloaded here](https://rosenberglab.stanford.edu/clumpp.html). Make sure the CLUMPP executable is in your PATH environmental variable before proceeding. 
-For help setting the PATH variable, see these links for [Windows 10](https://www.architectryan.com/2018/03/17/add-to-the-path-on-windows-10/) or [Linux/macOS](https://opensource.com/article/17/6/set-path-linux)
+This package requires an external program, CLUMPP, which can be [dowloaded here](https://rosenberglab.stanford.edu/clumpp.html). Make note of the full path to your CLUMPP executable, you will need it below.
 
 To download and install this package
 ```
@@ -50,6 +49,7 @@ By comparing the two matrices with CLUMPP, we can determine which delimitation m
 library(RColorBrewer)
 
 wd = "H:/PhenoDelimit/example" # results will be written to new subdirectory "CLUMPP"
+CLUMPP_exe = "C:/CLUMPP_Windows.1.1.2/CLUMPP"
 data = read.table("H:/PhenoDelimit/example/sim_data.txt", header=TRUE)
 n.groups = c(4,2,3,5,5,4)
 model.numbers = c(1:6)
@@ -58,6 +58,7 @@ perc.var = c(70,80,90)
 scale = TRUE
 center = TRUE
 dapc_clumpp(wd=wd,
+            CLUMPP_exe=CLUMPP_exe,
             data=data,
             n.groups=n.groups,
             model.numbers=model.numbers,
@@ -70,6 +71,7 @@ dapc_clumpp(wd=wd,
 # let's run this step again but using a priori population assignments
 # we'll come back to these results later
 dapc_clumpp(wd=wd,
+            CLUMPP_exe=CLUMPP_exe,
             data=data,
             n.groups=n.groups,
             model.numbers=model.numbers,
@@ -130,6 +132,7 @@ This may take a while depending on how many models you have and how many permuta
 
 ```
 wd = "H:/PhenoDelimit/example" # results will be written to new subdirectory "CLUMPP_permuted"
+CLUMPP_exe = "C:/CLUMPP_Windows.1.1.2/CLUMPP"
 data = read.table("H:/PhenoDelimit/example/sim_data.txt", header=TRUE)
 n.groups = c(4,2,3,5,5,4)
 model.numbers = c(1:6)
@@ -139,6 +142,7 @@ scale = TRUE
 center = TRUE
 
 dapc_clumpp_permuted(wd=wd,
+                     CLUMPP_exe=CLUMPP_exe,
                      data=data,
                      n.groups=n.groups,
                      model.numbers=model.numbers,

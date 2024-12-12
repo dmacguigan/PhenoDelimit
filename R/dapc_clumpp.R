@@ -11,17 +11,17 @@
 # see https://stats.stackexchange.com/questions/53/pca-on-correlation-or-covariance for more info
 # "You tend to use the covariance matrix when the variable scales are similar and the correlation matrix when variables are on different scales."
 
-dapc_clumpp <- function(wd, data, n.groups, model.numbers, models, perc.var, scale=TRUE, center=TRUE, apriori=FALSE, clust.method="kmeans"){
+dapc_clumpp <- function(wd, CLUMPP_exe, data, n.groups, model.numbers, models, perc.var, scale=TRUE, center=TRUE, apriori=FALSE, clust.method="kmeans"){
   dir.create(file.path(wd, "CLUMPP"), showWarnings = FALSE)
   setwd(paste0(wd, "/CLUMPP"))
   for(i in 1:length(n.groups)){
     for(j in 1:length(perc.var)){
-      run_dapc_clumpp(data=data, modelNumber=model.numbers[i], k=n.groups[i], model=as.factor(models[,i]), perc.var=perc.var[j], center=center, scale=scale, apriori=apriori, clust.method=clust.method)
+      run_dapc_clumpp(data=data, CLUMPP_exe=CLUMPP_exe, modelNumber=model.numbers[i], k=n.groups[i], model=as.factor(models[,i]), perc.var=perc.var[j], center=center, scale=scale, apriori=apriori, clust.method=clust.method)
     }
   }
 }
 
-run_dapc_clumpp <- function(data, modelNumber, k, model, perc.var, scale, center, apriori, clust.method){
+run_dapc_clumpp <- function(data, CLUMPP_exe, modelNumber, k, model, perc.var, scale, center, apriori, clust.method){
   if(clust.method == "kmeans"){
 	  # make sure model variable is OK format
 	  model <- as.numeric(as.factor(model))
@@ -85,11 +85,11 @@ run_dapc_clumpp <- function(data, modelNumber, k, model, perc.var, scale, center
 		  cat(paste("C ", nrow(pop.assign), sep=""), file=file, append=TRUE, sep="\n")
 		  cat("R 2\nM 1\nW 0\nS 2\nPRINT_PERMUTED_DATA 0\nPRINT_EVERY_PERM 0\nPRINT_RANDOM_INPUTORDER 0\nOVERRIDE_WARNINGS 0\nORDER_BY_RUN 1", file=file, append=TRUE, sep="\n")
 
-		  system(paste("CLUMPP", f, sep=" "))
-		  
+		  system(paste(CLUMPP_exe, f, sep=" "))
+
 		  close(file)
 	  }
-	  
+
 	  else{
 		  # DAPC using a priori assignment of individuals
 		  dapc.apriori <- dapc(data, model, var.conrib=TRUE, var.loadings=TRUE, perc.pca=perc.var, n.da=10000, center=center, scale=scale)
@@ -178,10 +178,10 @@ run_dapc_clumpp <- function(data, modelNumber, k, model, perc.var, scale, center
 		  cat("R 2\nM 1\nW 0\nS 2\nPRINT_PERMUTED_DATA 0\nPRINT_EVERY_PERM 0\nPRINT_RANDOM_INPUTORDER 0\nOVERRIDE_WARNINGS 0\nORDER_BY_RUN 1", file=file, append=TRUE, sep="\n")
 
 		  system(paste("CLUMPP", f, sep=" "))
-		  
+
 		  close(file)
 	  }
-	  
+
 	  else{
 		  # first, perform PCA
 		  maxRank <- min(dim(data))
@@ -249,8 +249,8 @@ run_dapc_clumpp <- function(data, modelNumber, k, model, perc.var, scale, center
 		  cat(paste("C ", nrow(pop.assign), sep=""), file=file, append=TRUE, sep="\n")
 		  cat("R 2\nM 1\nW 0\nS 2\nPRINT_PERMUTED_DATA 0\nPRINT_EVERY_PERM 0\nPRINT_RANDOM_INPUTORDER 0\nOVERRIDE_WARNINGS 0\nORDER_BY_RUN 1", file=file, append=TRUE, sep="\n")
 
-		  shell(paste("CLUMPP", f, sep=" "))
-		  
+		  shell(paste(CLUMPP_exe, f, sep=" "))
+
 		  close(file)
 	  }
   }

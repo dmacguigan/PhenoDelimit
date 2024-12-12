@@ -8,12 +8,15 @@ dapc_clumpp_permuted
 Permutes the data, then performs performs K-means clustering, runs discriminant analysis, and generates "indfiles" and "paramfiles" for CLUMPP based on user supplied info.
 }
 \usage{
-dapc_clumpp_permuted(wd, data, n.groups, model.numbers, models, perc.var, scale, center, apriori)
+dapc_clumpp_permuted(wd, CLUMPP_exe, data, n.groups, model.numbers, models, perc.var, scale, center, apriori)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{wd}{
   working directory to store CLUMPP files, results will be written to new subdirectory "CLUMPP_permuted"
+  }
+  \item{CLUMPP_exe}{
+  full path to CLUMPP executable
   }
   \item{data}{
   data frame containing phyotypic data, one row per individual, one column per trait, no missing values
@@ -29,7 +32,7 @@ dapc_clumpp_permuted(wd, data, n.groups, model.numbers, models, perc.var, scale,
   }
   \item{perc.var}{
   vector containing cumulative percentages of variance to retain for discriminant analyses
-  }  
+  }
   \item{permutations}{
   number of permutations to perform
   }

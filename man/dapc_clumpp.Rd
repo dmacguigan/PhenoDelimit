@@ -8,12 +8,15 @@ dapc_clumpp
 Performs K-means clustering, runs discriminant analysis, and generates "indfiles" and "paramfiles" for CLUMPP based on user supplied info.
 }
 \usage{
-dapc_clumpp(wd, data, n.groups, model.numbers, models, perc.var, scale, center, apriori)
+dapc_clumpp(wd, CLUMPP_exe, data, n.groups, model.numbers, models, perc.var, scale, center, apriori)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{wd}{
   working directory to store CLUMPP files, results will be written to new subdirectory "CLUMPP"
+  }
+  \item{CLUMPP_exe}{
+  full path to CLUMPP executable
   }
   \item{data}{
   data frame containing phyotypic data, one row per individual, one column per trait, no missing values
