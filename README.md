@@ -1,7 +1,10 @@
-# PhenoDelimit - WORK IN PROGRESS
+# PhenoDelimit
 R package to create STRUCTURE-esque bar plots and compare species delimitation models with multivariate phenotype data.
 
 This package requires an external program, CLUMPP, which can be [dowloaded here](https://rosenberglab.stanford.edu/clumpp.html). Make note of the full path to your CLUMPP executable, you will need it below.
+
+> [!IMPORTANT]
+> [CLUMPP does not work on Apple M series processors](https://groups.google.com/g/structure-software/c/z8y1DynVcQ8/m/9W3EXeYnBAAJ). Since CLUMPP is not open source, the only option is to use a Windows or Linux machine.
 
 To download and install this package
 ```
