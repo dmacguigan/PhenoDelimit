@@ -1,17 +1,29 @@
-# function to create CLUMPP indfiles for model assignment vs K-means clusters DAPC probs
-# also allows the user to run DAPC with a priori species/group assignment
-
-# note that PCA with scale=TRUE is a correlation-based PCA
-# PCA with scale=FALSE is a covariance-based PCA
-# see https://aedin.github.io/PCAworkshop/articles/b_PCA.html
-# these two types of PCA are appropriate for different datasets
-# for example, covariance-based PCA is appropriate for morphometric data
-# see https://www.palass.org/publications/newsletter/palaeomath-101/palaeomath-part-21-principal-warps-relative-warps-and-procrustes-pca
-# while correlation-based PCA is appropriate for datasets with mixed variable types that are on different scales (e.g. meristic data)
-# see https://stats.stackexchange.com/questions/53/pca-on-correlation-or-covariance for more info
-# "You tend to use the covariance matrix when the variable scales are similar and the correlation matrix when variables are on different scales."
-
-dapc_clumpp <- function(wd, CLUMPP_exe, data, n.groups, model.numbers, models, perc.var, scale=TRUE, center=TRUE, apriori=FALSE, clust.method="kmeans"){
+#' Run DAPC on data
+#' 
+#' Permutes the data, then performs performs K-means clustering, runs discriminant analysis, and generates "indfiles" and "paramfiles" for CLUMPP based on user supplied info.
+#' Note that PCA with scale=TRUE is a correlation-based PCA, while PCA with scale=FALSE is a covariance-based PCA.
+#' See https://aedin.github.io/PCAworkshop/articles/b_PCA.html.
+#' These two types of PCA are appropriate for different datasets.
+#' For example, covariance-based PCA is appropriate for morphometric data.
+#' See https://www.palass.org/publications/newsletter/palaeomath-101/palaeomath-part-21-principal-warps-relative-warps-and-procrustes-pca.
+#' While correlation-based PCA is appropriate for datasets with mixed variable types that are on different scales (e.g. meristic data).
+#' See https://stats.stackexchange.com/questions/53/pca-on-correlation-or-covariance for more info.
+#' "You tend to use the covariance matrix when the variable scales are similar and the correlation matrix when variables are on different scales.
+#'
+#' @param wd working directory to store CLUMPP files, results will be written to new subdirectory "CLUMPP"
+#' @param CLUMPP_exe full path to CLUMPP executable
+#' @param data data frame containing phyotypic data, one row per individual, one column per trait, no missing values
+#' @param n.groups vector of the number of groups (populations, species, etc) in each delimitation model
+#' @param model.numbers vector containing delimitaiton model numbers
+#' @param models data frame containing species delimitation models, one row per individual, one column per model
+#' @param perc.var vector containing cumulative percentages of variance to retain for discriminant analyses
+#' @param scale scale PCA? Highly recommended unless you transform data prior to analysis. TRUE or FALSE
+#' @param center center PCA? Highly recommended unless you transform data prior to analysis. TRUE or FALSE
+#' @param apriori do you wish to use apriori individual assignment to species/populations/clusters, or assign individuals using k-means clustering? TRUE or FALSE
+#'
+#' @export
+dapc_clumpp <- function(wd, CLUMPP_exe, data, n.groups, model.numbers, models, perc.var, scale=TRUE, center=TRUE, apriori=FALSE){
+  clust.method="kmeans"
   dir.create(file.path(wd, "CLUMPP"), showWarnings = FALSE)
   setwd(paste0(wd, "/CLUMPP"))
   for(i in 1:length(n.groups)){
@@ -21,7 +33,22 @@ dapc_clumpp <- function(wd, CLUMPP_exe, data, n.groups, model.numbers, models, p
   }
 }
 
-run_dapc_clumpp <- function(data, CLUMPP_exe, modelNumber, k, model, perc.var, scale, center, apriori, clust.method){
+#' Run DAPC CLUMPP with arguments passed from dapc_clumpp
+#'
+#' @param data data
+#' @param CLUMPP_exe CLUMPP_exe
+#' @param modelNumber modelNumber
+#' @param k k
+#' @param model model
+#' @param perc.var perc.var
+#' @param scale scale
+#' @param center center
+#' @param clust.method clust.method
+#' @param apriori apriori
+#'
+#' @noRd
+#
+run_dapc_clumpp <- function(data, CLUMPP_exe, modelNumber, k, model, perc.var, scale, center, clust.method, apriori){
   if(clust.method == "kmeans"){
 	  # make sure model variable is OK format
 	  model <- as.numeric(as.factor(model))

@@ -1,5 +1,19 @@
-# function to create CLUMPP indfiles for model assignment vs K-means clusters DAPC probs
-# with permutation of the original data frame for significance testing
+#' Run DAPC on permuted data
+#' 
+#' Permutes the data, then performs performs K-means clustering, runs discriminant analysis, and generates "indfiles" and "paramfiles" for CLUMPP based on user supplied info.
+#'
+#' @param wd working directory to store CLUMPP files, results will be written to new subdirectory "CLUMPP_permuted"
+#' @param CLUMPP_exe full path to CLUMPP executable
+#' @param data data frame containing phyotypic data, one row per individual, one column per trait, no missing values
+#' @param n.groups vector of the number of groups (populations, species, etc) in each delimitation model
+#' @param model.numbers vector containing delimitaiton model numbers
+#' @param models data frame containing species delimitation models, one row per individual, one column per model
+#' @param perc.var vector containing cumulative percentages of variance to retain for discriminant analyses
+#' @param permutations number of permutations to perform
+#' @param scale scale PCA? Highly recommended unless you transform data prior to analysis. TRUE or FALSE
+#' @param center center PCA? Highly recommended unless you transform data prior to analysis. TRUE or FALSE
+#' 
+#' @export
 
 dapc_clumpp_permuted <- function(wd, CLUMPP_exe, data, n.groups, model.numbers, models, perc.var, permutations, scale=TRUE, center=TRUE){
   dir.create(file.path(wd, "CLUMPP_permuted"), showWarnings = FALSE)
@@ -14,6 +28,20 @@ dapc_clumpp_permuted <- function(wd, CLUMPP_exe, data, n.groups, model.numbers, 
   }
 }
 
+#' Run DAPC CLUMPP permutation with arguments passed from dapc_clumpp_permuted.
+#'
+#' @param data data
+#' @param CLUMPP_exe CLUMPP_exe
+#' @param modelNumber modelNumber
+#' @param k k
+#' @param model model
+#' @param perc.var perc.var
+#' @param scale scale
+#' @param center center
+#' @param permutation permutation
+#' 
+#' @noRd
+# 
 
 run_dapc_clumpp_permutation <- function(data, CLUMPP_exe, modelNumber, k, model, perc.var, scale, center, permutation){
   # make sure model variable is OK format

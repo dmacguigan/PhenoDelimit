@@ -1,5 +1,21 @@
-# plot permuted H' vs observed H'
-H_permutation_plot <- function(wd, clumpp.data, clumpp.data.permuted, model.numbers, best.perc.var, plot.type, plot.prefix, plot.width, plot.height, sig.threshold){
+#' Plot permuted CLUMPP results
+#' 
+#' Plot permuted CLUMPP H' results. Returns plot of obsserved H' minus mean permuted H'. Number inside bar is the H' difference, number on top of bar is p-value from permutation test. 
+#` Also returns plots for each model of permuted H' distribution and observed H' (red dashed line). Saves plot as file (svg or pdf).
+#' 
+#' @param wd directory to create plots, should contain "CLUMPP_permuted" subdirectory
+#' @param clumpp.data data frame from read_clumpp_results function
+#' @param clumpp.data.permuted data frame from read_clumpp_results_permuted function
+#' @param model.numbers vector containing delimitaiton model numbers
+#' @param best.perc.var which percent retained variance to plot? numeric
+#' @param plot.prefix prefix for plot name, character
+#' @param plot.type save plot as "pdf", "svg", or "png"
+#' @param plot.width width of plot in inches
+#' @param plot.height height of plot in inches
+#' 
+#' @export
+
+H_permutation_plot <- function(wd, clumpp.data, clumpp.data.permuted, model.numbers, best.perc.var, plot.type, plot.prefix, plot.width, plot.height){
   setwd(wd)
   summary <- data.frame(model=model.numbers,
                         H_diff=model.numbers,

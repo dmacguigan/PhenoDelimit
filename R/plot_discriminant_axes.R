@@ -1,4 +1,25 @@
-# create scatter plot or density plot of LD axes
+#' Make scatter or density plots of discriminant axes
+#' 
+#' Make density plot (2 clusters) or scatter plot (>2 clusters) of discriminant axes, as specified by the user. Returns plot and saves plot as file (svg or pdf).
+#' 
+#' @param wd directory to create plots
+#' @param clumpp.wd directory containing CLUMPP results
+#' @param sample.names vector of sample names, same order as original data, numeric or character
+#' @param sample.plot.groups vector of sample groups, same order as original data, numeric or character
+#' @param sample.plot.groups.order vector of sample groups in desired order, numeric or character
+#' @param best.perc.var which percent retained variance to plot? numeric
+#' @param best.model.number which model number to plot? numeric
+#' @param plot.type save plot as "pdf", "svg", or "png"
+#' @param plot.width width of plot in inches
+#' @param plot.height height of plot in inches
+#' @param colors vector of colors for groups
+#' @param shapes vector of shapes for K-means clusters
+#' @param x.axis which discriminant axis to show on x axis? If only two clusters, discriminant axis 1 is automatically used. numeric
+#' @param y.axis which discriminant axis to show on y axis? If only two clusters, this argument is not used. numeric
+#' @param apriori do you wish to plot results from apriori individual assignment to species/populations/clusters, or results from assignment using using k-means clustering? TRUE or FALSE
+#' 
+#' @export
+#' 
 plot_discriminant_axes <- function(wd, clumpp.wd,
                                    sample.plot.groups = NULL, sample.plot.groups.order = NULL,
                                    best.perc.var, best.model.number,

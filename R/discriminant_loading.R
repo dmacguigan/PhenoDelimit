@@ -1,4 +1,20 @@
-# plot discriminant axis variable loadings and write table
+#' DAPC loading plots
+#' 
+#' Make loading plot of variables on selected discriminant axis. Saves plot as file (svg or pdf).
+#' Also returns file with variable contributions and loadings for that axis.
+#' 
+#' @param wd working directory to create plots
+#' @param clumpp.wd directory containing CLUMPP results
+#' @param best.perc.var which percent retained variance to plot? numeric
+#' @param best.model.number which model number to plot? numeric
+#' @param plot.type save plot as "pdf", "svg", or "png"
+#' @param plot.width width of plot in inches
+#' @param plot.height height of plot in inches
+#' @param axis which discriminant axis to examine? numeric
+#' @param apriori do you wish to plot results from apriori individual assignment to species/populations/clusters, or results from assignment using using k-means clustering? TRUE or FALSE
+#' 
+#' @export
+
 discriminant_loading <- function(wd, clumpp.wd,
                                  best.perc.var, best.model.number,
                                  plot.type, plot.width, plot.height,

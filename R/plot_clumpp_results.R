@@ -1,4 +1,16 @@
-# plot CLUMPP H' values for each delimitaiton model
+#' Plot CLUMPP H' values
+#' 
+#' Plot CLUMPP H' values for each delimitation model and percetage of retained variance. Returns plot and saves plot as file (svg or pdf).
+#' 
+#' @param wd directory to create plots
+#' @param clumpp.data data frame from read_clumpp_results function
+#' @param colors vector of colors for percentage of retained variance
+#' @param plot.name name for plot, character
+#' @param plot.type save plot as "pdf", "svg", or "png"
+#' @param plot.width width of plot in inches
+#' @param plot.height height of plot in inches
+#' 
+#' @export
 plot_clumpp_results <- function(wd, clumpp.data, colors, plot.name, plot.type, plot.width, plot.height){
   clumpp.dataBest <- subset(clumpp.data, max) # subset and get best models
   setwd(wd)

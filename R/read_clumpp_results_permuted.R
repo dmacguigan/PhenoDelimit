@@ -1,4 +1,14 @@
-# read in CLUMPP results for permuted runs from miscfiles
+#' Summarize permuted CLUMPP results
+#' 
+#' Read in results from CLUMPP miscfiles, return data frame of H' values for each delimitation model
+#' 
+#' @param wd working directory to store CLUMPP files, should contain a CLUMPP_permuted directory created by the dapc_clumpp_permuted function
+#' @param model.numbers vector containing delimitation model numbers
+#' @param perc.var vector containing cumulative percentages of variance to retain for discriminant analyses
+#' @param permutations number of permutations performed
+#' 
+#' @export
+#' 
 read_clumpp_results_permuted <- function(wd, perc.var, model.numbers, permutations){
   setwd(paste0(wd, "/CLUMPP_permuted"))
   c1=numeric()
