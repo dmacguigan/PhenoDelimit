@@ -43,25 +43,34 @@ plot_discriminant_axes <- function(wd, clumpp.wd,
 		p$group <- factor(sample.plot.groups, levels=sample.plot.groups.order)
 
 		find_hull <- function(df) df[chull(df[,x.axis], df[,y.axis]), ]
-		hulls <- ddply(p, "group", find_hull)
+		hulls <- plyr::ddply(p, "group", find_hull)
 
 		p$cluster <- factor(kmeans.grp[,1])
 
-		plot <- ggplot() +
-		  geom_polygon(data=hulls, aes_string(x=paste("LD", x.axis, sep=""), y=paste("LD", y.axis, sep=""),
-											  color="group", fill="group"), alpha=0.2) +
-		  geom_point(data=p, aes_string(x=paste("LD", x.axis, sep=""), y=paste("LD", y.axis, sep=""),
-										color="group", fill="group", shape="cluster"), cex=3, alpha=0.8) +
-		  scale_color_manual(values = colors, labels = sample.plot.groups.order, name = "Group") +
-		  scale_fill_manual(values = colors, guide="none") +
-		  scale_shape_manual(values = shapes, labels = paste(1:(ncol(ind.coord)+1)), name = "K-means\nCluster") +
-		  theme(panel.background = element_rect(fill = 'white', colour = 'black'), legend.box = "horizontal") +
-		  theme_minimal() +
-		  xlab(paste("Discriminant axis ", x.axis)) +
-		  ylab(paste("Discriminant axis ", y.axis))
+		plot <- ggplot2::ggplot() +
+		  ggplot2::geom_polygon(data = hulls, 
+                     ggplot2::aes(x = .data[[paste("LD", x.axis, sep="")]], 
+                                 y = .data[[paste("LD", y.axis, sep="")]], 
+                                 color = .data[["group"]], 
+                                 fill = .data[["group"]]), 
+                     alpha = 0.2) +
+			ggplot2::geom_point(data = p, 
+                   ggplot2::aes(x = .data[[paste("LD", x.axis, sep="")]], 
+                               y = .data[[paste("LD", y.axis, sep="")]], 
+                               color = .data[["group"]], 
+                               fill = .data[["group"]], 
+                               shape = .data[["cluster"]]), 
+                   size = 3, alpha = 0.8) +
+		  ggplot2::scale_color_manual(values = colors, labels = sample.plot.groups.order, name = "Group") +
+		  ggplot2::scale_fill_manual(values = colors, guide="none") +
+		  ggplot2::scale_shape_manual(values = shapes, labels = paste(1:(ncol(ind.coord)+1)), name = "K-means\nCluster") +
+		  ggplot2::theme(panel.background = ggplot2::element_rect(fill = 'white', colour = 'black'), legend.box = "horizontal") +
+		  ggplot2::theme_minimal() +
+		  ggplot2::xlab(paste("Discriminant axis ", x.axis)) +
+		  ggplot2::ylab(paste("Discriminant axis ", y.axis))
 
 		if(plot.type =="svg"){
-		  svglite(file = paste("m", best.model.number, "_DA", x.axis, "-DA", y.axis, "_scatter", ".svg", sep=""), width = plot.width, height = plot.height)
+		  svglite::svglite(file = paste("m", best.model.number, "_DA", x.axis, "-DA", y.axis, "_scatter", ".svg", sep=""), width = plot.width, height = plot.height)
 		  print(plot)
 		  dev.off()
 		} else if(plot.type =="pdf"){
@@ -82,15 +91,15 @@ plot_discriminant_axes <- function(wd, clumpp.wd,
 		p$cluster <- factor(kmeans.grp[,1])
 		p$group <- factor(sample.plot.groups, levels=sample.plot.groups.order)
 
-		plot <- ggplot(p, aes(x=LD1, color=group, fill=group)) +
-		  geom_density(alpha=0.5) +
-		  scale_color_manual(values = colors, labels = sample.plot.groups.order, name = "Group") +
-		  scale_fill_manual(values = colors, guide="none") +
-		  theme_minimal() +
-		  xlab("Discriminant axis 1")
+		plot <- ggplot2::ggplot(p, ggplot2::aes(x=LD1, color=group, fill=group)) +
+		  ggplot2::geom_density(alpha=0.5) +
+		  ggplot2::scale_color_manual(values = colors, labels = sample.plot.groups.order, name = "Group") +
+		  ggplot2::scale_fill_manual(values = colors, guide="none") +
+		  ggplot2::theme_minimal() +
+		  ggplot2::xlab("Discriminant axis 1")
 
 		if(plot.type =="svg"){
-		  svglite(file = paste0("m", best.model.number, "_DA1_density.svg"), width = plot.width, height = plot.height)
+		  svglite::svglite(file = paste0("m", best.model.number, "_DA1_density.svg"), width = plot.width, height = plot.height)
 		  print(plot)
 		  dev.off()
 		} else if(plot.type =="pdf"){
@@ -118,22 +127,30 @@ plot_discriminant_axes <- function(wd, clumpp.wd,
 		p$group <- factor(sample.plot.groups, levels=sample.plot.groups.order)
 
 		find_hull <- function(df) df[chull(df[,x.axis], df[,y.axis]), ]
-		hulls <- ddply(p, "group", find_hull)
+		hulls <- plyr::ddply(p, "group", find_hull)
 
-		plot <- ggplot() +
-		  geom_polygon(data=hulls, aes_string(x=paste("LD", x.axis, sep=""), y=paste("LD", y.axis, sep=""),
-											  color="group", fill="group"), alpha=0.2) +
-		  geom_point(data=p, aes_string(x=paste("LD", x.axis, sep=""), y=paste("LD", y.axis, sep=""),
-										color="group", fill="group"), cex=3, alpha=0.8) +
-		  scale_color_manual(values = colors, labels = sample.plot.groups.order, name = "Group") +
-		  scale_fill_manual(values = colors, guide="none") +
-		  theme(panel.background = element_rect(fill = 'white', colour = 'black'), legend.box = "horizontal") +
-		  theme_minimal() +
-		  xlab(paste("Discriminant axis ", x.axis)) +
-		  ylab(paste("Discriminant axis ", y.axis))
+		plot <- ggplot2::ggplot() +
+		  ggplot2::geom_polygon(data = hulls, 
+                     ggplot2::aes(x = .data[[paste("LD", x.axis, sep="")]], 
+                                 y = .data[[paste("LD", y.axis, sep="")]], 
+                                 color = .data[["group"]], 
+                                 fill = .data[["group"]]), 
+                     alpha = 0.2) +
+			ggplot2::geom_point(data = p, 
+                   ggplot2::aes(x = .data[[paste("LD", x.axis, sep="")]], 
+                               y = .data[[paste("LD", y.axis, sep="")]], 
+                               color = .data[["group"]], 
+                               fill = .data[["group"]]), 
+                   size = 3, alpha = 0.8) +
+		  ggplot2::scale_color_manual(values = colors, labels = sample.plot.groups.order, name = "Group") +
+		  ggplot2::scale_fill_manual(values = colors, guide="none") +
+		  ggplot2::theme(panel.background = ggplot2::element_rect(fill = 'white', colour = 'black'), legend.box = "horizontal") +
+		  ggplot2::theme_minimal() +
+		  ggplot2::xlab(paste("Discriminant axis ", x.axis)) +
+		  ggplot2::ylab(paste("Discriminant axis ", y.axis))
 
 		if(plot.type =="svg"){
-		  svglite(file = paste("m", best.model.number, "_DA", x.axis, "-DA", y.axis, "_scatter", ".apriori.svg", sep=""), width = plot.width, height = plot.height)
+		  svglite::svglite(file = paste("m", best.model.number, "_DA", x.axis, "-DA", y.axis, "_scatter", ".apriori.svg", sep=""), width = plot.width, height = plot.height)
 		  print(plot)
 		  dev.off()
 		} else if(plot.type =="pdf"){
@@ -153,15 +170,15 @@ plot_discriminant_axes <- function(wd, clumpp.wd,
 		p <- data.frame(ind.coord)
 		p$group <- factor(sample.plot.groups, levels=sample.plot.groups.order)
 
-		plot <- ggplot(p, aes(x=LD1, color=group, fill=group)) +
-		  geom_density(alpha=0.5) +
-		  scale_color_manual(values = colors, labels = sample.plot.groups.order, name = "Group") +
-		  scale_fill_manual(values = colors, guide="none") +
-		  theme_minimal() +
-		  xlab("Discriminant axis 1")
+		plot <- ggplot2::ggplot(p, ggplot2::aes(x=LD1, color=group, fill=group)) +
+		  ggplot2::geom_density(alpha=0.5) +
+		  ggplot2::scale_color_manual(values = colors, labels = sample.plot.groups.order, name = "Group") +
+		  ggplot2::scale_fill_manual(values = colors, guide="none") +
+		  ggplot2::theme_minimal() +
+		  ggplot2::xlab("Discriminant axis 1")
 
 		if(plot.type =="svg"){
-		  svglite(file = paste0("m", best.model.number, "_DA1_density.apriori.svg"), width = plot.width, height = plot.height)
+		  svglite::svglite(file = paste0("m", best.model.number, "_DA1_density.apriori.svg"), width = plot.width, height = plot.height)
 		  print(plot)
 		  dev.off()
 		} else if(plot.type =="pdf"){
@@ -192,25 +209,34 @@ plot_discriminant_axes <- function(wd, clumpp.wd,
 		p$group <- factor(sample.plot.groups, levels=sample.plot.groups.order)
 
 		find_hull <- function(df) df[chull(df[,x.axis], df[,y.axis]), ]
-		hulls <- ddply(p, "group", find_hull)
+		hulls <- plyr::ddply(p, "group", find_hull)
 
 		p$cluster <- factor(rf.grp[,1])
 
-		plot <- ggplot() +
-		  geom_polygon(data=hulls, aes_string(x=paste("LD", x.axis, sep=""), y=paste("LD", y.axis, sep=""),
-											  color="group", fill="group"), alpha=0.2) +
-		  geom_point(data=p, aes_string(x=paste("LD", x.axis, sep=""), y=paste("LD", y.axis, sep=""),
-										color="group", fill="group", shape="cluster"), cex=3, alpha=0.8) +
-		  scale_color_manual(values = colors, labels = sample.plot.groups.order, name = "Group") +
-		  scale_fill_manual(values = colors, guide="none") +
-		  scale_shape_manual(values = shapes, labels = paste(1:(ncol(ind.coord)+1)), name = "RF\nCluster") +
-		  theme(panel.background = element_rect(fill = 'white', colour = 'black'), legend.box = "horizontal") +
-		  theme_minimal() +
-		  xlab(paste("Discriminant axis ", x.axis)) +
-		  ylab(paste("Discriminant axis ", y.axis))
+		plot <- ggplot2::ggplot() +
+			ggplot2::geom_polygon(data = hulls, 
+                     ggplot2::aes(x = .data[[paste("LD", x.axis, sep="")]], 
+                                 y = .data[[paste("LD", y.axis, sep="")]], 
+                                 color = .data[["group"]], 
+                                 fill = .data[["group"]]), 
+                     alpha = 0.2) +
+			ggplot2::geom_point(data = p, 
+                   ggplot2::aes(x = .data[[paste("LD", x.axis, sep="")]], 
+                               y = .data[[paste("LD", y.axis, sep="")]], 
+                               color = .data[["group"]], 
+                               fill = .data[["group"]], 
+                               shape = .data[["cluster"]]), 
+                   size = 3, alpha = 0.8) +
+		  ggplot2::scale_color_manual(values = colors, labels = sample.plot.groups.order, name = "Group") +
+		  ggplot2::scale_fill_manual(values = colors, guide="none") +
+		  ggplot2::scale_shape_manual(values = shapes, labels = paste(1:(ncol(ind.coord)+1)), name = "RF\nCluster") +
+		  ggplot2::theme(panel.background = ggplot2::element_rect(fill = 'white', colour = 'black'), legend.box = "horizontal") +
+		  ggplot2::theme_minimal() +
+		  ggplot2::xlab(paste("Discriminant axis ", x.axis)) +
+		  ggplot2::ylab(paste("Discriminant axis ", y.axis))
 
 		if(plot.type =="svg"){
-		  svglite(file = paste("m", best.model.number, "_DA", x.axis, "-DA", y.axis, "_RF.scatter", ".svg", sep=""), width = plot.width, height = plot.height)
+		  svglite::svglite(file = paste("m", best.model.number, "_DA", x.axis, "-DA", y.axis, "_RF.scatter", ".svg", sep=""), width = plot.width, height = plot.height)
 		  print(plot)
 		  dev.off()
 		} else if(plot.type =="pdf"){
@@ -231,15 +257,15 @@ plot_discriminant_axes <- function(wd, clumpp.wd,
 		p$cluster <- factor(rf.grp[,1])
 		p$group <- factor(sample.plot.groups, levels=sample.plot.groups.order)
 
-		plot <- ggplot(p, aes(x=LD1, color=group, fill=group)) +
-		  geom_density(alpha=0.5) +
-		  scale_color_manual(values = colors, labels = sample.plot.groups.order, name = "Group") +
-		  scale_fill_manual(values = colors, guide="none") +
-		  theme_minimal() +
-		  xlab("Discriminant axis 1")
+		plot <- ggplot2::ggplot(p, ggplot2::aes(x=LD1, color=group, fill=group)) +
+		  ggplot2::eom_density(alpha=0.5) +
+		  ggplot2::scale_color_manual(values = colors, labels = sample.plot.groups.order, name = "Group") +
+		  ggplot2::scale_fill_manual(values = colors, guide="none") +
+		  ggplot2::theme_minimal() +
+		  ggplot2::xlab("Discriminant axis 1")
 
 		if(plot.type =="svg"){
-		  svglite(file = paste0("m", best.model.number, "_DA1_RF.density.svg"), width = plot.width, height = plot.height)
+		  svglite::svglite(file = paste0("m", best.model.number, "_DA1_RF.density.svg"), width = plot.width, height = plot.height)
 		  print(plot)
 		  dev.off()
 		} else if(plot.type =="pdf"){
@@ -270,25 +296,33 @@ plot_discriminant_axes <- function(wd, clumpp.wd,
 		p$group <- factor(sample.plot.groups, levels=sample.plot.groups.order)
 
 		find_hull <- function(df) df[chull(df[,x.axis], df[,y.axis]), ]
-		hulls <- ddply(p, "group", find_hull)
+		hulls <- plyr::ddply(p, "group", find_hull)
 
 		p$cluster <- factor(rf.grp[,1])
 
-		plot <- ggplot() +
-		  geom_polygon(data=hulls, aes_string(x=paste("LD", x.axis, sep=""), y=paste("LD", y.axis, sep=""),
-											  color="group", fill="group"), alpha=0.2) +
-		  geom_point(data=p, aes_string(x=paste("LD", x.axis, sep=""), y=paste("LD", y.axis, sep=""),
-										color="group", fill="group", shape="cluster"), cex=3, alpha=0.8) +
-		  scale_color_manual(values = colors, labels = sample.plot.groups.order, name = "Group") +
-		  scale_fill_manual(values = colors, guide="none") +
-		  scale_shape_manual(values = shapes, labels = paste(1:(ncol(ind.coord)+1)), name = "RF\nCluster") +
-		  theme(panel.background = element_rect(fill = 'white', colour = 'black'), legend.box = "horizontal") +
-		  theme_minimal() +
-		  xlab(paste("Discriminant axis ", x.axis)) +
-		  ylab(paste("Discriminant axis ", y.axis))
+		plot <- ggplot2::ggplot() +
+			ggplot2::geom_polygon(data = hulls, 
+                     ggplot2::aes(x = .data[[paste("LD", x.axis, sep="")]], 
+                                 y = .data[[paste("LD", y.axis, sep="")]], 
+                                 color = .data[["group"]], 
+                                 fill = .data[["group"]]), 
+                     alpha = 0.2) +
+			ggplot2::geom_point(data = p, 
+                   ggplot2::aes(x = .data[[paste("LD", x.axis, sep="")]], 
+                               y = .data[[paste("LD", y.axis, sep="")]], 
+                               color = .data[["group"]], 
+                               fill = .data[["group"]]), 
+                   size = 3, alpha = 0.8) +
+		  ggplot2::scale_color_manual(values = colors, labels = sample.plot.groups.order, name = "Group") +
+		  ggplot2::scale_fill_manual(values = colors, guide="none") +
+		  ggplot2::scale_shape_manual(values = shapes, labels = paste(1:(ncol(ind.coord)+1)), name = "RF\nCluster") +
+		  ggplot2::theme(panel.background = ggplot2::element_rect(fill = 'white', colour = 'black'), legend.box = "horizontal") +
+		  ggplot2::theme_minimal() +
+		  ggplot2::xlab(paste("Discriminant axis ", x.axis)) +
+		  ggplot2::ylab(paste("Discriminant axis ", y.axis))
 
 		if(plot.type =="svg"){
-		  svglite(file = paste("m", best.model.number, "_DA", x.axis, "-DA", y.axis, "_RF.supervised.scatter", ".svg", sep=""), width = plot.width, height = plot.height)
+		  svglite::svglite(file = paste("m", best.model.number, "_DA", x.axis, "-DA", y.axis, "_RF.supervised.scatter", ".svg", sep=""), width = plot.width, height = plot.height)
 		  print(plot)
 		  dev.off()
 		} else if(plot.type =="pdf"){
@@ -309,15 +343,15 @@ plot_discriminant_axes <- function(wd, clumpp.wd,
 		p$cluster <- factor(rf.grp[,1])
 		p$group <- factor(sample.plot.groups, levels=sample.plot.groups.order)
 
-		plot <- ggplot(p, aes(x=LD1, color=group, fill=group)) +
-		  geom_density(alpha=0.5) +
-		  scale_color_manual(values = colors, labels = sample.plot.groups.order, name = "Group") +
-		  scale_fill_manual(values = colors, guide="none") +
-		  theme_minimal() +
-		  xlab("Discriminant axis 1")
+		plot <- ggplot2::ggplot(p, ggplot2::aes(x=LD1, color=group, fill=group)) +
+		  ggplot2::geom_density(alpha=0.5) +
+		  ggplot2::scale_color_manual(values = colors, labels = sample.plot.groups.order, name = "Group") +
+		  ggplot2::scale_fill_manual(values = colors, guide="none") +
+		  ggplot2::theme_minimal() +
+		  ggplot2::xlab("Discriminant axis 1")
 
 		if(plot.type =="svg"){
-		  svglite(file = paste0("m", best.model.number, "_DA1_RF.supervised.density.svg"), width = plot.width, height = plot.height)
+		  svglite::svglite(file = paste0("m", best.model.number, "_DA1_RF.supervised.density.svg"), width = plot.width, height = plot.height)
 		  print(plot)
 		  dev.off()
 		} else if(plot.type =="pdf"){

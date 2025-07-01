@@ -16,6 +16,17 @@
 #' @export
 
 dapc_clumpp_permuted <- function(wd, CLUMPP_exe, data, n.groups, model.numbers, models, perc.var, permutations, scale=TRUE, center=TRUE){
+  # input error handling
+	if(any(perc.var <= 0) || (any(perc.var > 100))){
+		stop("perc.var values must be greater than 0 and less than 100")
+	}
+	if(any(n.groups <= 0)){
+		stop("n.groups values must be greater than 0")
+	}
+  if(permutations <=0 ){
+		stop("number of permutations must be greater than 0")
+	}
+
   dir.create(file.path(wd, "CLUMPP_permuted"), showWarnings = FALSE)
   setwd(paste0(wd, "/CLUMPP_permuted"))
   for(i in 1:length(n.groups)){
@@ -47,8 +58,8 @@ run_dapc_clumpp_permutation <- function(data, CLUMPP_exe, modelNumber, k, model,
   # make sure model variable is OK format
   model <- as.numeric(as.factor(model))
   # K-means DAPC
-  kmeans.cluster <- find.clusters(data, max.n.clust = 30, n.start = 1000, n.iter=1e6, n.pca=10000, n.clust=k, center=center, scale=scale) #retain all PCs
-  dapc.kmeans <- dapc(data, kmeans.cluster$grp, var.conrib=TRUE, var.loadings=TRUE, perc.pca=perc.var, n.da=10000, center=center, scale=scale)
+  kmeans.cluster <- adegenet::find.clusters(data, max.n.clust = 30, n.start = 1000, n.iter=1e6, n.pca=10000, n.clust=k, center=center, scale=scale) #retain all PCs
+  dapc.kmeans <- adegenet::dapc(data, kmeans.cluster$grp, var.conrib=TRUE, var.loadings=TRUE, perc.pca=perc.var, n.da=10000, center=center, scale=scale)
 
   # write K-means group assignment to file
   write.table(file = paste("m", modelNumber, "_perVar-", perc.var, "_Kmeans.grp.p", permutation, ".txt", sep=""), x = dapc.kmeans$grp,
@@ -105,7 +116,7 @@ run_dapc_clumpp_permutation <- function(data, CLUMPP_exe, modelNumber, k, model,
   cat(paste("C ", nrow(pop.assign), sep=""), file=file, append=TRUE, sep="\n")
   cat("R 2\nM 1\nW 0\nS 2\nPRINT_PERMUTED_DATA 0\nPRINT_EVERY_PERM 0\nPRINT_RANDOM_INPUTORDER 0\nOVERRIDE_WARNINGS 0\nORDER_BY_RUN 1", file=file, append=TRUE, sep="\n")
 
-  system(paste(CLUMPP_exe, f, sep=" "))
+  system(paste(CLUMPP_exe, f, sep=" "), ignore.stdout = TRUE, ignore.stderr = TRUE)
 
   close(file)
 }

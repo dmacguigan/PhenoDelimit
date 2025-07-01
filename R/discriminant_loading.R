@@ -33,20 +33,20 @@ discriminant_loading <- function(wd, clumpp.wd,
 	  setwd(wd)
 
 	  if(plot.type =="svg"){
-		svglite(file = paste("m", best.model.number, "_DA_", axis, "_loading.svg", sep=""), width = plot.width, height = plot.height)
-		loadingplot(var.contr, axis=axis, threshold=0)
+		svglite::svglite(file = paste("m", best.model.number, "_DA_", axis, "_loading.svg", sep=""), width = plot.width, height = plot.height)
+		adegenet::loadingplot(var.contr, axis=axis, threshold=0)
 		dev.off()
 	  } else if(plot.type =="pdf"){
-		pdf(file = paste("m", best.model.number, "_DA_", axis, "_loading.pdf", sep=""), width = plot.width, height = plot.height)
-		loadingplot(var.contr, axis=axis, threshold=0)
+		grDevices::pdf(file = paste("m", best.model.number, "_DA_", axis, "_loading.pdf", sep=""), width = plot.width, height = plot.height)
+		adegenet::loadingplot(var.contr, axis=axis, threshold=0)
 		dev.off()
 	  } else {
-		png(file = paste("m", best.model.number, "_DA_", axis, "_loading.png", sep=""), units="in", res=300, width = plot.width, height = plot.height)
-		loadingplot(var.contr, axis=axis, threshold=0)
+		grDevices::png(file = paste("m", best.model.number, "_DA_", axis, "_loading.png", sep=""), units="in", res=300, width = plot.width, height = plot.height)
+		adegenet::loadingplot(var.contr, axis=axis, threshold=0)
 		dev.off()
 	  }
 	   
-	  loadingplot(var.contr, axis=axis, threshold=0)
+	  adegenet::loadingplot(var.contr, axis=axis, threshold=0)
 
 	  d <- var.contr[,axis]
 	  d2 <- var.load[,axis]
@@ -59,7 +59,7 @@ discriminant_loading <- function(wd, clumpp.wd,
   }
   
   else if(apriori == TRUE && clust.method == "kmeans"){
-  	  # read DAPC variable contributions from file
+  	# read DAPC variable contributions from file
 	  var.contr <- read.table(file = paste(clumpp.wd, "/m", best.model.number, "_perVar-", best.perc.var, "_var.contr.apriori.txt", sep=""),
 							  header = TRUE)
 
@@ -70,20 +70,20 @@ discriminant_loading <- function(wd, clumpp.wd,
 	  setwd(wd)
 
 	  if(plot.type =="svg"){
-		svglite(file = paste("m", best.model.number, "_DA_", axis, "_loading.apriori.svg", sep=""), width = plot.width, height = plot.height)
-		loadingplot(var.contr, axis=axis, threshold=0)
+		svglite::svglite(file = paste("m", best.model.number, "_DA_", axis, "_loading.apriori.svg", sep=""), width = plot.width, height = plot.height)
+		adegenet::loadingplot(var.contr, axis=axis, threshold=0)
 		dev.off()
 	  } else if(plot.type =="pdf"){
-		pdf(file = paste("m", best.model.number, "_DA_", axis, "_loading.apriori.pdf", sep=""), width = plot.width, height = plot.height)
-		loadingplot(var.contr, axis=axis, threshold=0)
+		grDevices::pdf(file = paste("m", best.model.number, "_DA_", axis, "_loading.apriori.pdf", sep=""), width = plot.width, height = plot.height)
+		adegenet::loadingplot(var.contr, axis=axis, threshold=0)
 		dev.off()
 	  } else {
-		png(file = paste("m", best.model.number, "_DA_", axis, "_loading.apriori.png", sep=""), units="in", res=300, width = plot.width, height = plot.height)
-		loadingplot(var.contr, axis=axis, threshold=0)
+		grDevices::png(file = paste("m", best.model.number, "_DA_", axis, "_loading.apriori.png", sep=""), units="in", res=300, width = plot.width, height = plot.height)
+		adegenet::loadingplot(var.contr, axis=axis, threshold=0)
 		dev.off()
 	  }
 	   
-	  loadingplot(var.contr, axis=axis, threshold=0)
+	  adegenet::loadingplot(var.contr, axis=axis, threshold=0)
 
 	  d <- var.contr[,axis]
 	  d2 <- var.load[,axis]
@@ -109,20 +109,20 @@ discriminant_loading <- function(wd, clumpp.wd,
 	  setwd(wd)
 
 	  if(plot.type =="svg"){
-		svglite(file = paste("m", best.model.number, "_DA_", axis, "_RF.loading.svg", sep=""), width = plot.width, height = plot.height)
-		loadingplot(var.contr, axis=axis, threshold=0)
+		svglite::svglite(file = paste("m", best.model.number, "_DA_", axis, "_RF.loading.svg", sep=""), width = plot.width, height = plot.height)
+		adegenet::loadingplot(var.contr, axis=axis, threshold=0)
 		dev.off()
 	  } else if(plot.type =="pdf"){
-		pdf(file = paste("m", best.model.number, "_DA_", axis, "_RF.loading.pdf", sep=""), width = plot.width, height = plot.height)
-		loadingplot(var.contr, axis=axis, threshold=0)
+		grDevices::pdf(file = paste("m", best.model.number, "_DA_", axis, "_RF.loading.pdf", sep=""), width = plot.width, height = plot.height)
+		adegenet::loadingplot(var.contr, axis=axis, threshold=0)
 		dev.off()
 	  } else {
-		png(file = paste("m", best.model.number, "_DA_", axis, "_RF.loading.png", sep=""), units="in", res=300, width = plot.width, height = plot.height)
-		loadingplot(var.contr, axis=axis, threshold=0)
+		grDevices::png(file = paste("m", best.model.number, "_DA_", axis, "_RF.loading.png", sep=""), units="in", res=300, width = plot.width, height = plot.height)
+		adegenet::loadingplot(var.contr, axis=axis, threshold=0)
 		dev.off()
 	  }
 	   
-	  loadingplot(var.contr, axis=axis, threshold=0)
+	  adegenet::loadingplot(var.contr, axis=axis, threshold=0)
 
 	  d <- var.contr[,axis]
 	  d2 <- var.load[,axis]
@@ -147,20 +147,20 @@ discriminant_loading <- function(wd, clumpp.wd,
 	  setwd(wd)
 
 	  if(plot.type =="svg"){
-		svglite(file = paste("m", best.model.number, "_DA_", axis, "_RF.supervised.loading.svg", sep=""), width = plot.width, height = plot.height)
-		loadingplot(var.contr, axis=axis, threshold=0)
+		svglite::svglite(file = paste("m", best.model.number, "_DA_", axis, "_RF.supervised.loading.svg", sep=""), width = plot.width, height = plot.height)
+		adegenet::loadingplot(var.contr, axis=axis, threshold=0)
 		dev.off()
 	  } else if(plot.type =="pdf"){
-		pdf(file = paste("m", best.model.number, "_DA_", axis, "_RF.supervised.loading.pdf", sep=""), width = plot.width, height = plot.height)
-		loadingplot(var.contr, axis=axis, threshold=0)
+		grDevices::pdf(file = paste("m", best.model.number, "_DA_", axis, "_RF.supervised.loading.pdf", sep=""), width = plot.width, height = plot.height)
+		adegenet::loadingplot(var.contr, axis=axis, threshold=0)
 		dev.off()
 	  } else {
-		png(file = paste("m", best.model.number, "_DA_", axis, "_RF.supervised.loading.png", sep=""), units="in", res=300, width = plot.width, height = plot.height)
-		loadingplot(var.contr, axis=axis, threshold=0)
+		grDevices::png(file = paste("m", best.model.number, "_DA_", axis, "_RF.supervised.loading.png", sep=""), units="in", res=300, width = plot.width, height = plot.height)
+		adegenet::loadingplot(var.contr, axis=axis, threshold=0)
 		dev.off()
 	  }
 	   
-	  loadingplot(var.contr, axis=axis, threshold=0)
+	  adegenet::loadingplot(var.contr, axis=axis, threshold=0)
 
 	  d <- var.contr[,axis]
 	  d2 <- var.load[,axis]

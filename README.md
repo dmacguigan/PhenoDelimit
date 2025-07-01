@@ -103,7 +103,6 @@ clumpp_results <- read_clumpp_results(wd=wd,
 ### step 3: plot H' values to compare delimitation models
 ```
 wd = "H:/PhenoDelimit/example/"
-clumpp.data = clumpp_results
 colors = c("gray70", "gray30", "black")
 plot.type = "png"
 plot.name = "H_plot_example"
@@ -111,7 +110,7 @@ plot.width = 8
 plot.height = 4
 
 plot_clumpp_results(wd=wd,
-                    clumpp.data=clumpp.data,
+                    clumpp.data=clumpp_results,
                     colors=colors,
                     plot.name = plot.name,
                     plot.type=plot.type,
@@ -128,7 +127,7 @@ So no surprise that model 6 has the lowest H'.
 
 <br/>
 
-### step 4: permutation test of significance for H' values - IN DEVELOPMENT
+### step 4: permutation test of significance for H' values
 Here we will permute the morphological data and rerun the DAPC and CLUMPP analyses.
 We can use this to test the statistical significance of our models.
 This may take a while depending on how many models you have and how many permutations you wish to perform.
@@ -168,8 +167,7 @@ H_permutation_plot(wd=wd,
                    plot.type="png",
                    plot.prefix="example",
                    plot.width=6,
-                   plot.height=4,
-                   sig.threshold=0.05)
+                   plot.height=4)
 ```
 ![example_perm-vs-obs_m1.png](/plots/example_perm-vs-obs_m1.png)
 ![example_perm-vs-obs_m6.png](/plots/example_perm-vs-obs_m6.png)

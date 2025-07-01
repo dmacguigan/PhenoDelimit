@@ -54,7 +54,7 @@ assign_probs_barplot <- function(wd, clumpp.wd, sample.names,
 	  # make barplots
 	  setwd(wd)
 	  if(plot.type == "svg"){
-		svglite(file=paste("m", best.model.number, "_barplot.svg", sep=""), width=plot.width, height=plot.height)
+		svglite::svglite(file=paste("m", best.model.number, "_barplot.svg", sep=""), width=plot.width, height=plot.height)
 		  par(mgp=c(1.5,1,0), mar = c(4.1, 3.1, 1, 1))
 		  barplot(plotData, col=colors, border=border.color,
 				  space=0, axes=F, axisname=FALSE, las=2, cex.names=0.75,
@@ -69,7 +69,7 @@ assign_probs_barplot <- function(wd, clumpp.wd, sample.names,
 			   tick=FALSE, las=0, cex.axis=0.8, adj=0, pos=0)
 		dev.off()
 	  } else if(plot.type == "pdf"){
-		pdf(file=paste("m", best.model.number, "_barplot.pdf", sep=""), width=plot.width, height=plot.height)
+		grDevices::pdf(file=paste("m", best.model.number, "_barplot.pdf", sep=""), width=plot.width, height=plot.height)
 		  par(mgp=c(1.5,1,0), mar = c(4.1, 3.1, 1, 1))
 		  barplot(plotData, col=colors, border=border.color,
 				  space=0, axes=F, axisname=FALSE, las=2, cex.names=0.75,
@@ -84,7 +84,7 @@ assign_probs_barplot <- function(wd, clumpp.wd, sample.names,
 			   tick=FALSE, las=0, cex.axis=0.8, adj=0, pos=0)
 		dev.off()
 	  } else {
-		png(file=paste("m", best.model.number, "_barplot.png", sep=""), units="in", res=300, width=plot.width, height=plot.height)
+		grDevices::png(file=paste("m", best.model.number, "_barplot.png", sep=""), units="in", res=300, width=plot.width, height=plot.height)
 		par(mgp=c(1.5,1,0), mar = c(4.1, 3.1, 1, 1))
 		barplot(plotData, col=colors, border=border.color,
 				space=0, axes=F, axisname=FALSE, las=2, cex.names=0.75,
@@ -139,7 +139,7 @@ assign_probs_barplot <- function(wd, clumpp.wd, sample.names,
 	  # make barplots
 	  setwd(wd)
 	  if(plot.type == "svg"){
-		svglite(file=paste("m", best.model.number, "_barplot.apriori.svg", sep=""), width=plot.width, height=plot.height)
+		svglite::svglite(file=paste("m", best.model.number, "_barplot.apriori.svg", sep=""), width=plot.width, height=plot.height)
 		  par(mgp=c(1.5,1,0), mar = c(4.1, 3.1, 1, 1))
 		  barplot(plotData, col=colors, border=border.color,
 				  space=0, axes=F, axisname=FALSE, las=2, cex.names=0.75,
@@ -154,7 +154,7 @@ assign_probs_barplot <- function(wd, clumpp.wd, sample.names,
 			   tick=FALSE, las=0, cex.axis=0.8, adj=0, pos=0)
 		dev.off()
 	  } else if(plot.type == "pdf"){
-		pdf(file=paste("m", best.model.number, "_barplot.apriori.pdf", sep=""), width=plot.width, height=plot.height)
+		grDevices::pdf(file=paste("m", best.model.number, "_barplot.apriori.pdf", sep=""), width=plot.width, height=plot.height)
 		  par(mgp=c(1.5,1,0), mar = c(4.1, 3.1, 1, 1))
 		  barplot(plotData, col=colors, border=border.color,
 				  space=0, axes=F, axisname=FALSE, las=2, cex.names=0.75,
@@ -169,7 +169,7 @@ assign_probs_barplot <- function(wd, clumpp.wd, sample.names,
 			   tick=FALSE, las=0, cex.axis=0.8, adj=0, pos=0)
 		dev.off()
 	  } else {
-		png(file=paste("m", best.model.number, "_barplot.apriori.png", sep=""), units="in", res=300, width=plot.width, height=plot.height)
+		grDevices::png(file=paste("m", best.model.number, "_barplot.apriori.png", sep=""), units="in", res=300, width=plot.width, height=plot.height)
 		par(mgp=c(1.5,1,0), mar = c(4.1, 3.1, 1, 1))
 		barplot(plotData, col=colors, border=border.color,
 				space=0, axes=F, axisname=FALSE, las=2, cex.names=0.75,
@@ -224,7 +224,7 @@ assign_probs_barplot <- function(wd, clumpp.wd, sample.names,
 	  # make barplots
 	  setwd(wd)
 	  if(plot.type == "svg"){
-		svglite(file=paste("m", best.model.number, "_barplot.RF.svg", sep=""), width=plot.width, height=plot.height)
+		svglite::svglite(file=paste("m", best.model.number, "_barplot.RF.svg", sep=""), width=plot.width, height=plot.height)
 		  par(mgp=c(1.5,1,0), mar = c(4.1, 3.1, 1, 1))
 		  barplot(plotData, col=colors, border=border.color,
 				  space=0, axes=F, axisname=FALSE, las=2, cex.names=0.75,
@@ -239,7 +239,7 @@ assign_probs_barplot <- function(wd, clumpp.wd, sample.names,
 			   tick=FALSE, las=0, cex.axis=0.8, adj=0, pos=0)
 		dev.off()
 	  } else if(plot.type == "pdf"){
-		pdf(file=paste("m", best.model.number, "_barplot.RF.pdf", sep=""), width=plot.width, height=plot.height)
+		grDevices::pdf(file=paste("m", best.model.number, "_barplot.RF.pdf", sep=""), width=plot.width, height=plot.height)
 		  par(mgp=c(1.5,1,0), mar = c(4.1, 3.1, 1, 1))
 		  barplot(plotData, col=colors, border=border.color,
 				  space=0, axes=F, axisname=FALSE, las=2, cex.names=0.75,
@@ -254,7 +254,7 @@ assign_probs_barplot <- function(wd, clumpp.wd, sample.names,
 			   tick=FALSE, las=0, cex.axis=0.8, adj=0, pos=0)
 		dev.off()
 	  } else {
-		png(file=paste("m", best.model.number, "_barplot.RF.png", sep=""), units="in", res=300, width=plot.width, height=plot.height)
+		grDevices::png(file=paste("m", best.model.number, "_barplot.RF.png", sep=""), units="in", res=300, width=plot.width, height=plot.height)
 		par(mgp=c(1.5,1,0), mar = c(4.1, 3.1, 1, 1))
 		barplot(plotData, col=colors, border=border.color,
 				space=0, axes=F, axisname=FALSE, las=2, cex.names=0.75,
@@ -308,7 +308,7 @@ assign_probs_barplot <- function(wd, clumpp.wd, sample.names,
 	  # make barplots
 	  setwd(wd)
 	  if(plot.type == "svg"){
-		svglite(file=paste("m", best.model.number, "_barplot.RF.supervised.svg", sep=""), width=plot.width, height=plot.height)
+		svglite::svglite(file=paste("m", best.model.number, "_barplot.RF.supervised.svg", sep=""), width=plot.width, height=plot.height)
 		  par(mgp=c(1.5,1,0), mar = c(4.1, 3.1, 1, 1))
 		  barplot(plotData, col=colors, border=border.color,
 				  space=0, axes=F, axisname=FALSE, las=2, cex.names=0.75,
@@ -323,7 +323,7 @@ assign_probs_barplot <- function(wd, clumpp.wd, sample.names,
 			   tick=FALSE, las=0, cex.axis=0.8, adj=0, pos=0)
 		dev.off()
 	  } else if(plot.type == "pdf"){
-		pdf(file=paste("m", best.model.number, "_barplot.RF.supervised.pdf", sep=""), width=plot.width, height=plot.height)
+		grDevices::pdf(file=paste("m", best.model.number, "_barplot.RF.supervised.pdf", sep=""), width=plot.width, height=plot.height)
 		  par(mgp=c(1.5,1,0), mar = c(4.1, 3.1, 1, 1))
 		  barplot(plotData, col=colors, border=border.color,
 				  space=0, axes=F, axisname=FALSE, las=2, cex.names=0.75,
@@ -338,7 +338,7 @@ assign_probs_barplot <- function(wd, clumpp.wd, sample.names,
 			   tick=FALSE, las=0, cex.axis=0.8, adj=0, pos=0)
 		dev.off()
 	  } else {
-		png(file=paste("m", best.model.number, "_barplot.RF.supervised.png", sep=""), units="in", res=300, width=plot.width, height=plot.height)
+		grDevices::png(file=paste("m", best.model.number, "_barplot.RF.supervised.png", sep=""), units="in", res=300, width=plot.width, height=plot.height)
 		par(mgp=c(1.5,1,0), mar = c(4.1, 3.1, 1, 1))
 		barplot(plotData, col=colors, border=border.color,
 				space=0, axes=F, axisname=FALSE, las=2, cex.names=0.75,
@@ -399,6 +399,68 @@ readData_sampleOrder <- function(dapc.data, sample.names, pop.order, sample.orde
   for (i in 1:nclust)
   {
     struc_k[i,] <- data[,(3+i)]
+  }
+
+  # re-order assignment probs so all plots have similar color schemes
+  struc_k_final <- matrix(nrow=nclust, ncol=ntax)
+  colnames(struc_k_final) <- data$sample.names
+  rownames(struc_k_final) <- 1:nclust
+  tracker = NULL
+  t = 0
+  c = 1
+  for(i in 1:ncol(struc_k)){
+    m <- max(struc_k[,i])
+    for(j in 1:nrow(struc_k)){
+      if(m == struc_k[j, i]){
+        t = j
+      }
+    }
+    if(!(t %in% tracker)){
+      struc_k_final[c,] <- struc_k[t,]
+      tracker = c(tracker, t)
+      c = c + 1
+      #print(tracker)
+    }
+  }
+  for(i in 1:nclust){
+    if(!(i %in% tracker)){
+      #print(i)
+      struc_k_final[c,] <- struc_k[i,]
+      c = c + 1
+    }
+  }
+  return(struc_k_final)
+}
+
+
+
+#' Prepare DAPC data for plotting, no sample order within pops
+#' 
+#' @description
+#' Function to prep and order DAPC data for plotting, sorts by pop.order
+#'
+#' @param dapc.data dapc posterior prob data
+#' @param sample.names vector of sample names
+#' @param pop.order vector for ordering populations
+#' 
+#' @noRd
+# 
+readData <- function(dapc.data, sample.names, pop.order)
+{
+  data <- cbind(sample.names, pop.order, dapc.data)
+  data <- data[order(data[,2]),]
+
+  # calculate number of clusters and taxa
+  nclust <- ncol(dapc.data)
+  ntax <- nrow(data)
+
+  # build new matrix with only relevant data and labels
+  struc_k <- matrix(nrow=nclust, ncol=ntax)
+  colnames(struc_k) <- data[,1]
+  rownames(struc_k) <- 1:nclust
+  for (i in 1:nclust)
+  {
+    struc_k[i,] <- data[,(2+i)]
   }
 
   # re-order assignment probs so all plots have similar color schemes

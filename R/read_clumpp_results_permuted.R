@@ -10,6 +10,14 @@
 #' @export
 #' 
 read_clumpp_results_permuted <- function(wd, perc.var, model.numbers, permutations){
+  # input error handling
+	if(any(perc.var <= 0) || (any(perc.var > 100))){
+		stop("perc.var values must be greater than 0 and less than 100")
+	}
+  if(permutations <=0 ){
+		stop("number of permutations must be greater than 0")
+	}
+
   setwd(paste0(wd, "/CLUMPP_permuted"))
   c1=numeric()
   c2=numeric()

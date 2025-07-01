@@ -9,6 +9,11 @@
 #' @export
 #' 
 read_clumpp_results <- function(wd, perc.var, model.numbers, apriori=FALSE, clust.method="kmeans"){
+  # input error handling
+	if(any(perc.var <= 0) || (any(perc.var > 100))){
+		stop("perc.var values must be greater than 0 and less than 100")
+	}
+
   if(clust.method == "kmeans" && apriori == FALSE){
 	  setwd(paste0(wd, "/CLUMPP"))
 	  c1=numeric()

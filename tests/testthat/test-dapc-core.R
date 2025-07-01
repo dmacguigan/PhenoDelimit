@@ -17,8 +17,8 @@ create_test_data <- function() {
 }
 
 test_that("dapc_clumpp creates proper directory structure", {
-  skip_if_not(file.exists(Sys.which("clumpp")) ||
-                file.exists("/usr/local/bin/clumpp") ||
+  skip_if_not(file.exists(Sys.which("CLUMPP")) ||
+                file.exists() ||
                 Sys.getenv("CLUMPP_PATH") != "",
               "CLUMPP executable not found")
 
@@ -55,7 +55,7 @@ test_that("dapc_clumpp validates input parameters", {
   # Test invalid working directory
   expect_error(
     dapc_clumpp(wd = "/nonexistent/directory",
-                CLUMPP_exe = "test",
+                CLUMPP_exe = "CLUMPP",
                 data = test_data$data,
                 n.groups = c(2),
                 model.numbers = c(1),
@@ -69,7 +69,7 @@ test_that("dapc_clumpp validates input parameters", {
 
   expect_error(
     dapc_clumpp(wd = tempdir(),
-                CLUMPP_exe = "test",
+                CLUMPP_exe = "CLUMPP",
                 data = test_data$data,
                 n.groups = c(2),
                 model.numbers = c(1),
@@ -86,7 +86,7 @@ test_that("dapc_clumpp parameter validation works", {
   # Test invalid percentage variance
   expect_error(
     dapc_clumpp(wd = temp_dir,
-                CLUMPP_exe = "test",
+                CLUMPP_exe = "CLUMPP",
                 data = test_data$data,
                 n.groups = c(2),
                 model.numbers = c(1),
@@ -98,7 +98,7 @@ test_that("dapc_clumpp parameter validation works", {
   # Test invalid n.groups
   expect_error(
     dapc_clumpp(wd = temp_dir,
-                CLUMPP_exe = "test",
+                CLUMPP_exe = "CLUMPP",
                 data = test_data$data,
                 n.groups = c(0),  # Invalid group number
                 model.numbers = c(1),

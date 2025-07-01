@@ -24,25 +24,25 @@ H_permutation_plot <- function(wd, clumpp.data, clumpp.data.permuted, model.numb
   for(i in model.numbers){
     perm_H <- subset(clumpp.data.permuted, model==i & perc.pca==best.perc.var)
     obs_H <- subset(clumpp.data, model==i & perc.pca==best.perc.var)
-    p <- ggplot(data=perm_H, aes(x=H)) +
-      geom_histogram(color="black", fill="gray") +
-      xlab("H'") +
-      ggtitle(paste0("model ", i, ", ", best.perc.var, "% retained variance")) +
-      geom_vline(data=obs_H, aes(xintercept=H), color="red", linetype="dashed", size=1.5)+
-      theme_minimal()
+    p <- ggplot2::ggplot(data=perm_H, ggplot2::aes(x=H)) +
+      ggplot2::geom_histogram(color="black", fill="gray") +
+      ggplot2::xlab("H'") +
+      ggplot2::ggtitle(paste0("model ", i, ", ", best.perc.var, "% retained variance")) +
+      ggplot2::geom_vline(data=obs_H, ggplot2::aes(xintercept=H), color="red", linetype="dashed", linewidth=1.5)+
+      ggplot2::theme_minimal()
     
     plot.name <- paste0(plot.prefix, "_perm-vs-obs_m", i, "")
     
     if(plot.type =="svg"){
-      svglite(file = paste(plot.name, ".svg", sep=""), width = plot.width, height = plot.height)
+      svglite::svglite(file = paste(plot.name, ".svg", sep=""), width = plot.width, height = plot.height)
       print(p)
       dev.off()
     } else if(plot.type =="pdf"){
-      pdf(file = paste(plot.name, ".pdf", sep=""), width = plot.width, height = plot.height)
+      grDevices::pdf(file = paste(plot.name, ".pdf", sep=""), width = plot.width, height = plot.height)
       print(p)
       dev.off()
     } else {
-      png(file = paste(plot.name, ".png", sep=""), units="in", res=300, width = plot.width, height = plot.height)
+      grDevices::png(file = paste(plot.name, ".png", sep=""), units="in", res=300, width = plot.width, height = plot.height)
       print(p)
       dev.off()
     }
@@ -61,30 +61,30 @@ H_permutation_plot <- function(wd, clumpp.data, clumpp.data.permuted, model.numb
   }
   
   # plot CLUMPP H' obs - permutation mean for each delimitation model
-  p <- ggplot(data = summary, aes(y=H_diff, x=as.factor(model))) +
-    geom_bar(stat="identity", position=position_dodge(), fill="black") +
-    ylab(label = "Observed H' - Permutation Mean H'") +
-    xlab(label = "Delimitation Model") +
-    geom_text(aes(label = round(H_diff, 2)),
-              position = position_dodge(0.9),
+  p <- ggplot2::ggplot(data = summary, ggplot2::aes(y=H_diff, x=as.factor(model))) +
+    ggplot2::geom_bar(stat="identity", position=ggplot2::position_dodge(), fill="black") +
+    ggplot2::ylab(label = "Observed H' - Permutation Mean H'") +
+    ggplot2::xlab(label = "Delimitation Model") +
+    ggplot2::geom_text(ggplot2::aes(label = round(H_diff, 2)),
+              position = ggplot2::position_dodge(0.9),
               color="white",vjust = 1.1, hjust = 0.5,
               size=3) +
-    geom_text(aes(label = paste0("p=",round(p_val, 3))),
+    ggplot2::geom_text(ggplot2::aes(label = paste0("p=",round(p_val, 3))),
               color="black",vjust = -0.5, hjust = 0.5,
               size=3) +
-    theme_minimal()
+    ggplot2::theme_minimal()
   
   plot.name <- paste0(plot.prefix, "_obs-minus-perm-mean")
   if(plot.type =="svg"){
-    svglite(file = paste(plot.name, ".svg", sep=""), width = plot.width, height = plot.height)
+    svglite::svglite(file = paste(plot.name, ".svg", sep=""), width = plot.width, height = plot.height)
     print(p)
     dev.off()
   } else if(plot.type =="pdf"){
-    pdf(file = paste(plot.name, ".pdf", sep=""), width = plot.width, height = plot.height)
+    grDevices::pdf(file = paste(plot.name, ".pdf", sep=""), width = plot.width, height = plot.height)
     print(p)
     dev.off()
   } else {
-    png(file = paste(plot.name, ".png", sep=""), units="in", res=300, width = plot.width, height = plot.height)
+    grDevices::png(file = paste(plot.name, ".png", sep=""), units="in", res=300, width = plot.width, height = plot.height)
     print(p)
     dev.off()
   }

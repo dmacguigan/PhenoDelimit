@@ -83,6 +83,8 @@ test_that("assign_probs_barplot validates parameters", {
 test_that("plot_discriminant_axes validates parameters", {
   temp_dir <- tempdir()
   clumpp_dir <- file.path(temp_dir, "CLUMPP")
+  dir.create(clumpp_dir)
+  file.create(file.path(clumpp_dir, "m1_perVar-70_ind.coord.txt"))
 
   # Test invalid axis specification
   expect_error(
@@ -110,6 +112,7 @@ test_that("plot_discriminant_axes validates parameters", {
 test_that("discriminant_loading validates parameters", {
   temp_dir <- tempdir()
   clumpp_dir <- file.path(temp_dir, "CLUMPP")
+  file.create(file.path(clumpp_dir, "m1_perVar-70_var.contr.txt"))
 
   # Test invalid axis
   expect_error(

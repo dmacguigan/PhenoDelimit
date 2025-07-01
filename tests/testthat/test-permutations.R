@@ -1,8 +1,25 @@
 
 test_that("dapc_clumpp_permuted validates parameters", {
-  skip_if_not(file.exists(Sys.which("clumpp")) ||
+  skip_if_not(file.exists(Sys.which("CLUMPP")) ||
                 Sys.getenv("CLUMPP_PATH") != "",
               "CLUMPP executable not found")
+
+  # Create test data
+  create_test_data <- function() {
+    set.seed(123)
+    data <- data.frame(
+      trait1 = c(rnorm(25, 10, 2), rnorm(25, 15, 2)),
+      trait2 = c(rnorm(25, 5, 1), rnorm(25, 8, 1)),
+      trait3 = c(rnorm(25, 20, 3), rnorm(25, 25, 3))
+    )
+
+    models <- data.frame(
+      m1 = rep(1:2, each = 25),
+      m2 = rep(1, 50)  # Single group model
+    )
+
+    list(data = data, models = models)
+  }
 
   test_data <- create_test_data()
   temp_dir <- tempdir()
@@ -10,7 +27,7 @@ test_that("dapc_clumpp_permuted validates parameters", {
   # Test invalid permutation number
   expect_error(
     dapc_clumpp_permuted(wd = temp_dir,
-                         CLUMPP_exe = "test",
+                         CLUMPP_exe = "CLUMPP",
                          data = test_data$data,
                          n.groups = c(2),
                          model.numbers = c(1),
@@ -22,7 +39,7 @@ test_that("dapc_clumpp_permuted validates parameters", {
 
   expect_error(
     dapc_clumpp_permuted(wd = temp_dir,
-                         CLUMPP_exe = "test",
+                         CLUMPP_exe = "CLUMPP",
                          data = test_data$data,
                          n.groups = c(2),
                          model.numbers = c(1),
