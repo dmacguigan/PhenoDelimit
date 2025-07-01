@@ -8,9 +8,9 @@ This package requires an external program, CLUMPP, which can be [dowloaded here]
 
 To download and install this package
 ```
-install.packages("devtools")
-library(devtools)
-install_github("dmacguigan/PhenoDelimit")
+install.packages("remotes")
+library(remotes)
+remotes::install_github("dmacguigan/PhenoDelimit")
 library(PhenoDelimit)
 ```
 

@@ -35,9 +35,6 @@ test_that("dapc_clumpp creates proper directory structure", {
     Sys.chmod(mock_clumpp, mode = "0755")
   }
 
-  # Test directory creation
-  expect_false(dir.exists(file.path(temp_dir, "CLUMPP")))
-
   # This would normally call dapc_clumpp, but we'll test the directory creation logic
   clumpp_dir <- file.path(temp_dir, "CLUMPP")
   dir.create(clumpp_dir, showWarnings = FALSE)

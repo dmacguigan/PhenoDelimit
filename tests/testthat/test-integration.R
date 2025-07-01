@@ -2,9 +2,6 @@ test_that("complete workflow can be tested with mock data", {
   skip_if_not(file.exists(Sys.which("CLUMPP")),
               "Integration test - requires CLUMPP executable")
 
-  library(reshape2)
-  library(RColorBrewer)
-
   # This test would run the complete workflow but is skipped
   # unless CLUMPP is available
   temp_dir <- tempdir()
@@ -109,7 +106,7 @@ test_that("complete workflow can be tested with mock data", {
               center=center,
               apriori=FALSE)
   expect_true(dir.exists(file.path(temp_dir, "CLUMPP")))
-  
+
   # let's run this step again but using a priori population assignments
   # we'll come back to these results later
   dapc_clumpp(wd=wd,
@@ -124,14 +121,14 @@ test_that("complete workflow can be tested with mock data", {
               apriori=TRUE)
 
   # step 2: summarize CLUMPP
-  
+
   clumpp_results <- read_clumpp_results(wd=wd,
                                       perc.var=perc.var,
                                       model.numbers=model.numbers)
   expect_true(is.data.frame(clumpp_results))
 
   # step 3: plot H' values to compare delimitation models
-  
+
   colors = c("gray70", "gray30", "black")
   plot.type = "png"
   plot.name = "H_plot_example"
@@ -146,9 +143,9 @@ test_that("complete workflow can be tested with mock data", {
                       plot.width=plot.width,
                       plot.height=plot.height)
   expect_true(exists("p"))
-    
+
   # step 4: permutation test of significance for H' values
-  
+
   n.groups = c(4,2,3,5,5,4)
   model.numbers = c(1:6)
   scale = TRUE
@@ -165,14 +162,14 @@ test_that("complete workflow can be tested with mock data", {
                      center=center)
   expect_true(dir.exists(file.path(temp_dir, "CLUMPP_permuted")))
 
-  
+
   clumpp_perm_df <- read_clumpp_results_permuted(wd=wd,
                                                perc.var=perc.var,
                                                model.numbers=model.numbers,
                                                permutations=10)
   expect_true(is.data.frame(clumpp_perm_df))
 
-  
+
   p <- H_permutation_plot(wd=wd,
                    clumpp.data=clumpp_results,
                    clumpp.data.permuted=clumpp_perm_df,
@@ -183,9 +180,9 @@ test_that("complete workflow can be tested with mock data", {
                    plot.width=6,
                    plot.height=4)
   expect_true(exists("p"))
-  
+
   # step 5: bar plots of discriminant analysis assignment probabilities
-  
+
   clumpp.wd = "./CLUMPP"
   sample.names = (1:nrow(models))
   sample.plot.groups = models$m1
@@ -231,7 +228,7 @@ test_that("complete workflow can be tested with mock data", {
                       border.color = border.color,
                       apriori=TRUE)
   expect_true(exists("p"))
-  
+
   # step 6: scatter plot or density plot of discriminant axes
 
   plot.width = 6
@@ -258,23 +255,23 @@ test_that("complete workflow can be tested with mock data", {
                         apriori=FALSE)
   expect_true(exists("p"))
 
-y.axis=3
-p <- plot_discriminant_axes(wd = wd,
-                       clumpp.wd = clumpp.wd,
-                       sample.plot.groups = sample.plot.groups,
-                       sample.plot.groups.order = sample.plot.groups.order,
-                       best.perc.var = best.perc.var,
-                       best.model.number = best.model.number,
-                       plot.type = plot.type,
-                       plot.width = plot.width,
-                       plot.height = plot.height,
-                       colors = colors,
-                       shapes = shapes,
-                       x.axis = x.axis,
-                       y.axis = y.axis,
-                       apriori=FALSE)
+  y.axis=3
+  p <- plot_discriminant_axes(wd = wd,
+                         clumpp.wd = clumpp.wd,
+                         sample.plot.groups = sample.plot.groups,
+                         sample.plot.groups.order = sample.plot.groups.order,
+                         best.perc.var = best.perc.var,
+                         best.model.number = best.model.number,
+                         plot.type = plot.type,
+                         plot.width = plot.width,
+                         plot.height = plot.height,
+                         colors = colors,
+                         shapes = shapes,
+                         x.axis = x.axis,
+                         y.axis = y.axis,
+                         apriori=FALSE)
   expect_true(exists("p"))
-  
+
   x.axis=1
   y.axis=2
   p <- plot_discriminant_axes(wd = wd,
@@ -292,7 +289,7 @@ p <- plot_discriminant_axes(wd = wd,
                         y.axis = y.axis,
                         apriori=TRUE)
   expect_true(exists("p"))
-  
+
   y.axis=3
   p <- plot_discriminant_axes(wd = wd,
                         clumpp.wd = clumpp.wd,
@@ -309,7 +306,7 @@ p <- plot_discriminant_axes(wd = wd,
                         y.axis = y.axis,
                         apriori=TRUE)
   expect_true(exists("p"))
-  
+
   # step 7: plot discriminant axis loadings and write table of variable contributions and loadings
   plot.width = 6
   plot.height = 6
@@ -342,8 +339,6 @@ test_that("file I/O operations work correctly", {
   expect_equal(nrow(read_df), 3)
   expect_equal(names(read_df), names(test_df))
 
-  # Cleanup
-  unlink(test_file)
 })
 
 test_that("directory operations work correctly", {
